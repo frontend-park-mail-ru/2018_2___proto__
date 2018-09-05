@@ -2,7 +2,7 @@
 
 ## Участники
 
-* Беккер Максим &mdash; github.com/armelior
-* Андрюхов Артём &mdash; github.com/mouseartiom
-* Григорьев Егор &mdash; github.com/0sektor0
-* Баскакова Яна &mdash; github.com/YB97
+* Беккер Максим &mdash; [armelior](github.com/armelior)
+* Андрюхов Артём &mdash; [mouseartiom](github.com/mouseartiom)
+* Григорьев Егор &mdash; [0sektor0](github.com/0sektor0)
+* Баскакова Яна &mdash; [YB97](github.com/YB97)
