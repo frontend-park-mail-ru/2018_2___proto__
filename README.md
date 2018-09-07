@@ -1,5 +1,14 @@
 # Команда __proto__
 
+## Репозитории
+
+* [Клиент](https://github.com/frontend-park-mail-ru/2018_2___proto__)
+* [Сервер](https://github.com/go-park-mail-ru/2018_2___proto__)
+
+## Деплой
+
+Coming soon...
+
 ## Участники
 
 * Беккер Максим &mdash; [armelior](https://github.com/armelior)
