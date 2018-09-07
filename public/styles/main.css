@@ -37,8 +37,7 @@
     margin-left: auto;
     margin-right: auto;
     display: block;
-    width: 200px;
-
+    width: 230px;
 }
 
 .auth-button {
@@ -66,4 +65,47 @@
     margin-right: auto;
     margin-bottom: 5%;
     display: block;
+}
+
+ul {
+    margin-left: auto;
+    margin-right: auto;
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.developers {
+    grid-row: 2 / 3;
+    width: 100%;
+}
+
+.table{
+	display: table;
+	width: 100%;
+}
+
+.tableRow {
+	display: table-row;
+}
+
+.tableHeading {
+	background-color: #EEE;
+    display: table-header-group;
+	font-weight: bold;
+}
+
+.tableCell, .tableHead {
+	border: 1px solid #999999;
+	display: table-cell;
+	padding: 3px 10px;
+}
+
+.tableFoot {
+	background-color: #EEE;
+	display: table-footer-group;
+	font-weight: bold;
+}
+
+.tableBody {
+	display: table-row-group;
 }
