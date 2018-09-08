@@ -10,6 +10,13 @@ it("should return 200", function(){
 });
 
 
+it("should return 200", function(){
+    let res = new responseMock();
+    server.HandleRequest({url : "/views/index.html"}, res);
+    assert.equal(200, res.statusCode);
+});
+
+
 it("should return 404", function(){
     let res = new responseMock();
     server.HandleRequest({url : "../asd.png"}, res);

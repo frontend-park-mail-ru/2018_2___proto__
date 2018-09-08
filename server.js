@@ -1,14 +1,15 @@
-exports.HandleRequest = HandleRequest
+exports.HandleRequest = HandleRequest;
 
 const debug = require("debug");
 const http = require("http");
-const fs = require('fs');
+const fs = require("fs");
 
 
 const port = 3000;
 const log = debug("*");
 const root = "./public";
-const index = "index.html";
+const index = "/views/index.html";
+const fileNotFindErrorCode = -2;
 
 const server = http.createServer(HandleRequest);
 
@@ -26,7 +27,7 @@ function HandleRequest(req, res) {
         fileContents = fs.readFileSync(requestedFilePath);
     } catch (err) {
         switch (err.errno) {
-            case -2:
+            case fileNotFindErrorCode:
                 res.statusCode = 404;
                 break;
 
