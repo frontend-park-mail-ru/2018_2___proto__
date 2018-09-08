@@ -1,6 +1,6 @@
 const server = require("./server.js");
-const assert = require('chai').assert;
-const responseMock = require('mock-res');
+const assert = require("chai").assert;
+const responseMock = require("mock-res");
 
 
 it("should return 200", function(){
