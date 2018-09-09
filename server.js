@@ -7,8 +7,8 @@ const fs = require("fs");
 
 const port = 3000;
 const log = debug("*");
-const root = "./public";
-const index = "/views/index.html";
+const root = "./public/views";
+const index = "/index.html";
 const fileNotFindErrorCode = -2;
 
 const server = http.createServer(HandleRequest);
@@ -20,7 +20,7 @@ server.listen(port, () => {
 function HandleRequest(req, res) {
     log("request: %s", req.url);
 
-    const requestedFilePath = (req.url == "/") ? `${root}/${index}` : `${root}${req.url}`;
+    const requestedFilePath = (req.url == "/") ? `${root}${index}` : `${root}${req.url}`;
     let fileContents;
 
     try {
