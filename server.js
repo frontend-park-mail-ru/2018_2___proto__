@@ -11,11 +11,6 @@ const root = "./public";
 const index = "/views/index.html";
 const fileNotFindErrorCode = -2;
 
-const server = http.createServer(HandleRequest);
-
-server.listen(port, () => {
-    log("server started on port %s", port)
-});
 
 function HandleRequest(req, res) {
     log("request: %s", req.url);
@@ -43,3 +38,10 @@ function HandleRequest(req, res) {
     res.write(fileContents);
     res.end();
 }
+
+
+const server = http.createServer(HandleRequest);
+
+server.listen(port, () => {
+    log("server started on port %s", port)
+});
