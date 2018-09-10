@@ -1,20 +1,20 @@
 {
-  "name": "grouphw",
-  "version": "1.0.0",
-  "description": "",
-  "main": "server.js",
-  "scripts": {
-    "test": "mocha *.test.js",
-    "start": "node server.js"
-  },
-  "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "chai": "^4.1.2",
-    "debug": "^3.1.0",
-    "mock-res": "^0.5.0"
-  },
-  "devDependencies": {
-    "mocha": "^5.2.0"
-  }
+	"name": "grouphw",
+	"version": "1.0.0",
+	"description": "",
+	"main": "server.js",
+	"scripts": {
+		"test": "mocha *.test.js",
+		"start": "node server.js"
+	},
+	"author": "",
+	"license": "ISC",
+	"dependencies": {
+		"chai": "^4.1.2",
+		"debug": "^3.1.0",
+		"mock-res": "^0.5.0"
+	},
+	"devDependencies": {
+		"mocha": "^5.2.0"
+	}
 }
