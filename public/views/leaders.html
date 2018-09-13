@@ -6,43 +6,56 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<meta http-equiv="X-UA-Compatible" content="ie=edge">
 		<title>Leaders</title>
-		<link rel="stylesheet" href="../styles/main.css">
+		<link rel="stylesheet" href="../static/main.css">
 	</head>
 
 	<body>
 		<div id="root">
 			<div id="authbar">
-				<button class="auth-button" onclick="window.location.href = 'sign_in.html';">Sign in</button>
-				<button class="auth-button" onclick="window.location.href = 'sign_up.html';">Sign up</button>
+				<ul class="auth">
+					<li><a href="sign_in.html" class="authbar__auth-button">Sign In</a></li>
+					<li><a href="sign_up.html" class="authbar__auth-button">Sign Up</a></li>
+				</ul>
 			</div>
 
 			<div id="logo">
 				<h1><a href="index.html">Our game</a></h1>
 			</div>
 
-			<div id="main">
-				<div class="elements">
-					<div class="table" style="border: 1px solid #000;">
-						<div class="tableBody">
-							<div class="tableRow">
-								<div class="tableCell">Place</div>
-								<div class="tableCell">Gamer</div>
-								<div class="tableCell">Score</div>
+			<div id="main-block">
+				<div class="main-block__form">
+					<div class="main-block__table">
+						<div class="main-block__table-body">
+							<div class="main-block__table-row">
+								<div class="main-block__table-cell main-block__table-head">Place</div>
+								<div class="main-block__table-cell main-block__table-head">Gamer</div>
+								<div class="main-block__table-cell main-block__table-head">Score</div>
 							</div>
-							<div class="tableRow">
-								<div class="tableCell">1st</div>
-								<div class="tableCell">KOPTE3</div>
-								<div class="tableCell">OVER 9000</div>
+							<div class="main-block__table-row">
+								<div class="main-block__table-cell">1st</div>
+								<div class="main-block__table-cell">KOPTE3</div>
+								<div class="main-block__table-cell">OVER 9000</div>
 							</div>
-							<div class="tableRow">
-								<div class="tableCell">2nd</div>
-								<div class="tableCell">Vileven</div>
-								<div class="tableCell">4500</div>
+							<div class="main-block__table-row">
+								<div class="main-block__table-cell">2nd</div>
+								<div class="main-block__table-cell">Vileven</div>
+								<div class="main-block__table-cell">4500</div>
 							</div>
-							<div class="tableRow">
-								<div class="tableCell">3rd</div>
-								<div class="tableCell">Armelior</div>
-								<div class="tableCell">1</div>
+							<div class="main-block__table-row">
+								<div class="main-block__table-cell">3rd</div>
+								<div class="main-block__table-cell">avtyul</div>
+								<div class="main-block__table-cell">4259</div>
+							</div>
+							<div class="main-block__table-row">
+								<div class="main-block__table-cell">4th</div>
+								<div class="main-block__table-cell">8coon</div>
+								<div class="main-block__table-cell">1234</div>
+							</div>
+
+							<div class="main-block__table-row">
+								<div class="main-block__table-cell">5th</div>
+								<div class="main-block__table-cell">Armelior</div>
+								<div class="main-block__table-cell">1</div>
 							</div>
 						</div>
 					</div>

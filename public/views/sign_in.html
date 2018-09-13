@@ -6,26 +6,33 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<meta http-equiv="X-UA-Compatible" content="ie=edge">
 		<title>Sign up</title>
-		<link rel="stylesheet" href="../styles/main.css">
+		<link rel="stylesheet" href="../static/main.css">
 	</head>
 
 	<body>
 		<div id="root">
 			<div id="authbar">
-				<button class="auth-button" onclick="window.location.href = 'sign_in.html';">Sign in</button>
-				<button class="auth-button" onclick="window.location.href = 'sign_up.html';">Sign up</button>
+				<ul class="auth">
+					<li><a href="sign_in.html" class="authbar__auth-button">Sign In</a></li>
+					<li><a href="sign_up.html" class="authbar__auth-button">Sign Up</a></li>
+				</ul>
 			</div>
 
 			<div id="logo">
 				<h1><a href="index.html">Our game</a></h1>
 			</div>
 
-			<div id="main">
-				<div class="elements">
+			<div id="main-block">
+				<div class="main-block__form">
 					<form>
-						<input type="text" class="field" placeholder="Name">
-						<input type="password" class="field" placeholder="Password">
-						<input type="submit" class="form-button" value="Login">
+						<input type="text" class="main-block__form-field" placeholder="Login">
+						<input type="password" class="main-block__form-field" placeholder="Password">
+						<input type="submit" class="main-block__form-button" value="Sign In">	
+
+						<div class="main-block__form-links">
+							<p><a href="#" class="">Not registered?</a></p>
+							<p><a href="#" class="">Forgot your password?</a></p>
+						</div>
 					</form>
 				</div>
 			</div>
