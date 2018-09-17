@@ -199,3 +199,27 @@ ul.auth > li > a {
 }
 
 /* profile.html */
+
+.main-block__profile-user {
+	display: inline-block;
+}
+
+.main-block__profile-user-avatar {
+	border-radius: 40px;
+	border-style: solid;
+	border-width: 1.2px;
+	border-color: white;
+	width: 80px;
+	height: 80px;
+	margin: auto auto auto auto;
+	display: block;
+}
+
+.main-block__profile-user-name {
+	font-weight: bold;
+	display: block;
+}
+
+.main-block__profile-info {
+	display: inline-block;
+}
