@@ -5,8 +5,8 @@
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<meta http-equiv="X-UA-Compatible" content="ie=edge">
-		<title>Profile</title>
-		<link rel="stylesheet" href="../static/main.css">
+		<title>Sign up</title>
+		<link rel="stylesheet" href="../../styles/main.css">
 	</head>
 
 	<body>
@@ -24,25 +24,16 @@
 
 			<div id="main-block">
 				<div class="main-block__form">
-					<div class="main-block__profile">
-						<div class="main-block__profile-user">
-							<img src="../img/avatar-blank.png" alt="avatar" class="main-block__profile-user-avatar">
-							<span class="main-block__profile-user-name">#USERNAME</span>
+					<form>
+						<input type="text" class="main-block__form-field" placeholder="Login">
+						<input type="password" class="main-block__form-field" placeholder="Password">
+						<input type="submit" class="main-block__form-button" value="Sign In">	
+
+						<div class="main-block__form-links">
+							<p><a href="#" class="">Not registered?</a></p>
+							<p><a href="#" class="">Forgot your password?</a></p>
 						</div>
-						<div class="main-block__profile-info">
-							<ul>
-								<li>
-									<p><strong>E-Mail:</strong> example@mail.ru</p>
-								</li>
-								<li>
-									<p><strong>Wins:</strong> 123</p>
-								</li>
-								<li>
-									<p><strong>Loses:</strong> 99</p>
-								</li>
-							</ul>
-						</div>
-					</div>
+					</form>
 				</div>
 			</div>
 		</div>

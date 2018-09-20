@@ -1,0 +1,171 @@
+/* Basic */
+
+* {
+	font-family: "Century Gothic", CenturyGothic, AppleGothic, sans-serif;
+}
+
+body {
+	margin: 0; /* Because of grid issue */
+}
+
+/* Page sections */
+
+#root {
+	height: 100vh; /* Because of grid issue */
+	display: grid;
+	grid-template-columns: 0.8fr 1.4fr 0.8fr;
+	grid-template-rows: 0.4fr 2.2fr 0.4fr;
+	grid-template-areas: "gamer-info timer enemy-info" "gamer-hero . enemy-hero" "game-actions game-actions game-actions";
+}
+
+.enemy-info {
+	display: grid;
+	grid-area: enemy-info;
+	grid-template-columns: 1fr;
+	grid-template-rows: 1fr 1fr;
+	grid-gap: 1px 1px;
+	grid-template-areas: "enemy-info__nickname" "enemy-info__health";
+}
+
+.enemy-info__nickname {
+	grid-area: enemy-info__nickname;
+	padding: 10% 0;
+	text-align: center;
+}
+
+.enemy-info__health {
+	grid-area: enemy-info__health;
+	box-sizing: border-box;
+	width: 250px;
+	height: 30px;
+	padding: 5px;
+	background-color: #ccc;
+	border-radius: 5px;
+	position: relative;
+	margin: 10%;
+	text-align: center;
+}
+
+.gamer-info {
+	display: grid;
+	grid-area: gamer-info;
+	grid-template-columns: 1fr;
+	grid-template-rows: 1fr 1fr;
+	grid-gap: 1px 1px;
+	grid-template-areas: "gamer-info__nickname" "gamer-info__health";
+}
+
+.gamer-info__health {
+	grid-area: gamer-info__health;
+	box-sizing: border-box;
+	width: 250px;
+	height: 30px;
+	padding: 5px;
+	background-color: #ccc;
+	border-radius: 5px;
+	position: relative;
+	margin: 10%;
+	text-align: center;
+}
+
+.gamer-info__nickname {
+	grid-area: gamer-info__nickname;
+	padding: 10% 0;
+	text-align: center;
+}
+
+.timer {
+	grid-area: timer;
+	padding: 10% 0;
+	text-align: center;
+}
+
+.game-actions {
+	display: grid;
+	grid-area: game-actions;
+	grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+	grid-template-rows: 1fr;
+	grid-gap: 1px 1px;
+	grid-template-areas: "game-actions__attack game-actions__ability game-actions__autofight game-actions__skip game-actions__surrender";
+}
+
+.game-actions__attack {
+	grid-area: game-actions__attack;
+	padding: 10% 0;
+	text-align: center;
+}
+
+.game-actions__ability {
+	grid-area: game-actions__ability;
+	padding: 10% 0;
+	text-align: center;
+}
+
+.game-actions__autofight {
+	grid-area: game-actions__autofight;
+	padding: 10% 0;
+	text-align: center;
+}
+
+.game-actions__skip {
+	grid-area: game-actions__skip;
+	padding: 10% 0;
+	text-align: center;
+}
+
+.game-actions__surrender {
+	grid-area: game-actions__surrender;
+	padding: 10% 0;
+	text-align: center;
+}
+
+.gamer-hero {
+	grid-area: gamer-hero;
+}
+
+.gamer-hero > img {
+	width: 60%;
+	height: 40%;
+	padding: 50% 20%;
+	transform: scale(-1, 1);
+}
+
+.enemy-hero {
+	grid-area: enemy-hero;
+}
+
+.enemy-hero > img {
+	width: 60%;
+	height: 40%;
+	padding: 50% 20%;
+}
+
+/* Parts */
+
+.gamer-info__health__bar {
+	background: green;
+	width: 100%;
+	height: 100%;
+	position: relative;
+	bottom: 40px;
+}
+
+.gamer-info__health__bar-red {
+	width: 100%;
+	height: 100%;
+	background-color: red;
+	position: relative;
+}
+
+.gamer-info__health__bar-blue {
+	width: 100%;
+	height: 100%;
+	background-color: lightskyblue;
+	bottom: 20px;
+	position: relative;
+}
+
+.gamer-info__health__bar-text {
+	position: relative;
+	bottom: 60px;
+}

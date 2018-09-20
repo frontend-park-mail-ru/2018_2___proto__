@@ -8,7 +8,7 @@ const fs = require("fs");
 const port = 3000;
 const log = debug("*");
 const root = "./public";
-const index = "/views/index.html";
+const index = "/views/Menu/index.html";
 const fileNotFindErrorCode = -2;
 
 function HandleRequest(req, res) {
@@ -16,9 +16,9 @@ function HandleRequest(req, res) {
 	let requestedFilePath;
 
 	if (path.extname(req.url) == ".html") {
-		requestedFilePath = req.url == "/" ? `${root}/${index}` : `${root}/views${req.url}`
+		requestedFilePath = (req.rul == "/") ? `${root}${index}` : (path.basename(req.url) == "fight.html") ? `${root}/views${req.url}` : `${root}/views/Menu${req.url}`;
 	} else {
-		requestedFilePath = req.url == "/" ? `${root}/${index}` : `${root}${req.url}`
+		requestedFilePath = (req.url == "/") ? `${root}/${index}` : `${root}${req.url}`
 	}
 
 	let fileContents;
