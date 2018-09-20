@@ -15,7 +15,7 @@ body {
 	display: grid;
 	grid-template-columns: 0.8fr 1.4fr 0.8fr;
 	grid-template-rows: 0.4fr 2.2fr 0.4fr;
-	grid-template-areas: "gamer-info timer enemy-info" "gamer-hero . enemy-hero" "game-actions game-actions game-actions";
+	grid-template-areas: "gamer-info timer enemy-info" "gamer-hero question enemy-hero" "game-actions game-actions game-actions";
 }
 
 .enemy-info {
@@ -80,6 +80,10 @@ body {
 	text-align: center;
 }
 
+.question {
+	grid-area: question;
+}
+
 .game-actions {
 	display: grid;
 	grid-area: game-actions;
@@ -140,7 +144,7 @@ body {
 	padding: 50% 20%;
 }
 
-/* Parts */
+/* Health Bar */
 
 .gamer-info__health__bar {
 	background: green;
@@ -168,4 +172,86 @@ body {
 .gamer-info__health__bar-text {
 	position: relative;
 	bottom: 60px;
+}
+
+/* Question Modal */
+
+.modal {
+	display: none; /* Hidden by default */
+	position: fixed; /* Stay in place */
+	z-index: 1; /* Sit on top */
+	padding-top: 100px; /* Location of the box */
+	left: 0;
+	top: 0;
+	width: 100%; /* Full width */
+	height: 100%; /* Full height */
+	overflow: auto; /* Enable scroll if needed */
+	background-color: rgb(0, 0, 0); /* Fallback color */
+	background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+	position: relative;
+	background-color: #fefefe;
+	margin: auto;
+	padding: 0;
+	border: 1px solid #888;
+	width: 80%;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+	animation-name: animatetop;
+	animation-duration: 0.4s;
+}
+
+/* А тут чутка шмогли :3 */
+@-webkit-keyframes animatetop {
+	from {
+		top: -300px;
+		opacity: 0;
+	}
+	to {
+		top: 0;
+		opacity: 1;
+	}
+}
+
+@keyframes animatetop {
+	from {
+		top: -300px;
+		opacity: 0;
+	}
+	to {
+		top: 0;
+		opacity: 1;
+	}
+}
+
+.close {
+	color: white;
+	float: right;
+	font-size: 28px;
+	font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+	color: #000;
+	text-decoration: none;
+	cursor: pointer;
+}
+
+.modal-header {
+	padding: 2px 16px;
+	background-color: #969b96;
+	color: white;
+}
+
+.modal-body {
+	padding: 2px 16px;
+}
+
+.modal-footer {
+	padding: 2px 16px;
+	background-color: #969b96;
+	color: white;
 }
