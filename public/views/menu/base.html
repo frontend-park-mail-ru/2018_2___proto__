@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Our game</title>
+    <link rel="stylesheet" href="../../styles/main.css">
+    <script defer src="../../scripts/handlebars-v4.0.12.min.js"></script>
+    <script defer src="../../templates/about.js"></script>
+    <script defer src="../../templates/index.js"></script>
+    <script defer src="../../templates/leaders.js"></script>
+    <script defer src="../../templates/profile.js"></script>
+    <script defer src="../../templates/signin.js"></script>
+    <script defer src="../../templates/signup.js"></script>
+    <script defer src="../../scripts/template-render.js"></script>
+</head>
+
+<body>
+    <div id="root">
+        <div id="authbar">
+            <ul class="auth">
+                <li><a onclick="renderSignIn();" href="#" class="authbar__auth-button">Sign In</a></li>
+                <li><a onclick="renderSignUp();" href="#" class="authbar__auth-button">Sign Up</a></li>
+            </ul>
+        </div>
+
+        <div id="logo">
+            <h1><a onclick="renderIndex();" href="#">Our game</a></h1>
+        </div>
+
+        <div id="main-block">
+
+        </div>
+    </div>
+</body>
+
+</html>

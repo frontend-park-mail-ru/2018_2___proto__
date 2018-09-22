@@ -1,40 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
+<div class="main-block__form">
+	<ul class="buttons">
+		{{#each developers}}
+		<li><a href="{{link}}" class="main-block__menu-button">{{name}}</a></li>
+		{{/each}}
 
-	<head>
-		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<meta http-equiv="X-UA-Compatible" content="ie=edge">
-		<title>About project</title>
-		<link rel="stylesheet" href="../../styles/main.css">
-	</head>
-
-	<body>
-		<div id="root">
-			<div id="authbar">
-				<ul class="auth">
-					<li><a href="sign_in.html" class="authbar__auth-button">Sign In</a></li>
-					<li><a href="sign_up.html" class="authbar__auth-button">Sign Up</a></li>
-				</ul>
-			</div>
-
-			<div id="logo">
-				<h1><a href="index.html">Our game</a></h1>
-			</div>
-
-			<div id="main-block">
-				<div class="main-block__form">
-					<ul class="buttons">
-                        {{#each developers}}
-						    <li><a href="{{link}}" class="main-block__menu-button">{{name}}</a></li>
-                        {{/each}}
-
-						<p><h2>Mentor</h2></p>
-						    <li><a href="{{mentor.link}}" class="main-block__menu-button">{{mentor.name}}</a></li>
-					</ul>
-				</div>
-			</div>
-		</div>
-	</body>
-
-</html>
+		<p>
+			<h2>Mentor</h2>
+		</p>
+		<li><a href="{{mentor.link}}" class="main-block__menu-button">{{mentor.name}}</a></li>
+	</ul>
+</div>
