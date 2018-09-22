@@ -1,0 +1,25 @@
+extends ./base.pug
+
+mixin memberCard(member)
+  a.main-block__menu-button(href='{member.link}') member.name
+
+block content    
+    #root
+      #authbar
+        ul.auth
+          li
+            a.authbar__auth-button(href='sign_in.html') Sign In
+          li
+            a.authbar__auth-button(href='sign_up.html') Sign Up
+      #logo
+        h1
+          a(href='index.html') Our game
+      #main-block
+        .main-block__form
+          ul.buttons
+            for member in locals.developers
+              li= +memberCard(member)
+            p
+            h2 Mentor
+            p
+            li= +memberCard(locals.mentor)

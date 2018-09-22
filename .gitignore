@@ -267,3 +267,4 @@ __pycache__/
 **/.vscode
 **/data
 **/bin
+.gitignore

@@ -5,14 +5,16 @@
 	"main": "server.js",
 	"scripts": {
 		"test": "mocha *.test.js",
-		"start": "node server.js"
+		"start": "node server.js",
+		"pug-compile": "pug --client --no-debug ./templates/*.pug --out ./templates/rendered/"
 	},
 	"author": "",
 	"license": "ISC",
 	"dependencies": {
 		"chai": "^4.1.2",
 		"debug": "^3.1.0",
-		"mock-res": "^0.5.0"
+		"mock-res": "^0.5.0",
+		"pug": "^2.0.3"
 	},
 	"devDependencies": {
 		"mocha": "^5.2.0"
