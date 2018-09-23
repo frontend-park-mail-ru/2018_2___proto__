@@ -11,12 +11,13 @@
 
 ```
 npm install
+npm run prod
 npm run start
 ```
 
 ## Деплой
 
-Coming soon...
+[Frontend](team-proto.now.sh)
 
 ## Участники
 

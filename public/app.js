@@ -1,6 +1,6 @@
 "use strict";
 
-import buttonComponent from "./components/button/button.mjs";
+import buttonComponent from "./scripts/components/button/button.js";
 // import logoComponent from "./components/logo/logo.mjs";
 
 // Данные для шаблонов
@@ -72,7 +72,8 @@ function createBase() {
 			click: method,
 		});
 
-		let button = btnComp.render(btnComp.attributes);
+		btnComp.render(btnComp.context);
+		let button = btnComp.element();
 		button.className = "button";
 		authButtons.appendChild(button);
 	});
@@ -81,10 +82,10 @@ function createBase() {
 	root.appendChild(authBlock);
 
 	// Содержимое logo-block
-	const logo = new LogoComponent({
-		text: "Our Game",
-		click: renderMenu,
-	});
+	// const logo = new LogoComponent({
+	// 	text: "Our Game",
+	// 	click: renderMenu,
+	// });
 
 	// const logoBlock = document.createElement("div");
 	// logoBlock.id = "logo-block";
@@ -94,13 +95,13 @@ function createBase() {
 
 	// logoHeader.appendChild(logoLink);
 	// logoBlock.appendChild(logoHeader);
-	root.appendChild(logo.render());
+	// root.appendChild(logo.render());
 
 	// Содерижмое main-block
 	const mainBlock = document.createElement("div");
 	mainBlock.id = "main-block";
 	const backside = document.createElement("div");
-	backside.className = "backside";
+	backside.id = "backside";
 
 	mainBlock.appendChild(backside);
 	root.appendChild(mainBlock);
