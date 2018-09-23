@@ -1,7 +1,7 @@
 "use strict";
 
 import buttonComponent from "./scripts/components/button/button.js";
-// import logoComponent from "./components/logo/logo.mjs";
+import logoComponent from "./scripts/components/logo/logo.js";
 
 // Данные для шаблонов
 
@@ -59,7 +59,7 @@ const buttons = {
 
 const root = document.getElementById("root");
 
-function createBase() {
+function createPage() {
 	// Содержимое auth-block
 	const authBlock = document.createElement("div");
 	authBlock.id = "auth-block";
@@ -74,7 +74,6 @@ function createBase() {
 
 		btnComp.render(btnComp.context);
 		let button = btnComp.element();
-		button.className = "button";
 		authButtons.appendChild(button);
 	});
 	
@@ -82,10 +81,12 @@ function createBase() {
 	root.appendChild(authBlock);
 
 	// Содержимое logo-block
-	// const logo = new LogoComponent({
-	// 	text: "Our Game",
-	// 	click: renderMenu,
-	// });
+	const logo = new logoComponent({
+		text: "Our Game",
+		click: renderMenu,
+	});
+
+	logo.render(logo.context);
 
 	// const logoBlock = document.createElement("div");
 	// logoBlock.id = "logo-block";
@@ -95,7 +96,7 @@ function createBase() {
 
 	// logoHeader.appendChild(logoLink);
 	// logoBlock.appendChild(logoHeader);
-	// root.appendChild(logo.render());
+	root.appendChild(logo.element());
 
 	// Содерижмое main-block
 	const mainBlock = document.createElement("div");
@@ -139,4 +140,4 @@ function renderToMainBlock(template, data) {
 	// mainBlock.innerHTML = Handlebars.templates[template](data);
 }
 
-window.onload = createBase();
+window.onload = createPage();
