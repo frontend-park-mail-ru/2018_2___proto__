@@ -1,0 +1,14 @@
+#logo-block {
+	grid-column: 2 / 3;
+	grid-row: 2 / 3;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	white-space: nowrap;
+}
+
+#logo-block > h1 > a {
+	text-decoration: none;
+	font-size: 55px;
+	font-weight: bold;
+}
