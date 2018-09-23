@@ -1,21 +1,27 @@
 {
-	"name": "grouphw",
+	"name": "Frontend",
 	"version": "1.0.0",
-	"description": "",
+	"description": "Frontend (Technopark)",
 	"main": "./server/server.js",
 	"scripts": {
 		"test": "mocha ./server/*.test.js",
-		"start": "node ./server/server.js"
+		"start": "node ./server/server.js",
+		"prod": "webpack -p",
+		"dev": "webpack -d --watch"
 	},
 	"author": "",
 	"license": "ISC",
 	"dependencies": {
 		"chai": "^4.1.2",
 		"debug": "^3.1.0",
+		"handlebars": "^4.0.12",
+		"html-webpack-plugin": "^3.2.0",
 		"mime-types": "^2.1.20",
 		"mock-res": "^0.5.0"
 	},
 	"devDependencies": {
-		"mocha": "^5.2.0"
+		"mocha": "^5.2.0",
+		"webpack": "^4.19.1",
+		"webpack-cli": "^3.1.1"
 	}
 }

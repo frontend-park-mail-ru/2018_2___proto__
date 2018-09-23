@@ -14,7 +14,8 @@ const log = debug("*");
 const paths = {
 	root: "./public",
 	index: "./public/index.html",
-	favicon: "./public/favicon.ico"
+	favicon: "./public/favicon.ico",
+	bundle: "./dict/bundle.js",
 };
 
 function HandleRequest(req, res) {
@@ -29,6 +30,9 @@ function HandleRequest(req, res) {
 			break;
 		case "/favicon.ico":
 			requestedFilePath = paths.favicon;
+			break;
+		case "/bundle.js":
+			requestedFilePath = paths.bundle;
 			break;
 		default:
 			requestedFilePath = paths.root + req.url;

@@ -25,8 +25,7 @@ it("Should return 404", () => {
 it("Should return application/javascript", () => {
 	let res = new responseMock();
 	server.HandleRequest({ url: "/scripts/index.js" }, res);
-	assert.equal("application/javascript; charset=utf-8", res.getHeader("content-type")
-	);
+	assert.equal("application/javascript; charset=utf-8", res.getHeader("content-type"));
 });
 
 it("Should return test/css", () => {

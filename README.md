@@ -5,6 +5,15 @@
 * [Клиент](https://github.com/frontend-park-mail-ru/2018_2___proto__)
 * [Сервер](https://github.com/go-park-mail-ru/2018_2___proto__)
 
+## Сборка
+
+Для запуска на локальной машине:
+
+```
+npm install
+npm run start
+```
+
 ## Деплой
 
 Coming soon...
