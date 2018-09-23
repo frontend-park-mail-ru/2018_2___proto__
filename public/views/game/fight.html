@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		<title>Fight screen</title>
+		<link rel="stylesheet" href="../../styles/game.css">
+	</head>
+
+	<body>
+		<div id="root">
+			<div class="enemy-info">
+				<div class="area-overlap enemy-info__nickname">
+					#USERNAME
+				</div>
+
+				<div class="enemy-info__health">
+					<div class="gamer-info__health__bar-red"></div>
+					<div class="gamer-info__health__bar-blue"></div>
+					<div class="gamer-info__health__bar"></div>
+					<div class="gamer-info__health__bar-text">100%</div>
+				</div>
+			</div>
+
+			<div class="gamer-info">
+				<div class="gamer-info__health">
+					<div class="gamer-info__health__bar-red"></div>
+					<div class="gamer-info__health__bar-blue"></div>
+					<div class="gamer-info__health__bar"></div>
+					<div class="gamer-info__health__bar-text">100%</div>
+				</div>
+
+				<div class="area-overlap gamer-info__nickname">
+					#USERNAME
+				</div>
+			</div>
+
+			<div class="timer">
+				&lt;ТУТ ДОЛЖЕН БЫТЬ ТАЙМЕР&gt;
+			</div>
+
+			<div class="question">
+				<div id="question" class="modal">
+					<div class="modal-content">
+						<div class="modal-header">
+							<span class="close" onclick="closeQuestion();">&times;</span>
+							<h2>Test question</h2>
+						</div>
+						<div class="modal-body">
+							<p>What is the color of night?</p>
+						</div>
+						<div class="modal-footer">
+							<button>Um...</button>
+							<button>What?</button>
+							<button>Callibri! No?..</button>
+							<button>Sanguine, my brother</button>
+						</div>
+					</div>
+
+				</div>
+			</div>
+
+			<div class="game-actions">
+				<div class="area-overlap game-actions__attack">
+					<a href="#" onclick="healing();">&lt;АТАКА&gt;</a>
+				</div>
+
+				<div class="game-actions__ability">
+					<a href="#" onclick="attack();">&lt;СПОСОБНОСТЬ&gt;</a>
+				</div>
+
+				<div class="game-actions__autofight">
+					<a href="#" onclick="openQuestion();">&lt;АВТОБОЙ&gt;</a>
+				</div>
+
+				<div class="game-actions__skip">
+					&lt;ПРОПУСТИТЬ ХОД&gt;
+				</div>
+
+				<div class="game-actions__surrender">
+					&lt;СДАТЬСЯ&gt;
+				</div>
+			</div>
+
+			<div class="gamer-hero">
+				<img src="../../img/hero-sprite.png" alt="hero-sprite">
+			</div>
+
+			<div class="enemy-hero">
+				<img src="../../img/hero-sprite.png" alt="hero-sprite">
+			</div>
+		</div>
+
+		<script src="../../scripts/game.js"></script>
+	</body>
+
+</html>

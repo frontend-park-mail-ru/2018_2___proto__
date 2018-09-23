@@ -12,6 +12,7 @@
 	"dependencies": {
 		"chai": "^4.1.2",
 		"debug": "^3.1.0",
+		"handlebars": "^4.0.12",
 		"mock-res": "^0.5.0"
 	},
 	"devDependencies": {
