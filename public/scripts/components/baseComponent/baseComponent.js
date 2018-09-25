@@ -1,15 +1,18 @@
 "use strict";
 
-export default class baseComponent {
-	constructor(template) {
+export default class BaseComponent {
+	constructor(template, context) {
 		this._element = null;
 		this._template = template;
-		this.events = ["click"];
+		this._context = context;
+		this.events = {
+			"click": "onClick",
+		};
 	}
 
-	render(context) {
+	render() {
 		const div = document.createElement("div");
-		div.innerHTML = this._template(context);
+		div.innerHTML = this._template(this._context);
 		this._element = div.firstChild;
 	}
 
@@ -40,5 +43,5 @@ export default class baseComponent {
 		return this.element();
 	}
 	
-	// Добавить методы AddListners и RemoveListners
+	// TODO: Добавить методы AddListners и RemoveListners
 }

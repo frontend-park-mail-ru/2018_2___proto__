@@ -1,18 +1,18 @@
 "use strict";
 
 import "./button.css";
-import baseComponent from "../baseComponent/baseComponent.js";
+import BaseComponent from "../baseComponent/baseComponent.js";
 
-export default class buttonComponent extends baseComponent {
+export default class ButtonComponent extends BaseComponent {
 	constructor({text, click} = {}) {
 		super();
-		this.context = {
+		this._template = require("./button.hbs");
+		this._context = {
 			text,
 		}
 	}
 
-	render(context) {
-		this._template = require("./button.hbs");
-		super.render(context);
+	render() {
+		super.render(this._context);
 	}
 }

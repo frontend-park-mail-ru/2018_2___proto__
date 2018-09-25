@@ -1,18 +1,19 @@
 "use strict";
 
 import "./logo.css";
-import baseComponent from "../baseComponent/baseComponent.js";
+import BaseComponent from "../baseComponent/baseComponent.js";
 
-export default class logoComponent extends baseComponent {
+export default class LogoComponent extends BaseComponent {
 	constructor({ text, click } = {}) {
 		super();
-		this.context = {
+		this._template = require("./logo.hbs");
+		this._context = {
 			text,
 		}
 	}
 
 	render(context) {
 		this._template = require("./logo.hbs");
-		super.render(context);
+		super.render(this._context);
 	}
 }

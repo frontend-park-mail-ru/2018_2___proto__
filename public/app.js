@@ -1,7 +1,7 @@
 "use strict";
 
-import buttonComponent from "./scripts/components/button/button.js";
-import logoComponent from "./scripts/components/logo/logo.js";
+import ButtonComponent from "./scripts/components/button/button.js";
+import LogoComponent from "./scripts/components/logo/logo.js";
 
 // Данные для шаблонов
 
@@ -67,12 +67,12 @@ function createPage() {
 	authButtons.className = "buttons";
 
 	Object.entries(buttons.authButtons).forEach(([title, method]) => {
-		let btnComp = new buttonComponent({
+		let btnComp = new ButtonComponent({
 			text: title,
 			click: method,
 		});
 
-		btnComp.render(btnComp.context);
+		btnComp.render();
 		let button = btnComp.element();
 		authButtons.appendChild(button);
 	});
@@ -81,7 +81,7 @@ function createPage() {
 	root.appendChild(authBlock);
 
 	// Содержимое logo-block
-	const logo = new logoComponent({
+	const logo = new LogoComponent({
 		text: "Our Game",
 		click: renderMenu,
 	});
