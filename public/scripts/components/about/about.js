@@ -1,9 +1,9 @@
 "use strict";
 
 import "./about.css";
-import baseComponent from "../baseComponent/baseComponent.js";
+import BaseComponent from "../baseComponent/baseComponent.js";
 
-export default class aboutComponent extends baseComponent {
+export default class AboutComponent extends BaseComponent {
     constructor() {
         super();
         this._template = require("./about.hbs");

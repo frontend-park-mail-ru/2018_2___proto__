@@ -1,6 +1,6 @@
 "use strict";
 
-export default class baseComponent {
+export default class BaseComponent {
 	constructor(template) {
 		this._element = null;
 		this._template = template;

@@ -1,9 +1,9 @@
 "use strict";
 
 import "./leaders.css";
-import baseComponent from "../baseComponent/baseComponent.js";
+import BaseComponent from "../baseComponent/baseComponent.js";
 
-export default class leadersComponent extends baseComponent {
+export default class LeadersComponent extends BaseComponent {
     constructor() {
         super();
         this._template = require("./leaders.hbs");
