@@ -1,47 +1,48 @@
 "use strict";
 
 export default class BaseComponent {
-	constructor(template) {
+	constructor() {
 		this._element = null;
-		this._template = template;
-		// this._context = context;
-		this.events = {
-			"click": "onClick",
-		};
+		this.events = {};
 	}
 
-	render() {
-		const div = document.createElement("div");
-		div.innerHTML = this._template(this._context);
-		this._element = div.firstChild;
-	}
-
-	appendChild(component) {
-		this._element.appendChild(component);
+	render(newContext = {}) {
+		this._removeEvents();
+		this._renderTemplate(newContext);
+		this._addEvents();
 	}
 
 	element() {
 		return this._element;
 	}
 
-	insertInto(parentId) {
-		let parent = document.getElementById(parentId);
-		
-		if(parent !== null)
-			parent.innerHTML = this._element.innerHTML;
+	_renderTemplate(newContext = {}) {
+		this._context = { ...this._context, ...newContext };
+		const div = document.createElement("div");
+		div.innerHTML = this._template(this._context);
+		const newElement = div.firstChild;
 
-		return parent;
+		if (this._element) {
+			this._element.parentNode.replaceChild(
+				newElement,
+				this._element
+			);
+		}
+
+		this._element = newElement;
 	}
 
-	appendTo(parentId) {
-		let parent = document.getElementById(parentId);
-
-		if(parent === null)
-			return null;
-		
-		parent.appendChild(this._element);
-		return this.element();
+	_addEvents() {
+		Object.entries(this.events).forEach(([event, callback]) => {
+			this._element.addEventListener(event, callback);
+		});
 	}
-	
-	// TODO: Добавить методы AddListners и RemoveListners
+
+	_removeEvents() {
+		if (this._element) {
+			Object.entries(this.events).forEach(([event, callback]) => {
+				this._element.removeEventListener(event, callback);
+			});
+		}
+	}
 }
