@@ -1,0 +1,22 @@
+.main-block__menu-button {
+	font-size: 25px;
+	padding: 10px;
+	font-weight: bold;
+	cursor: pointer;
+	text-decoration: none;
+	background-color: slateblue;
+	color: white;
+	box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+}
+
+.main-block__menu-button:active {
+	background-color: rgb(90, 77, 173);
+}
+
+ul.buttons > li {
+	margin-top: 10%;
+}
+
+ul.buttons > li > a {
+	display: block;
+}
