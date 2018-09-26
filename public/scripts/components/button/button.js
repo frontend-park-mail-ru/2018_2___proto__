@@ -4,15 +4,21 @@ import "./button.css";
 import BaseComponent from "../baseComponent/baseComponent.js";
 
 export default class ButtonComponent extends BaseComponent {
-	constructor({text, click} = {}) {
+	constructor() {
 		super();
 		this._template = require("./button.hbs");
 		this._context = {
-			text,
-		}
+			text: "",
+			onClick: null,
+		};
+		this.events = {
+			click: this._onClick.bind(this),
+		};
 	}
 
-	render() {
-		super.render(this._context);
+	_onClick() {
+		if (this._context.onClick) {
+			this._context.onClick();
+		}
 	}
 }
