@@ -1,4 +1,4 @@
-#logo-block {
+.logo-block {
 	grid-column: 2 / 3;
 	grid-row: 2 / 3;
 	display: flex;
@@ -7,8 +7,17 @@
 	white-space: nowrap;
 }
 
-#logo-block > h1 > a {
+.logo-block > h1 > a {
 	text-decoration: none;
 	font-size: 55px;
 	font-weight: bold;
+	cursor: pointer;
+}
+
+.logo-block > h1 > a:hover {
+	color: slateblue;
+}
+
+.logo-block > h1 > a:active {
+	color: rgb(90, 77, 173);
 }

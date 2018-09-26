@@ -2,18 +2,29 @@
 
 import "./logo.css";
 import BaseComponent from "../baseComponent/baseComponent.js";
+import MenuComponent from "../menu/menu.js";
 
 export default class LogoComponent extends BaseComponent {
-	constructor({ text, click } = {}) {
+	constructor() {
 		super();
 		this._template = require("./logo.hbs");
-		this._context = {
-			text,
-		}
+		this.events = {
+			click: this._onLogoClick.bind(this)
+		};
 	}
 
-	render(context) {
-		this._template = require("./logo.hbs");
-		super.render(this._context);
+	_onLogoClick() {
+		this._renderMenu();
+	}
+
+	_renderMenu() {
+		if (document.querySelector("[ref=menu]")) {
+			return;
+		}
+
+		const menu = new MenuComponent();
+		menu.render();
+		const backside = document.querySelector("[ref=backside]");
+		backside.appendChild(menu.element);
 	}
 }

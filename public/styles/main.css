@@ -12,22 +12,16 @@ body {
 	margin: 0; /* Because of grid issue */
 }
 
-ul {
-	list-style-type: none;
-	padding-left: 0;
-	text-align: center;
-}
-
 /* Page sections */
 
-#root {
+.root {
 	height: 100vh; /* Because of grid issue */
 	display: grid;
 	grid-template-columns: 1fr 1fr 1fr;
 	grid-template-rows: 1fr 1fr 3fr 1fr;
 }
 
-#authbar {
+.auth-block {
 	grid-column: 3 / 4;
 	grid-row: 1 / 2;
 	display: flex;
@@ -36,22 +30,7 @@ ul {
 	white-space: nowrap;
 }
 
-#logo {
-	grid-column: 2 / 3;
-	grid-row: 2 / 3;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	white-space: nowrap;
-}
-
-#logo > h1 > a {
-	text-decoration: none;
-	font-size: 55px;
-	font-weight: bold;
-}
-
-#main-block {
+.main-block {
 	grid-column: 2 / 3;
 	grid-row: 3 / 4;
 	display: flex;
@@ -61,28 +40,15 @@ ul {
 	position: relative;
 }
 
-/* index.html */
-
-.main-block__form {
+.backside {
 	background: white;
 	padding: 30px 80px;
 	box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+	border-radius: 5px;
 }
 
-.main-block__menu-button {
-	font-size: 25px;
-	padding: 10px;
-	font-weight: bold;
-	cursor: pointer;
-	text-decoration: none;
-	background-color: slateblue;
-	color: white;
-	box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
-}
+/* index.html */
 
-.main-block__menu-button:active {
-	background-color: rgb(90, 77, 173);
-}
 
 ul.buttons > li {
 	margin-top: 10%;
