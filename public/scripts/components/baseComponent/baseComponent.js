@@ -12,8 +12,24 @@ export default class BaseComponent {
 		this._addEvents();
 	}
 
-	element() {
+	get element() {
 		return this._element;
+	}
+
+	_renderChild(ref, component, context) {
+		if (!ref) {
+			return;
+		}
+
+		const parentNode = this._element.querySelector(`[ref=${ref}]`);
+		const childNode = new component();
+		childNode.render(context);
+
+		while (parentNode.firstChild) {
+			parentNode.removeChild(parentNode.firstChild);
+		}
+
+		parentNode.appendChild(childNode.element);
 	}
 
 	_renderTemplate(newContext = {}) {
@@ -23,10 +39,7 @@ export default class BaseComponent {
 		const newElement = div.firstChild;
 
 		if (this._element) {
-			this._element.parentNode.replaceChild(
-				newElement,
-				this._element
-			);
+			this._element.parentNode.replaceChild(newElement, this._element);
 		}
 
 		this._element = newElement;
