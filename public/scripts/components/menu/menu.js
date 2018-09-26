@@ -18,27 +18,27 @@ export default class MenuComponent extends BaseComponent {
 	_renderChildren() {
 		this._renderChild("singleplayer", ButtonComponent, {
 			text: "Play singleplayer",
-			click: this._onSingleplayerClick,
+			onClick: this._onSingleplayerClick
 		});
 
 		this._renderChild("multiplayer", ButtonComponent, {
 			text: "Play multiplayer",
-			click: this._onMultiplayerClick,
+			onClick: this._onMultiplayerClick
 		});
 
 		this._renderChild("profile", ButtonComponent, {
 			text: "View profile",
-			click: this._onProfileClick,
+			onClick: this._onProfileClick
 		});
 
 		this._renderChild("leaderboard", ButtonComponent, {
 			text: "Leaderboard",
-			click: this._onLeaderboardClick,
+			onClick: this._onLeaderboardClick
 		});
 
 		this._renderChild("about", ButtonComponent, {
 			text: "About",
-			click: this._onAboutClick,
+			onClick: this._onAboutClick
 		});
 	}
 
