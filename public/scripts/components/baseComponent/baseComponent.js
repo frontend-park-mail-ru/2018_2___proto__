@@ -1,10 +1,10 @@
 "use strict";
 
 export default class BaseComponent {
-	constructor(template, context) {
+	constructor(template) {
 		this._element = null;
 		this._template = template;
-		this._context = context;
+		// this._context = context;
 		this.events = {
 			"click": "onClick",
 		};
