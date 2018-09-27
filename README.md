@@ -7,12 +7,20 @@
 
 ## Сборка
 
-Для запуска на локальной машине:
+### Development
+
+```
+npm install
+npm run dev
+npm start
+```
+
+### Production
 
 ```
 npm install
 npm run prod
-npm run start
+npm start
 ```
 
 ## Деплой

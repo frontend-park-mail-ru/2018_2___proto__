@@ -1,15 +1,11 @@
-const webpack = require("webpack");
 const path = require("path");
-const output = path.join(__dirname, "/dist");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
 
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+const output = path.join(__dirname, "/dist");
 
 module.exports = {
 	entry: {
-		main: [
-			"./public/app.js",
-			"./public/styles/main.css",
-		]
+		main: ["./public/app.js", "./public/styles/main.css"],
 	},
 	output: {
 		path: output,
@@ -25,13 +21,13 @@ module.exports = {
 			{
 				test: /\.hbs$/,
 				loader: "handlebars-loader",
-			}
-		]
+			},
+		],
 	},
 
 	plugins: [
 		new HtmlWebpackPlugin({
-			template: path.join(__dirname, "public/index.html")
+			template: path.join(__dirname, "public/index.html"),
 		}),
-	]
+	],
 };

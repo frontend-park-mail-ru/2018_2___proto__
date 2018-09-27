@@ -47,43 +47,7 @@ body {
 	border-radius: 5px;
 }
 
-/* index.html */
-
-
-ul.buttons > li {
-	margin-top: 10%;
-}
-
-ul.buttons > li > a {
-	display: block;
-}
-
-.authbar__auth-button {
-	padding: 10px;
-	font-weight: bold;
-	cursor: pointer;
-	text-decoration: none;
-	background-color: slateblue;
-	color: white;
-	box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
-}
-
-.authbar__auth-button:active {
-	background-color: rgb(90, 77, 173);
-}
-
-ul.auth > li {
-	margin: 5%;
-	display: inline-block;
-	width: auto;
-}
-
-ul.auth > li > a {
-	display: block;
-	width: 60px;
-}
-
-/* sign_in.html, sign_up.html */
+/* sign_in, sign_up */
 
 .main-block__form-button {
 	font-size: 14px;

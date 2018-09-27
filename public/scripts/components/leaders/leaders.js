@@ -1,11 +1,13 @@
-"use strict";
-
 import "./leaders.css";
-import BaseComponent from "../baseComponent/baseComponent.js";
+import template from "./leaders.hbs";
+import BaseComponent from "../baseComponent/baseComponent";
 
+/**
+ * Компонент Leaderboard
+ */
 export default class LeadersComponent extends BaseComponent {
-    constructor() {
-        super();
-        this._template = require("./leaders.hbs");
-    }
+	constructor() {
+		super();
+		this.template = template;
+	}
 }

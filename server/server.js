@@ -1,7 +1,3 @@
-"use strict";
-
-exports.HandleRequest = HandleRequest;
-
 const mime = require("mime-types");
 const debug = require("debug");
 const http = require("http");
@@ -55,6 +51,9 @@ function HandleRequest(req, res) {
 	res.end();
 }
 
-const server = http.createServer(HandleRequest).listen(port, () => {
+const server = http.createServer(HandleRequest);
+server.listen(port, () => {
 	log(`Server started on port ${port}`);
 });
+
+exports.HandleRequest = HandleRequest;

@@ -3,3 +3,7 @@ ul.buttons {
 	padding-left: 0;
 	text-align: center;
 }
+
+ul.buttons > li {
+	margin-top: 10%;
+}

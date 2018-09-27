@@ -1,22 +1,33 @@
-"use strict";
-
 import "./button.css";
-import BaseComponent from "../baseComponent/baseComponent.js";
+import template from "./button.hbs";
+import BaseComponent from "../baseComponent/baseComponent";
 
+/**
+ * Компонент кнопки
+ */
 export default class ButtonComponent extends BaseComponent {
 	constructor() {
 		super();
-		this._template = require("./button.hbs");
+		this.template = template;
 		this._context = {
 			text: "",
 			onClick: null,
+			href: null,
 		};
 		this.events = {
 			click: this._onClick.bind(this),
 		};
 	}
 
-	_onClick() {
+	/**
+	 * Нажатие на кнопку
+	 * @param {event} event - sender
+	 */
+	_onClick(event) {
+		if (!this._context.href) {
+			event.preventDefault();
+		}
+
 		if (this._context.onClick) {
 			this._context.onClick();
 		}
