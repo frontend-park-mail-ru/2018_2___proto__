@@ -24,7 +24,12 @@ export default class LogoComponent extends BaseComponent {
 
 		const menu = new MenuComponent();
 		menu.render();
+		
 		const backside = document.querySelector("[ref=backside]");
+		while (backside.firstChild) {
+			backside.removeChild(backside.firstChild);
+		}
+
 		backside.appendChild(menu.element);
 	}
 }

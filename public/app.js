@@ -59,6 +59,7 @@ function createPage() {
 	backside.className = "backside";
 	backside.setAttribute("ref", "backside");
 
+	// debugger;
 	const menu = new MenuComponent();
 	menu.render();
 	backside.appendChild(menu.element);

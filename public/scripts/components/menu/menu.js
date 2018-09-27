@@ -3,6 +3,7 @@
 import "./menu.css";
 import BaseComponent from "../baseComponent/baseComponent.js";
 import ButtonComponent from "../button/button.js";
+import AboutComponent from "../about/about.js";
 
 export default class MenuComponent extends BaseComponent {
 	constructor() {
@@ -50,5 +51,11 @@ export default class MenuComponent extends BaseComponent {
 
 	_onLeaderboardClick() {}
 
-	_onAboutClick() {}
+	_onAboutClick() {
+		const about = new AboutComponent();
+		about.render();
+		const backside = document.querySelector("[ref=backside]");
+		const menu = document.querySelector("[ref=menu]");
+		backside.replaceChild(about.element, menu);
+	}
 }
