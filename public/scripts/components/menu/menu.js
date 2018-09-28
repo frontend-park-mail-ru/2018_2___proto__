@@ -2,7 +2,7 @@ import "./menu.css";
 import template from "./menu.hbs";
 import BaseComponent from "../baseComponent/baseComponent";
 import ButtonComponent from "../button/button";
-import AboutComponent from "../about/about";
+// import AboutComponent from "../about/about";
 
 /**
  * Компонент меню
@@ -72,10 +72,10 @@ export default class MenuComponent extends BaseComponent {
 	 * Callback на нажатие "About"
 	 */
 	_onAboutClick() {
-		const about = new AboutComponent();
-		about.render();
-		const backside = document.querySelector("[ref=backside]");
-		const menu = document.querySelector("[ref=menu]");
-		backside.replaceChild(about.element, menu);
+		// const about = new AboutComponent();
+		// about.render();
+		// const backside = document.querySelector("[ref=backside]");
+		// const menu = document.querySelector("[ref=menu]");
+		// backside.replaceChild(about.element, menu);
 	}
 }

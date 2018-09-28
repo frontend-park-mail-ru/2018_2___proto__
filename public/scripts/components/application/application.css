@@ -1,0 +1,16 @@
+.main-block {
+	grid-column: 2 / 3;
+	grid-row: 3 / 4;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	white-space: nowrap;
+	position: relative;
+}
+
+.backside {
+	background: white;
+	padding: 30px 80px;
+	box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+	border-radius: 5px;
+}

@@ -3,21 +3,33 @@ export default class BaseComponent {
 	/**
 	 * Конструктор
 	 * @param {node} _element - Внутреннее представление в виде HTML-ноды
+	 * @param {array} _children - Все дочерние компоненты
 	 * @param {object} events - События компонента для рендеринга (Protected)
 	 */
 	constructor() {
 		this._element = null;
+		this._children = [];
 		this.events = {};
 	}
 
 	/**
-	 * Рендерит компонент в зависимости от контекста и обновляет Listeners @protected
+	 * Рендерит компонент в зависимости от контекста и обновляет Listeners
 	 * @param {object} newContext - Контекст для компонента
 	 */
 	render(newContext = {}) {
 		this._removeEvents();
 		this._renderTemplate(newContext);
 		this._addEvents();
+	}
+
+	/**
+	 * Уничтожает все Listners себя и своих дочерних
+	 */
+	destroy() {
+		this._removeEvents();
+		this._children.forEach((child) => {
+			child.destroy();
+		});
 	}
 
 	get element() {
@@ -31,19 +43,27 @@ export default class BaseComponent {
 	 * @param {object} context - Контекст для компонента
 	 */
 	renderChild(ref, Component, context) {
-		if (!ref) {
+		const oldChild = this._children[ref];
+		if (oldChild) {
+			oldChild.destroy();
+		}
+
+		delete this._children[ref];
+		
+		const parentNode = this._element.querySelector(`[ref=${ref}]`);
+		if (parentNode === null) {
 			return;
 		}
 
-		const parentNode = this._element.querySelector(`[ref=${ref}]`);
-		const childNode = new Component();
-		childNode.render(context);
+		const newChild = new Component();
+		newChild.render(context);
+		this._children[ref] = newChild;
 
 		while (parentNode.firstChild) {
 			parentNode.removeChild(parentNode.firstChild);
 		}
 
-		parentNode.appendChild(childNode.element);
+		parentNode.appendChild(newChild.element);
 	}
 
 	/**
@@ -64,7 +84,7 @@ export default class BaseComponent {
 	}
 
 	/**
-	 * Ввешает Listeners
+	 * Вешает Listeners
 	 */
 	_addEvents() {
 		Object.entries(this.events).forEach(([event, callback]) => {
