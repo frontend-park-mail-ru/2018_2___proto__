@@ -30,9 +30,7 @@ export default class ApplicationComponent extends BaseComponent {
 	 */
 	_renderChildren() {
 		this.renderChild("logo", LogoComponent, {});
-		this.renderChild("menu", MenuComponent, {});
-		// this.renderChild("profile", ProfileComponent, {});
-		// this.renderChild("leaderboard", LeaderboardComponent, {});
 		this.renderChild("about", AboutComponent, {});
+		this.renderChild("menu", MenuComponent, {});
 	}
 }
