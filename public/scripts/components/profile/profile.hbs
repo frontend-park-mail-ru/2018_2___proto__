@@ -1,0 +1,24 @@
+<div>
+	{{#if changeProfile}}
+
+	{{else}}
+	<div class="profile-user">
+		<img src="{{{imgURL}}}" alt="avatar" class="profile-avatar">
+		<span class="profile-name">{{username}}</span>
+	</div>
+	<div class="profile-info">
+		<ul>
+			<li>
+				<p><strong>E-Mail:</strong>&nbsp;{{email}}</p>
+			</li>
+			<li>
+				<p><strong>Wins:</strong>&nbsp;{{wins}}</p>
+			</li>
+			<li>
+				<p><strong>Loses:</strong>&nbsp;{{loses}}</p>
+			</li>
+		</ul>
+	</div>
+	{{/if}}
+	<div ref="changeProfile"></div>
+</div>
