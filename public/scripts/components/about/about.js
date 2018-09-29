@@ -12,8 +12,8 @@ export default class AboutComponent extends BaseComponent {
 		this.template = template;
 	}
 
-	render() {
-		super.render();
+	render(context) {
+		super.render(context);
 		this._renderChildren();
 	}
 

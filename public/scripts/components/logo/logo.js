@@ -19,21 +19,6 @@ export default class LogoComponent extends BaseComponent {
 	 * Нажатие на сам логотип рендерит меню (как возврат на index)
 	 */
 	_onLogoClick() {
-		if (document.querySelector("[ref=menu]")) {
-			return;
-		}
-
-		// debugger;
-		// this.renderChild("backside", MenuComponent, {});
-
-		// const menu = new MenuComponent();
-		// menu.render();
-
-		// const backside = document.querySelector("[ref=backside]");
-		// while (backside.firstChild) {
-		// 	backside.removeChild(backside.firstChild);
-		// }
-
-		// backside.appendChild(menu.element);
+		this._context.navigate("menu");
 	}
 }

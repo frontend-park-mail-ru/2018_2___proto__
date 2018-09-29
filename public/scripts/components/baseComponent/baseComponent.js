@@ -59,7 +59,7 @@ export default class BaseComponent {
 		newChild.render(context);
 		const newChildNodes = newChild.element.querySelectorAll("*");
 
-		for (let i = 0; i < newChildNodes; i++) {
+		for (let i = 0; i < newChildNodes.length; i++) {
 			newChildNodes[i].removeAttribute("ref");
 		}
 

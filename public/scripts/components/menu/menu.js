@@ -2,7 +2,6 @@ import "./menu.css";
 import template from "./menu.hbs";
 import BaseComponent from "../baseComponent/baseComponent";
 import ButtonComponent from "../button/button";
-// import AboutComponent from "../about/about";
 
 /**
  * Компонент меню
@@ -13,8 +12,8 @@ export default class MenuComponent extends BaseComponent {
 		this.template = template;
 	}
 
-	render() {
-		super.render();
+	render(context) {
+		super.render(context);
 		this._renderChildren();
 	}
 
@@ -24,58 +23,62 @@ export default class MenuComponent extends BaseComponent {
 	_renderChildren() {
 		this.renderChild("singleplayer", ButtonComponent, {
 			text: "Play singleplayer",
-			onClick: this._onSingleplayerClick,
+			onClick: this._onSingleplayerClick.bind(this),
 		});
 
 		this.renderChild("multiplayer", ButtonComponent, {
 			text: "Play multiplayer",
-			onClick: this._onMultiplayerClick,
+			onClick: this._onMultiplayerClick.bind(this),
 		});
 
 		this.renderChild("profile", ButtonComponent, {
 			text: "View profile",
-			onClick: this._onProfileClick,
+			onClick: this._onProfileClick.bind(this),
 		});
 
 		this.renderChild("leaderboard", ButtonComponent, {
 			text: "Leaderboard",
-			onClick: this._onLeaderboardClick,
+			onClick: this._onLeaderboardClick.bind(this),
 		});
 
 		this.renderChild("about", ButtonComponent, {
 			text: "About",
-			onClick: this._onAboutClick,
+			onClick: this._onAboutClick.bind(this),
 		});
 	}
 
 	/**
 	 * Callback на нажатие "Play singleplayer"
 	 */
-	_onSingleplayerClick() {}
+	_onSingleplayerClick() {
+		this._context.navigate("singleplayer");
+	}
 
 	/**
 	 * Callback на нажатие "Play multiplayer"
 	 */
-	_onMultiplayerClick() {}
+	_onMultiplayerClick() {
+		this._context.navigate("multiplayer");
+	}
 
 	/**
 	 * Callback на нажатие "View profile"
 	 */
-	_onProfileClick() {}
+	_onProfileClick() {
+		this._context.navigate("profile");
+	}
 
 	/**
 	 * Callback на нажатие "Leaderboard"
 	 */
-	_onLeaderboardClick() {}
+	_onLeaderboardClick() {
+		this._context.navigate("leaderboard");
+	}
 
 	/**
 	 * Callback на нажатие "About"
 	 */
 	_onAboutClick() {
-		// const about = new AboutComponent();
-		// about.render();
-		// const backside = document.querySelector("[ref=backside]");
-		// const menu = document.querySelector("[ref=menu]");
-		// backside.replaceChild(about.element, menu);
+		this._context.navigate("about");
 	}
 }
