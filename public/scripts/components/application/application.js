@@ -75,6 +75,7 @@ export default class ApplicationComponent extends BaseComponent {
 					singleplayer: false,
 					multiplayer: false,
 				};
+				break;
 			default:
 				break;
 		}

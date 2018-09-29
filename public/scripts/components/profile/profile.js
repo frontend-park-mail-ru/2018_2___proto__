@@ -11,24 +11,19 @@ export default class ProfileComponent extends BaseComponent {
 		super();
 		this.template = template;
 		this._context = {
-			changeProfile: false
-		}
+			changeProfile: false,
+		};
 	}
 
 	render(context) {
 		super.render(context);
 
-		if (this._context.changeProfile) {
-			this.renderChild("changeProfile", ButtonComponent, {
-				text: "Save profile", 
-				onClick: this._onChangeProfileClick.bind(this),
-			});
-		} else {
-			this.renderChild("changeProfile", ButtonComponent, {
-				text: "Change profile", 
-				onClick: this._onChangeProfileClick.bind(this),
-			});
-		}
+		const btnText = this._context.changeProfile ? "Save profile" : "Change profile";
+
+		this.renderChild("changeProfile", ButtonComponent, {
+			text: btnText,
+			onClick: this._onChangeProfileClick.bind(this),
+		});
 	}
 
 	_onChangeProfileClick() {

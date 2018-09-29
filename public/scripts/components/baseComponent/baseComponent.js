@@ -49,7 +49,7 @@ export default class BaseComponent {
 		}
 
 		delete this._children[ref];
-		
+
 		const parentNode = this._element.querySelector(`[ref=${ref}]`);
 		if (parentNode === null) {
 			return;

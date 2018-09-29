@@ -1,7 +1,6 @@
 import "./logo.css";
 import template from "./logo.hbs";
 import BaseComponent from "../baseComponent/baseComponent";
-import MenuComponent from "../menu/menu";
 
 /**
  * Компонент Logo
