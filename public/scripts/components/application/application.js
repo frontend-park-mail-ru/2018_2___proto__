@@ -140,55 +140,55 @@ export default class ApplicationComponent extends BaseComponent {
 		});
 
 		this.renderChild("leaderboard", LeaderboardComponent, {
-			cscores: 12,
+			count: 12,
 			offset: 0,
 			records: [
 				{
-					username: "KOPTEЗ",
+					nickname: "KOPTEЗ",
 					score: 9000,
 				},
 				{
-					username: "Armelior",
+					nickname: "Armelior",
 					score: 11,
 				},
 				{
-					username: "avtyul",
+					nickname: "avtyul",
 					score: 4259,
 				},
 				{
-					username: "Vileven",
+					nickname: "Vileven",
 					score: 4500,
 				},
 				{
-					username: "8coon",
+					nickname: "8coon",
 					score: 1234,
 				},
 				{
-					username: "AlexMally",
+					nickname: "AlexMally",
 					score: 2277,
 				},
 				{
-					username: "Geralt of Rivia",
+					nickname: "Geralt of Rivia",
 					score: 472,
 				},
 				{
-					username: "Mother Fuehrer Gentelman",
+					nickname: "Mother Fuehrer Gentelman",
 					score: 1488,
 				},
 				{
-					username: "Adeline Winterhalter",
+					nickname: "Adeline Winterhalter",
 					score: 282,
 				},
 				{
-					username: "Bled Nevelny",
+					nickname: "Bled Nevelny",
 					score: 2018,
 				},
 				{
-					username: "Fra Paul",
+					nickname: "Fra Paul",
 					score: 7100,
 				},
 				{
-					username: "Nagibator1337",
+					nickname: "Nagibator1337",
 					score: 0,
 				},
 			],
