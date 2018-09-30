@@ -15,17 +15,15 @@
 		</div>
 	</div>
 
-
 	<div class="paginator" ref="paginator">
-		{{!-- <a aria-level="Previous"><span aria-hidden="true">&laquo;</span></a> --}}
+		<a aria-level="Previous"><span aria-hidden="true">&laquo;</span></a>
 		{{#each this.pages}}
 		{{#if this.isCurrent}}
 		<a class="current-page">{{this.value}}</a>
 		{{else}}
 		<a>{{this.value}}</a>
 		{{/if}}
-		<a>{{this}}</a>
 		{{/each}}
-		{{!-- <a aria-level="Next"><span aria-hidden="true">&raquo;</span></a> --}}
+		<a aria-level="Next"><span aria-hidden="true">&raquo;</span></a>
 	</div>
 </div>

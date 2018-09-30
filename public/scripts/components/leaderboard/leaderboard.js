@@ -13,7 +13,7 @@ export default class LeaderboardComponent extends BaseComponent {
 	}
 
 	render(context) {
-		this._pagination(context);
+		// this._pagination(context);
 		super.render(context);
 	}
 
@@ -28,7 +28,6 @@ export default class LeaderboardComponent extends BaseComponent {
 		}
 
 		context = { ...context, ...{ pages: pages } };
-		console.log(context);
 	}
 
 	_onPageClick() {}
