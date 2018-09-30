@@ -1,4 +1,6 @@
 <div class="root" ref="root">
+	<div class="auth-block" ref="auth"></div>
+
 	<div class="logo-block" ref="logo"></div>
 
 	<div class="main-block" ref="main">
@@ -19,8 +21,12 @@
 			<div ref="about"></div>
 			{{/if}}
 
-			{{#if sign_in}}
-			<div ref="sign_in"></div>
+			{{#if signin}}
+			<div ref="signin"></div>
+			{{/if}}
+
+			{{#if signup}}
+			<div ref="signup"></div>
 			{{/if}}
 		</div>
 	</div>

@@ -23,7 +23,7 @@ export default class BaseComponent {
 	}
 
 	/**
-	 * Уничтожает все Listners себя и своих дочерних
+	 * Уничтожает все Listeners себя и своих дочерних
 	 */
 	destroy() {
 		this._removeEvents();

@@ -5,7 +5,7 @@ const output = path.join(__dirname, "/dist");
 
 module.exports = {
 	entry: {
-		main: ["./public/app.js", "./public/styles/main.css"],
+		main: ["./public/app.js"],
 	},
 	output: {
 		path: output,

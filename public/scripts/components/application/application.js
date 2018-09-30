@@ -6,7 +6,9 @@ import LogoComponent from "../logo/logo";
 import AboutComponent from "../about/about";
 import LeaderboardComponent from "../leaderboard/leaderboard";
 import ProfileComponent from "../profile/profile";
-import SignInComponent from "../sign_in/form";
+import AuthComponent from "../auth/auth";
+import SignInComponent from "../sign_in/sign_in";
+import SignUpComponent from "../sign_up/sign_up";
 
 /**
  * Компонент приложения
@@ -17,13 +19,14 @@ export default class ApplicationComponent extends BaseComponent {
 		this.template = template;
 		this.navigate = this.navigate.bind(this);
 		this._context = {
-			menu: false,
+			menu: true,
 			profile: false,
 			leaderboard: false,
 			about: false,
 			singleplayer: false,
 			multiplayer: false,
-			sign_in: true,
+			signin: false,
+			signup: false,
 		};
 	}
 
@@ -38,6 +41,30 @@ export default class ApplicationComponent extends BaseComponent {
 				break;
 			case "multiplayer":
 				break;
+			case "signin":
+				this._context = {
+					menu: false,
+					profile: false,
+					leaderboard: false,
+					about: false,
+					singleplayer: false,
+					multiplayer: false,
+					signin: true,
+					signup: false,
+				};
+				break;
+			case "signup":
+				this._context = {
+					menu: false,
+					profile: false,
+					leaderboard: false,
+					about: false,
+					singleplayer: false,
+					multiplayer: false,
+					signin: false,
+					signup: true,
+				};
+				break;
 			case "profile":
 				this._context = {
 					menu: false,
@@ -46,7 +73,8 @@ export default class ApplicationComponent extends BaseComponent {
 					about: false,
 					singleplayer: false,
 					multiplayer: false,
-					sign_in: false,
+					signin: false,
+					signup: false,
 				};
 				break;
 			case "about":
@@ -57,7 +85,8 @@ export default class ApplicationComponent extends BaseComponent {
 					about: true,
 					singleplayer: false,
 					multiplayer: false,
-					sign_in: false,
+					signin: false,
+					signup: false,
 				};
 				break;
 			case "menu":
@@ -68,7 +97,8 @@ export default class ApplicationComponent extends BaseComponent {
 					about: false,
 					singleplayer: false,
 					multiplayer: false,
-					sign_in: false,
+					signin: false,
+					signup: false,
 				};
 				break;
 			case "leaderboard":
@@ -79,7 +109,8 @@ export default class ApplicationComponent extends BaseComponent {
 					about: false,
 					singleplayer: false,
 					multiplayer: false,
-					sign_in: false,
+					signin: false,
+					signup: false,
 				};
 				break;
 			default:
@@ -93,10 +124,12 @@ export default class ApplicationComponent extends BaseComponent {
 	 * Рендерит все блоки на странице
 	 */
 	_renderChildren() {
+		this.renderChild("auth", AuthComponent, { navigate: this.navigate });
 		this.renderChild("logo", LogoComponent, { navigate: this.navigate });
 		this.renderChild("menu", MenuComponent, { navigate: this.navigate });
+		this.renderChild("signin", SignInComponent, { navigate: this.navigate });
+		this.renderChild("signup", SignUpComponent, { navigate: this.navigate });
 		this.renderChild("about", AboutComponent, {});
-		this.renderChild("sign_in", SignInComponent, {});
 
 		this.renderChild("profile", ProfileComponent, {
 			username: "#USERNAME",
