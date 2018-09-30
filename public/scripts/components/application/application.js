@@ -6,6 +6,7 @@ import LogoComponent from "../logo/logo";
 import AboutComponent from "../about/about";
 import LeaderboardComponent from "../leaderboard/leaderboard";
 import ProfileComponent from "../profile/profile";
+import SignInComponent from "../sign_in/form";
 
 /**
  * Компонент приложения
@@ -16,12 +17,13 @@ export default class ApplicationComponent extends BaseComponent {
 		this.template = template;
 		this.navigate = this.navigate.bind(this);
 		this._context = {
-			menu: true,
+			menu: false,
 			profile: false,
 			leaderboard: false,
 			about: false,
 			singleplayer: false,
 			multiplayer: false,
+			sign_in: true,
 		};
 	}
 
@@ -44,6 +46,7 @@ export default class ApplicationComponent extends BaseComponent {
 					about: false,
 					singleplayer: false,
 					multiplayer: false,
+					sign_in: false,
 				};
 				break;
 			case "about":
@@ -54,6 +57,7 @@ export default class ApplicationComponent extends BaseComponent {
 					about: true,
 					singleplayer: false,
 					multiplayer: false,
+					sign_in: false,
 				};
 				break;
 			case "menu":
@@ -64,6 +68,7 @@ export default class ApplicationComponent extends BaseComponent {
 					about: false,
 					singleplayer: false,
 					multiplayer: false,
+					sign_in: false,
 				};
 				break;
 			case "leaderboard":
@@ -74,6 +79,7 @@ export default class ApplicationComponent extends BaseComponent {
 					about: false,
 					singleplayer: false,
 					multiplayer: false,
+					sign_in: false,
 				};
 				break;
 			default:
@@ -90,6 +96,7 @@ export default class ApplicationComponent extends BaseComponent {
 		this.renderChild("logo", LogoComponent, { navigate: this.navigate });
 		this.renderChild("menu", MenuComponent, { navigate: this.navigate });
 		this.renderChild("about", AboutComponent, {});
+		this.renderChild("sign_in", SignInComponent, {});
 
 		this.renderChild("profile", ProfileComponent, {
 			username: "#USERNAME",
