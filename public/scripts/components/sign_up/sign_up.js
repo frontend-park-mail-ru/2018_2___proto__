@@ -10,9 +10,6 @@ export default class SignUpComponent extends BaseComponent {
 	constructor() {
 		super();
 		this.template = template;
-		// this.events = {
-		// 	click: this._onSubmitClick.bind(this),
-		// };
 	}
 
 	render(context) {
@@ -45,7 +42,7 @@ export default class SignUpComponent extends BaseComponent {
 			// Матчим Password
 			if (!this._password.value.match(/[0-9a-zA-Z]{6,}/) || !this._passwordRepeat.value.match(/[0-9a-zA-Z]{6,}/)) {
 				this._info.innerText += "Error: password length must be 6 or more symbols\n";
-			} 
+			}
 			
 			if (this._password.value !== this._passwordRepeat.value) {
 				this._info.innerText += "Error: passwords do not match\n";

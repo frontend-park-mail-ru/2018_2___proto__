@@ -132,39 +132,66 @@ export default class ApplicationComponent extends BaseComponent {
 		this.renderChild("about", AboutComponent, {});
 
 		this.renderChild("profile", ProfileComponent, {
-			username: "#USERNAME",
+			login: "#USERNAME",
 			email: "example@email.com",
 			wins: 999,
 			loses: 101,
 			imgURL: "../../../img/avatar-blank.png",
 		});
 
-		this.renderChild("leaderboard", LeaderboardComponent, [
-			{
-				place: "1st",
-				username: "KOPTEЗ",
-				score: "OVER 9000",
-			},
-			{
-				place: "2nd",
-				username: "Vileven",
-				score: "4500",
-			},
-			{
-				place: "3rd",
-				username: "avtyul",
-				score: "4259",
-			},
-			{
-				place: "4th",
-				username: "8coon",
-				score: "1234",
-			},
-			{
-				place: "5th",
-				username: "Armelior",
-				score: "1",
-			},
-		]);
+		this.renderChild("leaderboard", LeaderboardComponent, {
+			cscores: 12,
+			offset: 0,
+			records: [
+				{
+					username: "KOPTEЗ",
+					score: 9000,
+				},
+				{
+					username: "Armelior",
+					score: 11,
+				},
+				{
+					username: "avtyul",
+					score: 4259,
+				},
+				{
+					username: "Vileven",
+					score: 4500,
+				},
+				{
+					username: "8coon",
+					score: 1234,
+				},
+				{
+					username: "AlexMally",
+					score: 2277,
+				},
+				{
+					username: "Geralt of Rivia",
+					score: 472,
+				},
+				{
+					username: "Mother Fuehrer Gentelman",
+					score: 1488,
+				},
+				{
+					username: "Adeline Winterhalter",
+					score: 282,
+				},
+				{
+					username: "Bled Nevelny",
+					score: 2018,
+				},
+				{
+					username: "Fra Paul",
+					score: 7100,
+				},
+				{
+					username: "Nagibator1337",
+					score: 0,
+				},
+			],
+		});
 	}
 }

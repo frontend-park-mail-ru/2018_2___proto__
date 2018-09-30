@@ -10,9 +10,6 @@ export default class SignInComponent extends BaseComponent {
 	constructor() {
 		super();
 		this.template = template;
-		// this.events = {
-		// 	click: this._onSubmitClick.bind(this),
-		// };
 	}
 
 	render(context) {
