@@ -1,39 +1,38 @@
-(function() {
-	const noop = () => null;
+export default class AjaxModule {
+	_ajax({ callback = () => null, method = "GET", path = "/", body } = {}) {
+		const xhr = new XMLHttpRequest();
+		xhr.open(method, path, true);
+		xhr.withCredentials = true;
 
-	class AjaxModule {
-		_ajax({ callback = noop, method = "GET", path = "/", body } = {}) {
-			const xhr = new XMLHttpRequest();
-			xhr.open(method, path, true);
-			xhr.withCredentials = true;
-
-			if (body) {
-				xhr.setRequestHeader("Content-Type", "application/json; charset=utf-8");
-			}
-
-			xhr.onreadystatechange = () => {
-				if (xhr.readyState !== 4) {
-					return;
-				}
-
-				callback(xhr);
-			};
-
-			if (body) {
-				xhr.send(JSON.stringify(body));
-			} else {
-				xhr.send();
-			}
+		if (body) {
+			xhr.setRequestHeader(
+				"Content-Type",
+				"application/json; charset=utf-8"
+			);
 		}
 
-		doGet(params = {}) {
-			this._ajax({ ...params, method: "GET" });
-		}
+		xhr.onreadystatechange = () => {
+			if (xhr.readyState !== 4) {
+				return;
+			}
 
-		doPost(params = {}) {
-			this._ajax({ ...params, method: "POST" });
+			callback(xhr);
+		};
+
+		if (body) {
+			xhr.send(JSON.stringify(body));
+		} else {
+			xhr.send();
 		}
 	}
 
-	window.AjaxModule = new AjaxModule();
-})();
+	doGet(params = {}) {
+		this._ajax({ ...params, method: "GET" });
+	}
+
+	doPost(params = {}) {
+		this._ajax({ ...params, method: "POST" });
+	}
+}
+
+window.AjaxModule = new AjaxModule();

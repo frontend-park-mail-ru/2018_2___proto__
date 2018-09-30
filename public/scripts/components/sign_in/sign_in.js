@@ -16,15 +16,24 @@ export default class SignInComponent extends BaseComponent {
 	}
 
 	render(context) {
-		debugger;
 		super.render(context);
+		this._info = this._element.querySelector("[ref=info]");
 		this.renderChild("login", ButtonComponent, {
 			text: "Sign In",
 			onClick: this._onSubmitClick.bind(this),
 		});
 	}
 
-	_onSubmitClick() {}
+	_onSubmitClick() {
+		const login = (this._element.childNodes[1].childNodes[1].value);
+		const password = (this._element.childNodes[1].childNodes[3].value);
+		if (login && password) {
+			this._info.innerText = "";
+			// doPost()?
+		} else {
+			this._info.innerText = "Error: some fields are empty";
+		}
+	}
 
 	_onNotRegisteredClick() {
 		this._context.navigate("signup");

@@ -11,6 +11,7 @@
 }
 
 .links {
+	text-align: center;
 	margin-top: 15%;
 }
 
@@ -27,4 +28,10 @@
 
 .link:hover {
 	color: rgb(90, 77, 173);
+}
+
+.info {
+	text-align: center;
+	color: red;
+	padding-top: 10%;
 }
