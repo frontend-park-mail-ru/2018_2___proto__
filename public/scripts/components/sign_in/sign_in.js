@@ -27,7 +27,13 @@ export default class SignInComponent extends BaseComponent {
 		this._info.innerText = "";
 
 		if (this._login.value && this._password.value) {
-			// doPost()?
+			window.AjaxModule.doPost({
+				body: {
+					nickname: this._login.value,
+					password: this._password.value,
+				},
+				path: "/session",
+			});
 		} else {
 			this._info.innerText += "Error: some fields are empty\n";
 		}

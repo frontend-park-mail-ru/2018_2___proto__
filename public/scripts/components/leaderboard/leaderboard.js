@@ -10,6 +10,7 @@ export default class LeaderboardComponent extends BaseComponent {
 		super();
 		this.template = template;
 		this._currentPage = "1";
+		this._offset = 0;
 	}
 
 	render(context) {
@@ -37,6 +38,17 @@ export default class LeaderboardComponent extends BaseComponent {
 
 	_onPageClick() {
 		this._currentPage = event.target.innerText;
-		this.render(this._context);
+		this._offset = (this._currentPage - 1) * 10;
+
+		const context = {};
+
+		window.AjaxModule.doGet({
+			callback(xhr) {
+				context = JSON.parse(xhr.responseText);
+			},
+			path: `/leaders/${this._offset}/${10}`,
+		});
+
+		this.render(context);
 	}
 }

@@ -54,7 +54,14 @@ export default class SignUpComponent extends BaseComponent {
 		if (this._info.innerText != "") {
 			return;
 		} else {
-			// doPost() ?
+			window.AjaxModule.doPost({
+				body: {
+					nickname: this._login.value,
+					password: this._password.value,
+					email: this._email.value,
+				},
+				path: "/user"
+			});
 		}
 	}
 
