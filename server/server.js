@@ -35,16 +35,22 @@ app.post("/signup", (req, res) => {
 	const password = req.body.password;
 
 	if (!nickname || !email || !password) {
-		return res.statusCode(400).json({ code: 400, msg: "Some data are missing" });
+		return res
+			.statusCode(400)
+			.json({ code: 400, msg: "Some data are missing" });
 	}
 
 	if (users[email]) {
-		return res.statusCode(400).json({ code: 400, msg: "User already exists" });
+		return res
+			.statusCode(400)
+			.json({ code: 400, msg: "User already exists" });
 	}
 
 	const id = uuid();
 	ids[id] = email;
-	res.cookie("session", id, { expires: new Date(Date.now() + 1000 * 60 * 10) });
+	res.cookie("session", id, {
+		expires: new Date(Date.now() + 1000 * 60 * 10),
+	});
 	log(ids);
 	res.status(200).json({ id });
 });
@@ -55,20 +61,26 @@ app.post("/signin", (req, res) => {
 	const password = req.body.password;
 
 	if (!nickname || !password) {
-		return res.statusCode(400).json({ code: 400, msg: "Some data are missing" });
+		return res
+			.statusCode(400)
+			.json({ code: 400, msg: "Some data are missing" });
 	}
 
-	const user = Object.values(users).filter((user) => {
+	const user = Object.values(users).filter(user => {
 		return user.nickname === nickname;
 	})[0];
 
 	if (user.password !== password) {
-		return res.statusCode(400).json({ code: 400, msg: "Data are incorrect" });
+		return res
+			.statusCode(400)
+			.json({ code: 400, msg: "Data are incorrect" });
 	}
 
 	const id = uuid();
 	ids[id] = user.email;
-	res.cookie("session", id, { expires: new Date(Date.now() + 1000 * 60 * 10) });
+	res.cookie("session", id, {
+		expires: new Date(Date.now() + 1000 * 60 * 10),
+	});
 	res.status(200).json({ id });
 });
 
@@ -83,8 +95,61 @@ app.get("/user", (req, res) => {
 	res.status(200).json(users[email]);
 });
 
-app.get("/leaders", (req, res) => {
-	// Not implemented
+app.get("/leaders/:offset/:limit", (req, res) => {
+	res.status(200).json({
+		count: 12,
+		offset: 0,
+		records: [
+			{
+				nickname: "KOPTEЗ",
+				score: 9000,
+			},
+			{
+				nickname: "Armelior",
+				score: 11,
+			},
+			{
+				nickname: "avtyul",
+				score: 4259,
+			},
+			{
+				nickname: "Vileven",
+				score: 4500,
+			},
+			{
+				nickname: "8coon",
+				score: 1234,
+			},
+			{
+				nickname: "AlexMally",
+				score: 2277,
+			},
+			{
+				nickname: "Geralt of Rivia",
+				score: 472,
+			},
+			{
+				nickname: "Mother Fuehrer Gentelman",
+				score: 1488,
+			},
+			{
+				nickname: "Adeline Winterhalter",
+				score: 282,
+			},
+			{
+				nickname: "Bled Nevelny",
+				score: 2018,
+			},
+			{
+				nickname: "Fra Paul",
+				score: 7100,
+			},
+			{
+				nickname: "Nagibator1337",
+				score: 0,
+			},
+		],
+	});
 });
 
 // PUT
@@ -106,7 +171,9 @@ app.put("/user", (req, res) => {
 
 // DELETE
 app.delete("/logout", (req, res) => {
-	res.clearCookie("session").status(200).end();
+	res.clearCookie("session")
+		.status(200)
+		.end();
 });
 
 app.listen(port, () => {

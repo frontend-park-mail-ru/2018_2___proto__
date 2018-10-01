@@ -12,12 +12,17 @@ export default class LeaderboardComponent extends BaseComponent {
 		this.template = template;
 		this._currentPage = "1";
 		this._offset = 0;
+		ajaxModule.doGet({
+			callback: (xhr) => {
+				this.render(JSON.parse(xhr.responseText));
+			},
+			path: `/leaders/0/10`,
+		});
 	}
 
 	render(context) {
 		context = this._pagination(context);
 		super.render(context);
-
 		this._context.pages.forEach((page) => {
 			this._element.querySelector(`[num=page-${page.value}]`).addEventListener("click", this._onPageClick.bind(this));
 		});
@@ -43,18 +48,11 @@ export default class LeaderboardComponent extends BaseComponent {
 
 		const context = {};
 
-		// Надо переделать
 		ajaxModule.doGet({
-			callback(xhr) {
-				context = JSON.parse(xhr.responseText);
+			callback: (xhr) => {
+				this.render(JSON.parse(xhr.responseText));
 			},
-			path: "/leaders",
-			body: {
-				offset: this._offset,
-				limit: 10,
-			},
+			path: `/leaders/${this._offset}/10`,
 		});
-
-		this.render(context);
 	}
 }

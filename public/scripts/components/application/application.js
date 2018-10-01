@@ -131,67 +131,13 @@ export default class ApplicationComponent extends BaseComponent {
 		this.renderChild("signup", SignUpComponent, { navigate: this.navigate });
 		this.renderChild("about", AboutComponent, {});
 
+		this.renderChild("leaderboard", LeaderboardComponent, {});
 		// this.renderChild("profile", ProfileComponent, {
 			// login: "#USERNAME",
 			// email: "example@email.com",
 			// wins: 999,
 			// loses: 101,
 			// imgURL: "../../../img/avatar-blank.png",
-		// });
-
-		// this.renderChild("leaderboard", LeaderboardComponent, {
-			// count: 12,
-			// offset: 0,
-			// records: [
-			// 	{
-			// 		nickname: "KOPTEЗ",
-			// 		score: 9000,
-			// 	},
-			// 	{
-			// 		nickname: "Armelior",
-			// 		score: 11,
-			// 	},
-			// 	{
-			// 		nickname: "avtyul",
-			// 		score: 4259,
-			// 	},
-			// 	{
-			// 		nickname: "Vileven",
-			// 		score: 4500,
-			// 	},
-			// 	{
-			// 		nickname: "8coon",
-			// 		score: 1234,
-			// 	},
-			// 	{
-			// 		nickname: "AlexMally",
-			// 		score: 2277,
-			// 	},
-			// 	{
-			// 		nickname: "Geralt of Rivia",
-			// 		score: 472,
-			// 	},
-			// 	{
-			// 		nickname: "Mother Fuehrer Gentelman",
-			// 		score: 1488,
-			// 	},
-			// 	{
-			// 		nickname: "Adeline Winterhalter",
-			// 		score: 282,
-			// 	},
-			// 	{
-			// 		nickname: "Bled Nevelny",
-			// 		score: 2018,
-			// 	},
-			// 	{
-			// 		nickname: "Fra Paul",
-			// 		score: 7100,
-			// 	},
-			// 	{
-			// 		nickname: "Nagibator1337",
-			// 		score: 0,
-			// 	},
-			// ],
 		// });
 	}
 }
