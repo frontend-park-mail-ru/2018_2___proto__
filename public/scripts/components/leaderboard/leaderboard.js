@@ -45,9 +45,6 @@ export default class LeaderboardComponent extends BaseComponent {
 	_onPageClick() {
 		this._currentPage = event.target.innerText;
 		this._offset = (this._currentPage - 1) * 10;
-
-		const context = {};
-
 		ajaxModule.doGet({
 			callback: (xhr) => {
 				this.render(JSON.parse(xhr.responseText));

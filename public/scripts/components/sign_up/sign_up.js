@@ -69,7 +69,7 @@ export default class SignUpComponent extends BaseComponent {
 					password: this._password.value,
 					email: this._email.value,
 				},
-				path: "/signup",
+				path: "/api/signup",
 			});
 		}
 	}

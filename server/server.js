@@ -30,68 +30,68 @@ app.use("/dist", express.static(path.resolve(__dirname, "..", "dist")));
 app.use(favicon(path.join(__dirname, "..", "public/favicon.ico")));
 app.use(body.json());
 app.use(cookie());
-// app.use("*", proxy("http://portadoor.ru:8080", {
-// 	proxyReqPathResolver: (req) => {
-// 		return req.originalUrl;
-// 	}
-// }));
+app.use("/api/*", proxy("http://portadoor.ru:8080", {
+	proxyReqPathResolver: (req) => {
+		return req.originalUrl;
+	}
+}));
 
 // POST
-app.post("/signup", (req, res) => {
-	const nickname = req.body.nickname;
-	const email = req.body.email;
-	const password = req.body.password;
+// app.post("/signup", (req, res) => {
+// 	const nickname = req.body.nickname;
+// 	const email = req.body.email;
+// 	const password = req.body.password;
 
-	if (!nickname || !email || !password) {
-		return res.statusCode(400).json({ code: 400, msg: "Some data are missing" });
-	}
+// 	if (!nickname || !email || !password) {
+// 		return res.statusCode(400).json({ code: 400, msg: "Some data are missing" });
+// 	}
 
-	if (users[email]) {
-		return res.statusCode(400).json({ code: 400, msg: "User already exists" });
-	}
+// 	if (users[email]) {
+// 		return res.statusCode(400).json({ code: 400, msg: "User already exists" });
+// 	}
 
-	const id = uuid();
-	ids[id] = email;
-	res.cookie("session", id, {
-		expires: new Date(Date.now() + 1000 * 60 * 10),
-	});
-	res.status(200).json({ id });
-});
+// 	const id = uuid();
+// 	ids[id] = email;
+// 	res.cookie("session", id, {
+// 		expires: new Date(Date.now() + 1000 * 60 * 10),
+// 	});
+// 	res.status(200).json({ id });
+// });
 
-app.post("/signin", (req, res) => {
-	const nickname = req.body.nickname;
-	const password = req.body.password;
+// app.post("/signin", (req, res) => {
+// 	const nickname = req.body.nickname;
+// 	const password = req.body.password;
 
-	if (!nickname || !password) {
-		return res.statusCode(400).json({ code: 400, msg: "Some data are missing" });
-	}
+// 	if (!nickname || !password) {
+// 		return res.statusCode(400).json({ code: 400, msg: "Some data are missing" });
+// 	}
 
-	const user = Object.values(users).filter(user => {
-		return user.nickname === nickname;
-	})[0];
+// 	const user = Object.values(users).filter(user => {
+// 		return user.nickname === nickname;
+// 	})[0];
 
-	if (user.password !== password) {
-		return res.statusCode(400).json({ code: 400, msg: "Data are incorrect" });
-	}
+// 	if (user.password !== password) {
+// 		return res.statusCode(400).json({ code: 400, msg: "Data are incorrect" });
+// 	}
 
-	const id = uuid();
-	ids[id] = user.email;
-	res.cookie("session", id, {
-		expires: new Date(Date.now() + 1000 * 60 * 10),
-	});
-	res.status(200).json({ id });
-});
+// 	const id = uuid();
+// 	ids[id] = user.email;
+// 	res.cookie("session", id, {
+// 		expires: new Date(Date.now() + 1000 * 60 * 10),
+// 	});
+// 	res.status(200).json({ id });
+// });
 
 // GET
-app.get("/user", (req, res) => {
-	const id = res.cookies.sessionid;
-	const email = ids[id];
-	if (!users[email] || !email) {
-		return res.statusCode(401).json({ code: 401, msg: "No such user" });
-	}
+// app.get("/user", (req, res) => {
+// 	const id = res.cookies.sessionid;
+// 	const email = ids[id];
+// 	if (!users[email] || !email) {
+// 		return res.statusCode(401).json({ code: 401, msg: "No such user" });
+// 	}
 
-	res.status(200).json(users[email]);
-});
+// 	res.status(200).json(users[email]);
+// });
 
 app.get("/leaders/:offset/:limit", (req, res) => {
 	res.status(200).json({
@@ -151,26 +151,26 @@ app.get("/leaders/:offset/:limit", (req, res) => {
 });
 
 // PUT
-app.put("/user", (req, res) => {
-	const id = req.cookies.sessionid;
-	const email = ids[id];
-	const nickname = req.body.nickname;
-	const password = req.body.password;
+// app.put("/user", (req, res) => {
+// 	const id = req.cookies.sessionid;
+// 	const email = ids[id];
+// 	const nickname = req.body.nickname;
+// 	const password = req.body.password;
 
-	if ((!nickname || !(oldNickname === newNickname)) && !password) {
-		return res.statusCode(304).json({ code: 304, msg: "Not modified" });
-	} else {
-		users[email].nickname = nickname;
-		users[email].password = password;
-	}
+// 	if ((!nickname || !(oldNickname === newNickname)) && !password) {
+// 		return res.statusCode(304).json({ code: 304, msg: "Not modified" });
+// 	} else {
+// 		users[email].nickname = nickname;
+// 		users[email].password = password;
+// 	}
 
-	return res.statusCode(200).json(users[email]);
-});
+// 	return res.statusCode(200).json(users[email]);
+// });
 
 // DELETE
-app.delete("/logout", (req, res) => {
-	res.clearCookie("session").status(200).end();
-});
+// app.delete("/logout", (req, res) => {
+// 	res.clearCookie("session").status(200).end();
+// });
 
 app.listen(port, () => {
 	console.log(`Server started on port ${port}`);

@@ -41,7 +41,7 @@ export default class SignInComponent extends BaseComponent {
 					nickname: this._login.value,
 					password: this._password.value,
 				},
-				path: "/signin",
+				path: "/api/signin",
 			});
 		} else {
 			this._info.innerText += "Error: some fields are empty\n";
