@@ -6,10 +6,12 @@ const morgan = require("morgan");
 const path = require("path");
 const uuid = require("uuid/v4");
 const debug = require("debug");
+const proxy = require("express-http-proxy");
 
 const port = 3000;
 const log = debug("*");
 const app = express();
+
 const users = {
 	"test@test.com": {
 		nickname: "test",
@@ -18,6 +20,7 @@ const users = {
 		score: 100500,
 	},
 };
+
 const ids = {};
 
 app.use(morgan("dev"));
@@ -27,6 +30,11 @@ app.use("/dist", express.static(path.resolve(__dirname, "..", "dist")));
 app.use(favicon(path.join(__dirname, "..", "public/favicon.ico")));
 app.use(body.json());
 app.use(cookie());
+app.use("*", proxy("http://localhost:8080", {
+	proxyReqPathResolver: (req) => {
+		return req.originalUrl;
+	}
+}));
 
 // POST
 app.post("/signup", (req, res) => {
@@ -35,15 +43,11 @@ app.post("/signup", (req, res) => {
 	const password = req.body.password;
 
 	if (!nickname || !email || !password) {
-		return res
-			.statusCode(400)
-			.json({ code: 400, msg: "Some data are missing" });
+		return res.statusCode(400).json({ code: 400, msg: "Some data are missing" });
 	}
 
 	if (users[email]) {
-		return res
-			.statusCode(400)
-			.json({ code: 400, msg: "User already exists" });
+		return res.statusCode(400).json({ code: 400, msg: "User already exists" });
 	}
 
 	const id = uuid();
@@ -51,19 +55,15 @@ app.post("/signup", (req, res) => {
 	res.cookie("session", id, {
 		expires: new Date(Date.now() + 1000 * 60 * 10),
 	});
-	log(ids);
 	res.status(200).json({ id });
 });
 
-// Не работает
 app.post("/signin", (req, res) => {
 	const nickname = req.body.nickname;
 	const password = req.body.password;
 
 	if (!nickname || !password) {
-		return res
-			.statusCode(400)
-			.json({ code: 400, msg: "Some data are missing" });
+		return res.statusCode(400).json({ code: 400, msg: "Some data are missing" });
 	}
 
 	const user = Object.values(users).filter(user => {
@@ -71,9 +71,7 @@ app.post("/signin", (req, res) => {
 	})[0];
 
 	if (user.password !== password) {
-		return res
-			.statusCode(400)
-			.json({ code: 400, msg: "Data are incorrect" });
+		return res.statusCode(400).json({ code: 400, msg: "Data are incorrect" });
 	}
 
 	const id = uuid();
@@ -171,9 +169,7 @@ app.put("/user", (req, res) => {
 
 // DELETE
 app.delete("/logout", (req, res) => {
-	res.clearCookie("session")
-		.status(200)
-		.end();
+	res.clearCookie("session").status(200).end();
 });
 
 app.listen(port, () => {

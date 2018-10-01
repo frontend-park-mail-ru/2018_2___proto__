@@ -56,6 +56,13 @@ export default class SignUpComponent extends BaseComponent {
 			return;
 		} else {
 			ajaxModule.doPost({
+				callback: (xhr) => {
+					if (xhr.status === 200) {
+						this._context.navigate("menu");
+					} else {
+						this._info.innerText += xhr.statusText;
+					}
+				},
 				body: {
 					nickname: this._login.value,
 					password: this._password.value,
