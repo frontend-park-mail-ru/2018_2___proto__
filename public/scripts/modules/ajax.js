@@ -33,6 +33,10 @@ export default class AjaxModule {
 	doPost(params = {}) {
 		this._ajax({ ...params, method: "POST" });
 	}
+
+	doPut(params = {}) {
+		this._ajax({ ...params, method: "PUT" });
+	}
 }
 
 window.AjaxModule = new AjaxModule();

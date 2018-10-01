@@ -42,11 +42,16 @@ export default class LeaderboardComponent extends BaseComponent {
 
 		const context = {};
 
+		// Надо переделать
 		window.AjaxModule.doGet({
 			callback(xhr) {
 				context = JSON.parse(xhr.responseText);
 			},
-			path: `/leaders/${this._offset}/${10}`,
+			path: "/leaders",
+			body: {
+				offset: this._offset,
+				limit: 10,
+			},
 		});
 
 		this.render(context);

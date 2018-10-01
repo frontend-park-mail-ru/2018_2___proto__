@@ -16,21 +16,34 @@ export default class ProfileComponent extends BaseComponent {
 	}
 
 	render(context) {
+		const newContext = {};
+
+		window.AjaxModule.doGet({
+			callback(xhr) {
+				newContext = JSON.parse(xhr.responseText);
+			},
+			path: "/user",
+		});
+
 		super.render(context);
 		this._info = this._element.querySelector("[ref=info]");
 		this._login = this._element.querySelector("[ref=login]");
 		this._password = this._element.querySelector("[ref=pass]");
 		this._passwordRepeat = this._element.querySelector("[ref=pass-rep]");
 
-		this.renderChild("changeProfile", ButtonComponent, {
-			text: "Change profile",
-			onClick: this._onChangeProfileClick.bind(this),
-		});
-
-		this.renderChild("saveProfile", ButtonComponent, {
-			text: "Save profile",
-			onClick: this._onSaveProfileClick.bind(this),
-		});
+		if (newContext === {}) {
+			alert("Unauthorized");
+		} else {
+			this.renderChild("changeProfile", ButtonComponent, {
+				text: "Change profile",
+				onClick: this._onChangeProfileClick.bind(this),
+			});
+	
+			this.renderChild("saveProfile", ButtonComponent, {
+				text: "Save profile",
+				onClick: this._onSaveProfileClick.bind(this),
+			});
+		}
 	}
 
 	_onChangeProfileClick() {
@@ -64,7 +77,13 @@ export default class ProfileComponent extends BaseComponent {
 		if (this._info.innerText !== "") {
 			return;
 		} else {
-			// doPost()?
+			window.AjaxModule.doPut({
+				body: {
+					nickname: this._login.value,
+					password: this._password.value,
+				},
+				path: "/user",
+			});
 		}
 	}
 }
