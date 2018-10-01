@@ -41,7 +41,7 @@ export default class SignInComponent extends BaseComponent {
 					nickname: this._login.value,
 					password: this._password.value,
 				},
-				path: "http://portadoor.ru:8080/signin",
+				path: "https://portadoor.ru:8080/signin",
 			});
 		} else {
 			this._info.innerText += "Error: some fields are empty\n";

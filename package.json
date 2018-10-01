@@ -5,7 +5,7 @@
 	"main": "./server/server.js",
 	"scripts": {
 		"test": "mocha ./server/*.test.js",
-		"start": "node ./server/server.js",
+		"start": "webpack -p | node ./server/server.js",
 		"prod": "webpack -p",
 		"dev": "webpack -d --watch",
 		"lint": "eslint . --ext .js"
