@@ -1,0 +1,31 @@
+<div>
+	{{#if changeProfile}}
+	<form>
+		<input type="text" class="field" placeholder="Login" ref="login">
+		<input type="password" class="field" placeholder="Password" ref="pass">
+		<input type="password" class="field" placeholder="Repeat your password" ref="pass-rep">
+		<input type="file" class="field">
+	</form>
+	<div ref="saveProfile"></div>
+	<div class="info" ref="info"></div>
+	{{else}}
+	<div class="profile-user">
+		<img src="{{{imgURL}}}" alt="avatar" class="profile-avatar">
+		<span class="profile-name">{{login}}</span>
+	</div>
+	<div class="profile-info">
+		<ul>
+			<li>
+				<p><strong>E-Mail:</strong>&nbsp;{{email}}</p>
+			</li>
+			<li>
+				<p><strong>Wins:</strong>&nbsp;{{wins}}</p>
+			</li>
+			<li>
+				<p><strong>Loses:</strong>&nbsp;{{loses}}</p>
+			</li>
+		</ul>
+	</div>
+	<div ref="changeProfile"></div>
+	{{/if}}
+</div>

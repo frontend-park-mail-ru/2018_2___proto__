@@ -1,0 +1,46 @@
+.table {
+	display: table;
+	width: 100%;
+}
+
+.table-head {
+	background-color: slateblue;
+	color: white;
+	font-weight: bold;
+}
+
+.table-body {
+	display: table-row-group;
+}
+
+.table-row {
+	display: table-row;
+	cursor: pointer;
+}
+
+.table-row:nth-child(even) {
+	background-color: #f2f2f2;
+}
+
+.table-row:hover {
+	background-color: #ddd;
+}
+
+.table-cell {
+	border: 1px solid gray;
+	display: table-cell;
+	padding: 3px 10px;
+}
+
+.paginator {
+	text-align: center;
+	font-size: 24px;
+	text-decoration: none;
+	cursor: pointer;
+	user-select: none;
+	padding-top: 10%;
+}
+
+.current-page {
+	font-weight: bold;
+}

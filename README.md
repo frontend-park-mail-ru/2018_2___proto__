@@ -5,9 +5,27 @@
 * [Клиент](https://github.com/frontend-park-mail-ru/2018_2___proto__)
 * [Сервер](https://github.com/go-park-mail-ru/2018_2___proto__)
 
+## Сборка
+
+### Development
+
+```
+npm install
+npm run dev
+npm start
+```
+
+### Production
+
+```
+npm install
+npm run prod
+npm start
+```
+
 ## Деплой
 
-Coming soon...
+[Frontend](team-proto.now.sh)
 
 ## Участники
 
