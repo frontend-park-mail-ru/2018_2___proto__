@@ -25,7 +25,7 @@ npm start
 
 ## Деплой
 
-[Frontend](team-proto.now.sh)
+[Frontend](proto-frontend.now.sh)
 
 ## Участники
 
