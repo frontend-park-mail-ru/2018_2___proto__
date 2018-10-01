@@ -83,7 +83,7 @@ export default class ProfileComponent extends BaseComponent {
 					nickname: this._login.value,
 					password: this._password.value,
 				},
-				path: "https://portadoor.ru:8080/user",
+				path: "/user",
 			});
 		}
 	}

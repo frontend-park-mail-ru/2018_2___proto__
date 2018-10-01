@@ -69,7 +69,7 @@ export default class SignUpComponent extends BaseComponent {
 					password: this._password.value,
 					email: this._email.value,
 				},
-				path: "https://portadoor.ru:8080/signup",
+				path: "/signup",
 			});
 		}
 	}
