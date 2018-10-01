@@ -132,13 +132,5 @@ export default class ApplicationComponent extends BaseComponent {
 		this.renderChild("leaderboard", LeaderboardComponent, {});
 		this.renderChild("profile", ProfileComponent, {});
 		this.renderChild("about", AboutComponent, {});
-		
-		// this.renderChild("profile", ProfileComponent, {
-			// login: "#USERNAME",
-			// email: "example@email.com",
-			// wins: 999,
-			// loses: 101,
-			// imgURL: "../../../img/avatar-blank.png",
-		// });
 	}
 }

@@ -31,16 +31,17 @@ export default class SignInComponent extends BaseComponent {
 			ajaxModule.doPost({
 				callback: (xhr) => {
 					if (xhr.status === 200) {
+						alert("You've logged in");
 						this._context.navigate("menu");
 					} else {
-						this._info.innerText += xhr.statusText;
+						alert(xhr.statusText);
 					}
 				},
 				body: {
 					nickname: this._login.value,
 					password: this._password.value,
 				},
-				path: "/signin",
+				path: "http://portadoor.ru:8080/signin",
 			});
 		} else {
 			this._info.innerText += "Error: some fields are empty\n";

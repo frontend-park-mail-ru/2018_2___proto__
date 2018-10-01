@@ -30,11 +30,11 @@ app.use("/dist", express.static(path.resolve(__dirname, "..", "dist")));
 app.use(favicon(path.join(__dirname, "..", "public/favicon.ico")));
 app.use(body.json());
 app.use(cookie());
-app.use("*", proxy("http://localhost:8080", {
-	proxyReqPathResolver: (req) => {
-		return req.originalUrl;
-	}
-}));
+// app.use("*", proxy("http://portadoor.ru:8080", {
+// 	proxyReqPathResolver: (req) => {
+// 		return req.originalUrl;
+// 	}
+// }));
 
 // POST
 app.post("/signup", (req, res) => {

@@ -57,10 +57,11 @@ export default class SignUpComponent extends BaseComponent {
 		} else {
 			ajaxModule.doPost({
 				callback: (xhr) => {
-					if (xhr.status === 200) {
+					if (xhr.status === 201) {
+						alert("You've been successfully registered");
 						this._context.navigate("menu");
 					} else {
-						this._info.innerText += xhr.statusText;
+						alert(xhr.statusText);
 					}
 				},
 				body: {
@@ -68,7 +69,7 @@ export default class SignUpComponent extends BaseComponent {
 					password: this._password.value,
 					email: this._email.value,
 				},
-				path: "/signup",
+				path: "http://portadoor.ru:8080/signup",
 			});
 		}
 	}

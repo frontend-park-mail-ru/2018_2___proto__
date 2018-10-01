@@ -16,7 +16,7 @@ export default class LeaderboardComponent extends BaseComponent {
 			callback: (xhr) => {
 				this.render(JSON.parse(xhr.responseText));
 			},
-			path: `/leaders/0/10`,
+			path: `http://portadoor.ru:8080/leaders/0/10`,
 		});
 	}
 
@@ -52,7 +52,7 @@ export default class LeaderboardComponent extends BaseComponent {
 			callback: (xhr) => {
 				this.render(JSON.parse(xhr.responseText));
 			},
-			path: `/leaders/${this._offset}/10`,
+			path: `http://portadoor.ru:8080/leaders/${this._offset}/10`,
 		});
 	}
 }
