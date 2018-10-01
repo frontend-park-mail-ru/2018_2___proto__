@@ -2,6 +2,7 @@ import "./profile.css";
 import template from "./profile.hbs";
 import BaseComponent from "../baseComponent/baseComponent";
 import ButtonComponent from "../button/button";
+import ajaxModule from "../../modules/ajax";
 
 /**
  * Компонент profile
@@ -18,7 +19,7 @@ export default class ProfileComponent extends BaseComponent {
 	render(context) {
 		const newContext = {};
 
-		window.AjaxModule.doGet({
+		ajaxModule.doGet({
 			callback(xhr) {
 				newContext = JSON.parse(xhr.responseText);
 			},
@@ -77,7 +78,7 @@ export default class ProfileComponent extends BaseComponent {
 		if (this._info.innerText !== "") {
 			return;
 		} else {
-			window.AjaxModule.doPut({
+			ajaxModule.doPut({
 				body: {
 					nickname: this._login.value,
 					password: this._password.value,

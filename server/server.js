@@ -5,15 +5,25 @@ const cookie = require("cookie-parser");
 const morgan = require("morgan");
 const path = require("path");
 const uuid = require("uuid/v4");
+const debug = require("debug");
 
 const port = 3000;
+const log = debug("*");
 const app = express();
-const users = {};
+const users = {
+	"test@test.com": {
+		nickname: "test",
+		email: "test@test.com",
+		password: "qwerty",
+		score: 100500,
+	},
+};
 const ids = {};
 
 app.use(morgan("dev"));
 app.use(body.urlencoded({ extended: true }));
 app.use(express.static(path.resolve(__dirname, "..", "public")));
+app.use("/dist", express.static(path.resolve(__dirname, "..", "dist")));
 app.use(favicon(path.join(__dirname, "..", "public/favicon.ico")));
 app.use(body.json());
 app.use(cookie());
@@ -35,6 +45,7 @@ app.post("/signup", (req, res) => {
 	const id = uuid();
 	ids[id] = email;
 	res.cookie("session", id, { expires: new Date(Date.now() + 1000 * 60 * 10) });
+	log(ids);
 	res.status(200).json({ id });
 });
 
@@ -47,13 +58,17 @@ app.post("/signin", (req, res) => {
 		return res.statusCode(400).json({ code: 400, msg: "Some data are missing" });
 	}
 
-	if (!users[email] || users[email].password !== password) {
+	const user = Object.values(users).filter((user) => {
+		return user.nickname === nickname;
+	})[0];
+
+	if (user.password !== password) {
 		return res.statusCode(400).json({ code: 400, msg: "Data are incorrect" });
 	}
 
 	const id = uuid();
-	ids[id] = email;
-	res.cookie("session", id, { expires: new Data(Date.now() + 1000 * 60 * 10) });
+	ids[id] = user.email;
+	res.cookie("session", id, { expires: new Date(Date.now() + 1000 * 60 * 10) });
 	res.status(200).json({ id });
 });
 

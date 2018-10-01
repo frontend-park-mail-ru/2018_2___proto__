@@ -1,4 +1,4 @@
-export default class AjaxModule {
+class AjaxModule {
 	_ajax({ callback = () => null, method = "GET", path = "/", body } = {}) {
 		const xhr = new XMLHttpRequest();
 		xhr.open(method, path, true);
@@ -39,4 +39,4 @@ export default class AjaxModule {
 	}
 }
 
-window.AjaxModule = new AjaxModule();
+export default new AjaxModule();

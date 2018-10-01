@@ -1,6 +1,7 @@
 import "./leaderboard.css";
 import template from "./leaderboard.hbs";
 import BaseComponent from "../baseComponent/baseComponent";
+import ajaxModule from "../../modules/ajax";
 
 /**
  * Компонент Leaderboard
@@ -43,7 +44,7 @@ export default class LeaderboardComponent extends BaseComponent {
 		const context = {};
 
 		// Надо переделать
-		window.AjaxModule.doGet({
+		ajaxModule.doGet({
 			callback(xhr) {
 				context = JSON.parse(xhr.responseText);
 			},

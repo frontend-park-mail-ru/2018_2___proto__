@@ -2,6 +2,7 @@ import "./sign_up.css";
 import template from "./sign_up.hbs";
 import BaseComponent from "../baseComponent/baseComponent";
 import ButtonComponent from "../button/button";
+import ajaxModule from "../../modules/ajax";
 
 /**
  * Компонент SignUp
@@ -54,7 +55,7 @@ export default class SignUpComponent extends BaseComponent {
 		if (this._info.innerText != "") {
 			return;
 		} else {
-			window.AjaxModule.doPost({
+			ajaxModule.doPost({
 				body: {
 					nickname: this._login.value,
 					password: this._password.value,

@@ -2,6 +2,7 @@ import "./sign_in.css";
 import template from "./sign_in.hbs";
 import BaseComponent from "../baseComponent/baseComponent";
 import ButtonComponent from "../button/button";
+import ajaxModule from "../../modules/ajax";
 
 /**
  * Компонент SignIn
@@ -27,7 +28,14 @@ export default class SignInComponent extends BaseComponent {
 		this._info.innerText = "";
 
 		if (this._login.value && this._password.value) {
-			window.AjaxModule.doPost({
+			ajaxModule.doPost({
+				callback: (xhr) => {
+					if (xhr.status === 200) {
+						this._context.navigate("menu");
+					} else {
+						this._info.innerText += xhr.statusText;
+					}
+				},
 				body: {
 					nickname: this._login.value,
 					password: this._password.value,
