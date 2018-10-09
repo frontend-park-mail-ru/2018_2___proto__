@@ -1,47 +1,28 @@
-class HttpModule {
-	_http({
-		callback = () => null,
-		method = "GET",
-		path = "/",
-		body,
-	} = {}) {
-		const xhr = new XMLHttpRequest();
-		xhr.open(method, path, true);
-		xhr.withCredentials = true;
+/**
+ * Метод отправки запросов на бэкенд
+ * @function sendRequest
+ * @param {string} path - адрес запроса
+ * @param {string} method - метод запроса
+ * @param {Object} body - тело запроса
+ * @returns {Promise}
+ */
 
-		if (body) {
-			xhr.setRequestHeader(
-				"Content-Type",
-				"application/json; charset=utf-8",
-			);
+export default function sendRequest(path, method, body = {}) {
+	return fetch(path, {
+		method,
+		mode: "cors",
+		credentials: "include",
+		body: Object.is(body, {}) ? {} : JSON.stringify(body),
+		headers: { "Content-Type": "application/json; charset=utf-8" },
+	}).then((response) => {
+		const json = response.json();
+
+		if (response.status >= 400) {
+			return json.then((exception) => {
+				throw exception;
+			});
 		}
 
-		xhr.onreadystatechange = () => {
-			if (xhr.readyState !== 4) {
-				return;
-			}
-
-			callback(xhr);
-		};
-
-		if (body) {
-			xhr.send(JSON.stringify(body));
-		} else {
-			xhr.send();
-		}
-	}
-
-	doGet(params = {}) {
-		this._http({ ...params, method: "GET" });
-	}
-
-	doPost(params = {}) {
-		this._http({ ...params, method: "POST" });
-	}
-
-	doPut(params = {}) {
-		this._http({ ...params, method: "PUT" });
-	}
+		return json;
+	});
 }
-
-export default new HttpModule();

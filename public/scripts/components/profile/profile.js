@@ -20,7 +20,7 @@ export default class ProfileComponent extends BaseComponent {
 	render(context) {
 		let newContext = {};
 
-		ajaxModule.doGet({
+		httpModule.doGet({
 			callback(xhr) {
 				newContext = JSON.parse(xhr.responseText);
 			},
