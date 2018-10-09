@@ -2,7 +2,8 @@ import "./sign_up.css";
 import template from "./sign_up.hbs";
 import BaseComponent from "../baseComponent/baseComponent";
 import ButtonComponent from "../button/button";
-import ajaxModule from "../../modules/ajax";
+import httpModule from "../../modules/http";
+import { regexLogin, regexEmail, regexPass } from "../../modules/constants";
 
 /**
  * Компонент SignUp
@@ -27,50 +28,55 @@ export default class SignUpComponent extends BaseComponent {
 	}
 
 	_onSubmitClick() {
-		this._info.innerText = "";
-		
-		if (this._login.value && this._email.value && this._password.value && this._passwordRepeat.value) {
+		let errorInfo = "";
+
+		if (this._login.value
+			&& this._email.value
+			&& this._password.value
+			&& this._passwordRepeat.value
+		) {
 			// Матчим Login
-			if (!this._login.value.match(/^[a-zA-Z]/)) {
-				this._info.innerText += "Error: login must not starts with a digit\n";
+			if (!this._login.value.match(regexLogin)) {
+				errorInfo += "Error: login must not starts with a digit\n";
 			}
 
 			// Матчим E-Mail
-			if (!this._email.value.match(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)) {
-				this._info.innerText += "Error: e-mail is incorrect\n";
+			if (!this._email.value.match(regexEmail)) {
+				errorInfo += "Error: e-mail is incorrect\n";
 			}
 
 			// Матчим Password
-			if (!this._password.value.match(/[0-9a-zA-Z]{6,}/) || !this._passwordRepeat.value.match(/[0-9a-zA-Z]{6,}/)) {
-				this._info.innerText += "Error: password length must be 6 or more symbols\n";
+			if (!this._password.value.match(regexPass) || !this._passwordRepeat.value.match(regexPass)) {
+				errorInfo += "Error: password length must be 6 or more symbols\n";
 			}
-			
+
 			if (this._password.value !== this._passwordRepeat.value) {
-				this._info.innerText += "Error: passwords do not match\n";
+				errorInfo += "Error: passwords do not match\n";
 			}
 		} else {
-			this._info.innerText += "Error: some fields are empty";
+			errorInfo += "Error: some fields are empty";
 		}
 
-		if (this._info.innerText != "") {
-			return;
-		} else {
-			ajaxModule.doPost({
+		if (errorInfo === "") {
+			httpModule.doPost({
 				callback: (xhr) => {
 					if (xhr.status === 201) {
-						alert("You've been successfully registered");
+						// alert("You've been successfully registered");
 						this._context.navigate("menu");
-					} else {
-						alert(xhr.statusText);
 					}
+					// else {
+					// 	alert(xhr.statusText);
+					// }
 				},
 				body: {
 					nickname: this._login.value,
 					password: this._password.value,
 					email: this._email.value,
 				},
-				path: "/api/signup",
+				path: "https://rasseki.org:8443/signup",
 			});
+		} else {
+			this._info.innerText = errorInfo;
 		}
 	}
 

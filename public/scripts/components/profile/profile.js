@@ -2,7 +2,8 @@ import "./profile.css";
 import template from "./profile.hbs";
 import BaseComponent from "../baseComponent/baseComponent";
 import ButtonComponent from "../button/button";
-import ajaxModule from "../../modules/ajax";
+import httpModule from "../../modules/http";
+import { regexLogin, regexPass } from "../../modules/constants";
 
 /**
  * Компонент profile
@@ -17,7 +18,7 @@ export default class ProfileComponent extends BaseComponent {
 	}
 
 	render(context) {
-		const newContext = {};
+		let newContext = {};
 
 		ajaxModule.doGet({
 			callback(xhr) {
@@ -32,19 +33,31 @@ export default class ProfileComponent extends BaseComponent {
 		this._password = this._element.querySelector("[ref=pass]");
 		this._passwordRepeat = this._element.querySelector("[ref=pass-rep]");
 
-		if (newContext === {}) {
-			alert("Unauthorized");
-		} else {
+		if (newContext !== {}) {
 			this.renderChild("changeProfile", ButtonComponent, {
 				text: "Change profile",
 				onClick: this._onChangeProfileClick.bind(this),
 			});
-	
+
 			this.renderChild("saveProfile", ButtonComponent, {
 				text: "Save profile",
 				onClick: this._onSaveProfileClick.bind(this),
 			});
 		}
+
+		// if (newContext === {}) {
+		// 	alert("Unauthorized");
+		// } else {
+		// 	this.renderChild("changeProfile", ButtonComponent, {
+		// 		text: "Change profile",
+		// 		onClick: this._onChangeProfileClick.bind(this),
+		// 	});
+
+		// 	this.renderChild("saveProfile", ButtonComponent, {
+		// 		text: "Save profile",
+		// 		onClick: this._onSaveProfileClick.bind(this),
+		// 	});
+		// }
 	}
 
 	_onChangeProfileClick() {
@@ -56,34 +69,36 @@ export default class ProfileComponent extends BaseComponent {
 	}
 
 	_onSaveProfileClick() {
-		this._info.innerText = "";
-		if (this._login.value && !this._login.value.match(/^[a-zA-Z]/)) {
-			this._info.innerText += "Error: login must not starts with a digit\n";
+		let errorInfo = "";
+
+		if (this._login.value && !this._login.value.match(regexLogin)) {
+			errorInfo += "Error: login must not starts with a digit\n";
 		}
 
 		if (this._password.value && this._passwordRepeat.value) {
-			if (!this._password.value.match(/[0-9a-zA-Z]{6,}/) || !this._passwordRepeat.value.match(/[0-9a-zA-Z]{6,}/)) {
-				this._info.innerText += "Error: password length must be 6 or more symbols\n";
+			if (
+				!this._password.value.match(regexPass)
+				|| !this._passwordRepeat.value.match(regexPass)
+			) {
+				errorInfo += "Error: password length must be 6 or more symbols\n";
 			}
 
 			if (this._password.value !== this._passwordRepeat.value) {
-				this._info.innerText += "Error: passwords do not match\n";
+				errorInfo += "Error: passwords do not match\n";
 			}
 		}
 
 		if (this._password.value !== this._passwordRepeat.value) {
-			this._info.innerText += "Error: passwords do not match\n";
+			errorInfo += "Error: passwords do not match\n";
 		}
 
-		if (this._info.innerText !== "") {
-			return;
-		} else {
-			ajaxModule.doPut({
+		if (errorInfo === "") {
+			httpModule.doPut({
 				body: {
 					nickname: this._login.value,
 					password: this._password.value,
 				},
-				path: "/user",
+				path: "https://rasseki.org:8443/user",
 			});
 		}
 	}

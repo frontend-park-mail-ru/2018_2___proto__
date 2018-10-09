@@ -1,3 +1,4 @@
 ./node_modules/
 ./public/scripts/handlebars-min.js
 */bundle.js
+./public/scripts/modules/constants.js

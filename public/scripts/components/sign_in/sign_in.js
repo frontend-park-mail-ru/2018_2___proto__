@@ -2,7 +2,7 @@ import "./sign_in.css";
 import template from "./sign_in.hbs";
 import BaseComponent from "../baseComponent/baseComponent";
 import ButtonComponent from "../button/button";
-import ajaxModule from "../../modules/ajax";
+import httpModule from "../../modules/http";
 
 /**
  * Компонент SignIn
@@ -25,26 +25,28 @@ export default class SignInComponent extends BaseComponent {
 	}
 
 	_onSubmitClick() {
-		this._info.innerText = "";
+		let errorInfo = "";
 
 		if (this._login.value && this._password.value) {
-			ajaxModule.doPost({
+			httpModule.doPost({
 				callback: (xhr) => {
 					if (xhr.status === 200) {
-						alert("You've logged in");
+						// alert("You've logged in");
 						this._context.navigate("menu");
-					} else {
-						alert(xhr.statusText);
 					}
+					// else {
+					// 	alert(xhr.statusText);
+					// }
 				},
 				body: {
 					nickname: this._login.value,
 					password: this._password.value,
 				},
-				path: "/api/signin",
+				path: "https://rasseki.org:8443/signin",
 			});
 		} else {
-			this._info.innerText += "Error: some fields are empty\n";
+			errorInfo += "Error: some fields are empty\n";
+			this._info.innerText = errorInfo;
 		}
 	}
 

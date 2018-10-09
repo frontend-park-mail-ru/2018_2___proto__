@@ -1,5 +1,10 @@
-class AjaxModule {
-	_ajax({ callback = () => null, method = "GET", path = "/", body } = {}) {
+class HttpModule {
+	_http({
+		callback = () => null,
+		method = "GET",
+		path = "/",
+		body,
+	} = {}) {
 		const xhr = new XMLHttpRequest();
 		xhr.open(method, path, true);
 		xhr.withCredentials = true;
@@ -7,7 +12,7 @@ class AjaxModule {
 		if (body) {
 			xhr.setRequestHeader(
 				"Content-Type",
-				"application/json; charset=utf-8"
+				"application/json; charset=utf-8",
 			);
 		}
 
@@ -27,16 +32,16 @@ class AjaxModule {
 	}
 
 	doGet(params = {}) {
-		this._ajax({ ...params, method: "GET" });
+		this._http({ ...params, method: "GET" });
 	}
 
 	doPost(params = {}) {
-		this._ajax({ ...params, method: "POST" });
+		this._http({ ...params, method: "POST" });
 	}
 
 	doPut(params = {}) {
-		this._ajax({ ...params, method: "PUT" });
+		this._http({ ...params, method: "PUT" });
 	}
 }
 
-export default new AjaxModule();
+export default new HttpModule();
