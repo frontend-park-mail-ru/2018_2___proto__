@@ -1,7 +1,6 @@
 import "./leaderboard.scss";
 import template from "./leaderboard.hbs";
 import BaseView from "../baseView";
-import httpModule from "../../modules/http";
 
 /**
  * Компонент Leaderboard
@@ -12,11 +11,8 @@ export default class LeaderboardView extends BaseView {
 		this.template = template;
 		this._currentPage = "1";
 		this._offset = 0;
-		httpModule.doGet({
-			callback: (xhr) => {
-				this.render(JSON.parse(xhr.responseText));
-			},
-			path: "/leaders/0/10",
+		this.requestModule.getLeaderboard(this._offset, 10).then((data) => {
+			this.render(JSON.parse(data));
 		});
 	}
 
@@ -47,11 +43,8 @@ export default class LeaderboardView extends BaseView {
 	_onPageClick(event) {
 		this._currentPage = event.target.innerText;
 		this._offset = (this._currentPage - 1) * 10;
-		httpModule.doGet({
-			callback: (xhr) => {
-				this.render(JSON.parse(xhr.responseText));
-			},
-			path: `/leaders/${this._offset}/10`,
+		this.requestModule.getLeaderboard(this._offset, 10).then((data) => {
+			this.render(JSON.parse(data));
 		});
 	}
 }

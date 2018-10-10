@@ -1,4 +1,9 @@
-/** Базовый класс-компонент */
+import EventBus from "../modules/event-bus";
+import RequestModule from "../modules/request";
+
+/**
+ * Базовый класс-компонент
+ */
 export default class BaseView {
 	/**
 	 * Конструктор
@@ -10,6 +15,9 @@ export default class BaseView {
 		this._element = null;
 		this._children = [];
 		this.events = {};
+		this.eventBus = EventBus;
+		this.requestModule = RequestModule;
+		this.template = null;
 	}
 
 	/**
