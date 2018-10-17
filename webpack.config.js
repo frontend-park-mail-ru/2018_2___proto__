@@ -5,7 +5,7 @@ const output = path.join(__dirname, "/dist");
 
 module.exports = {
 	entry: {
-		main: ["./public/app.js"],
+		main: ["./app/index.js"],
 	},
 	output: {
 		path: output,
@@ -15,8 +15,8 @@ module.exports = {
 	module: {
 		rules: [
 			{
-				test: /\.css$/,
-				loader: "style-loader!css-loader",
+				test: /\.scss$/,
+				loader: "style-loader!css-loader!sass-loader",
 			},
 			{
 				test: /\.hbs$/,
@@ -27,7 +27,7 @@ module.exports = {
 
 	plugins: [
 		new HtmlWebpackPlugin({
-			template: path.join(__dirname, "public/index.html"),
+			template: path.join(__dirname, "app/index.html"),
 		}),
 	],
 };
