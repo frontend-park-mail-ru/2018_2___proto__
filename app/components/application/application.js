@@ -28,6 +28,29 @@ export default class ApplicationComponent extends BaseComponent {
 			signin: false,
 			signup: false,
 		};
+
+		//setup router
+		this._routes= new Map();
+		this._routes.set("singleplayer", undefined);
+		this._routes.set("multiplayer", undefined);
+
+		this.setLeaderboardContext = this.setLeaderboardContext.bind(this);
+		this._routes.set("leaderboard", this.setLeaderboardContext);
+
+		this.setProfileContext = this.setProfileContext.bind(this);
+		this._routes.set("profile", this.setProfileContext);
+		
+		this.setSignInContext = this.setSignInContext.bind(this);
+		this._routes.set("signin", this.setSignInContext);
+
+		this.setSignUpContext = this.setSignUpContext.bind(this);
+		this._routes.set("signup", this.setSignUpContext);
+
+		this.setAboutContext = this.setAboutContext.bind(this);
+		this._routes.set("about", this.setAboutContext);
+
+		this.setMenuContext = this.setMenuContext.bind(this);
+		this._routes.set("menu", this.setMenuContext);
 	}
 
 	render(context) {
@@ -35,89 +58,92 @@ export default class ApplicationComponent extends BaseComponent {
 		this._renderChildren();
 	}
 
-	navigate(item) {
-		switch (item) {
-			case "singleplayer":
-				break;
-			case "multiplayer":
-				break;
-			case "signin":
-				this._context = {
-					menu: false,
-					profile: false,
-					leaderboard: false,
-					about: false,
-					singleplayer: false,
-					multiplayer: false,
-					signin: true,
-					signup: false,
-				};
-				break;
-			case "signup":
-				this._context = {
-					menu: false,
-					profile: false,
-					leaderboard: false,
-					about: false,
-					singleplayer: false,
-					multiplayer: false,
-					signin: false,
-					signup: true,
-				};
-				break;
-			case "profile":
-				this._context = {
-					menu: false,
-					profile: true,
-					leaderboard: false,
-					about: false,
-					singleplayer: false,
-					multiplayer: false,
-					signin: false,
-					signup: false,
-				};
-				break;
-			case "about":
-				this._context = {
-					menu: false,
-					profile: false,
-					leaderboard: false,
-					about: true,
-					singleplayer: false,
-					multiplayer: false,
-					signin: false,
-					signup: false,
-				};
-				break;
-			case "menu":
-				this._context = {
-					menu: true,
-					profile: false,
-					leaderboard: false,
-					about: false,
-					singleplayer: false,
-					multiplayer: false,
-					signin: false,
-					signup: false,
-				};
-				break;
-			case "leaderboard":
-				this._context = {
-					menu: false,
-					profile: false,
-					leaderboard: true,
-					about: false,
-					singleplayer: false,
-					multiplayer: false,
-					signin: false,
-					signup: false,
-				};
-				break;
-			default:
-				break;
-		}
+	setSignInContext() {
+		this._context = {
+			menu: false,
+			profile: false,
+			leaderboard: false,
+			about: false,
+			singleplayer: false,
+			multiplayer: false,
+			signin: true,
+			signup: false,
+		};
+	}
 
-		this.render();
+	setSignUpContext() {
+		this._context = {
+			menu: false,
+			profile: false,
+			leaderboard: false,
+			about: false,
+			singleplayer: false,
+			multiplayer: false,
+			signin: false,
+			signup: true,
+		};
+	}
+
+	setProfileContext() {
+		this._context = {
+			menu: false,
+			profile: true,
+			leaderboard: false,
+			about: false,
+			singleplayer: false,
+			multiplayer: false,
+			signin: false,
+			signup: false,
+		};
+	}
+
+	setAboutContext() {
+		this._context = {
+			menu: false,
+			profile: false,
+			leaderboard: false,
+			about: true,
+			singleplayer: false,
+			multiplayer: false,
+			signin: false,
+			signup: false,
+		};
+	}
+
+	setMenuContext() {
+		this._context = {
+			menu: true,
+			profile: false,
+			leaderboard: false,
+			about: false,
+			singleplayer: false,
+			multiplayer: false,
+			signin: false,
+			signup: false,
+		};
+	}
+
+	setLeaderboardContext() {
+		this._context = {
+			menu: false,
+			profile: false,
+			leaderboard: true,
+			about: false,
+			singleplayer: false,
+			multiplayer: false,
+			signin: false,
+			signup: false,
+		}
+	}
+
+	navigate(item) {
+		debugger;
+		let route = this._routes.get(item);
+
+		if (route !== undefined) {
+			route();
+			this.render();
+		}
 	}
 
 	/**
