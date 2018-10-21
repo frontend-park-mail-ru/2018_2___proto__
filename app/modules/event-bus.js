@@ -61,4 +61,4 @@ export default new class EventBus {
 	remove(event) {
 		this.listeners.delete(event);
 	}
-}
+}();

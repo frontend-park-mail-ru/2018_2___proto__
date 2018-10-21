@@ -93,8 +93,7 @@ export default new class RequestModule {
 	 * @param {*} limit - число записей на странице
 	 */
 	getLeaderboard(offset, limit) {
-		return sendRequest(`${this.baseUrl}/leaders/${offset}/${limit}`, "GET", {}
-		).then((info) => {
+		return sendRequest(`${this.baseUrl}/leaders/${offset}/${limit}`, "GET", {}).then((info) => {
 			return info;
 		});
 	}

@@ -23,6 +23,6 @@ export default function authorizationCheck(login, pass) {
 	if (errorInfo !== "") {
 		return errorInfo;
 	}
-	
+
 	return true;
 }

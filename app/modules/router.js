@@ -31,7 +31,7 @@ export default new class Router {
 			this.go(Router.getLocation());
 		};
 
-		document.body.addEventListener("click", event => {
+		document.body.addEventListener("click", (event) => {
 			if (
 				event.target.tagName !== "button"
 				|| !(event.target instanceof HTMLAnchorElement)
@@ -52,7 +52,7 @@ export default new class Router {
 	 * @param {string} path - путь
 	 */
 	go(path) {
-		let view = this.routes.get(path);
+		const view = this.routes.get(path);
 		if (!view) {
 			this.go("/");
 			return;
@@ -69,6 +69,7 @@ export default new class Router {
 		view.render();
 		this.current = view;
 	}
+	// https://frontend-proto.now.sh:3000
 
 	/**
 	 * Возвращение на предыдущий урл
