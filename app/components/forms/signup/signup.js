@@ -4,6 +4,7 @@ import BaseComponent from "../../baseComponent";
 import ButtonComponent from "../../button/button";
 import http from "../../../modules/http";
 import validate from "../../../modules/registration";
+import backend from "../../modules/constants";
 
 /**
  * Компонент SignUp
@@ -44,7 +45,7 @@ export default class SignUpComponent extends BaseComponent {
 					password: this._pass.value,
 					email: this._email.value,
 				},
-				path: "https://rasseki.org:8443/signup",
+				path: `${backend}/signup`,
 			});
 		}
 	}

@@ -4,6 +4,7 @@ import BaseComponent from "../../baseComponent";
 import ButtonComponent from "../../button/button";
 import http from "../../../modules/http";
 import validate from "../../../modules/authorization";
+import backend from "../../modules/constants";
 
 /**
  * Компонент SignIn
@@ -41,7 +42,7 @@ export default class SignInComponent extends BaseComponent {
 					nickname: this._login.value,
 					password: this._pass.value,
 				},
-				path: "https://rasseki.org:8443/signin",
+				path: `${backend}/signin`,
 			});
 		}
 	}

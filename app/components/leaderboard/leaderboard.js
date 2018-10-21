@@ -2,6 +2,7 @@ import "./leaderboard.scss";
 import template from "./leaderboard.hbs";
 import BaseComponent from "../baseComponent";
 import http from "../../modules/http";
+import backend from "../../modules/constants";
 
 /**
  * Компонент Leaderboard
@@ -16,7 +17,7 @@ export default class LeaderboardComponent extends BaseComponent {
 			callback: xhr => {
 				this.render(JSON.parse(xhr.responseText));
 			},
-			path: `https://rasseki.org:8443/leaders/0/10`,
+			path: `${backend}/leaders/0/10`,
 		});
 	}
 
@@ -51,7 +52,7 @@ export default class LeaderboardComponent extends BaseComponent {
 			callback: xhr => {
 				this.render(JSON.parse(xhr.responseText));
 			},
-			path: `https://rasseki.org:8443/leaders/${this._offset}/10`,
+			path: `${backend}/leaders/${this._offset}/10`,
 		});
 	}
 }
