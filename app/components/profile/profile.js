@@ -4,7 +4,7 @@ import BaseComponent from "../baseComponent";
 import ButtonComponent from "../button/button";
 import http from "../../modules/http";
 import validate from "../../modules/authorization";
-import backend from "../../modules/constants";
+import { backend } from "../../modules/constants";
 
 /**
  * Компонент profile
@@ -19,7 +19,7 @@ export default class ProfileComponent extends BaseComponent {
 	}
 
 	render(context) {
-		const newContext = {};
+		let newContext = {};
 
 		http.doGet({
 			callback(xhr) {

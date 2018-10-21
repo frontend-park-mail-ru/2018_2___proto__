@@ -2,7 +2,7 @@ import "./leaderboard.scss";
 import template from "./leaderboard.hbs";
 import BaseComponent from "../baseComponent";
 import http from "../../modules/http";
-import backend from "../../modules/constants";
+import { backend } from "../../modules/constants";
 
 /**
  * Компонент Leaderboard
@@ -14,7 +14,7 @@ export default class LeaderboardComponent extends BaseComponent {
 		this._currentPage = "1";
 		this._offset = 0;
 		http.doGet({
-			callback: xhr => {
+			callback: (xhr) => {
 				this.render(JSON.parse(xhr.responseText));
 			},
 			path: `${backend}/leaders/0/10`,
@@ -22,8 +22,8 @@ export default class LeaderboardComponent extends BaseComponent {
 	}
 
 	render(context) {
-		context = this._pagination(context);
-		super.render(context);
+		const newContext = this._pagination(context);
+		super.render(newContext);
 		this._context.pages.forEach((page) => {
 			this._element
 				.querySelector(`[tag=page-${page.value}]`)
@@ -45,11 +45,11 @@ export default class LeaderboardComponent extends BaseComponent {
 		return { ...context, ...pages };
 	}
 
-	_onPageClick() {
+	_onPageClick(event) {
 		this._currentPage = event.target.innerText;
 		this._offset = (this._currentPage - 1) * 10;
 		http.doGet({
-			callback: xhr => {
+			callback: (xhr) => {
 				this.render(JSON.parse(xhr.responseText));
 			},
 			path: `${backend}/leaders/${this._offset}/10`,

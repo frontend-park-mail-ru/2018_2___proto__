@@ -1,5 +1,10 @@
 export default new class HttpModule {
-	_http({ callback = () => null, method = "GET", path = "/", body } = {}) {
+	_http({
+		callback = () => null,
+		method = "GET",
+		path = "/",
+		body,
+	} = {}) {
 		const xhr = new XMLHttpRequest();
 		xhr.open(method, path, true);
 		xhr.withCredentials = true;
@@ -7,7 +12,7 @@ export default new class HttpModule {
 		if (body) {
 			xhr.setRequestHeader(
 				"Content-Type",
-				"application/json; charset=utf-8"
+				"application/json; charset=utf-8",
 			);
 		}
 
@@ -37,4 +42,8 @@ export default new class HttpModule {
 	doPut(params = {}) {
 		this._http({ ...params, method: "PUT" });
 	}
-}
+
+	doDelete() {
+		this._http({ method: "DELETE" });
+	}
+}();

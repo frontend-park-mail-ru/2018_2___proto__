@@ -46,4 +46,8 @@ export default class AuthComponent extends BaseComponent {
 	_onSignUpClick() {
 		this._context.navigate("signup");
 	}
+
+	_onLogOutClick() {
+		this._context.navigate("menu");
+	}
 }

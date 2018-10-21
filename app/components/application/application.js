@@ -29,8 +29,7 @@ export default class ApplicationComponent extends BaseComponent {
 			signup: false,
 		};
 
-		//setup router
-		this._routes= new Map();
+		this._routes = new Map();
 		this._routes.set("singleplayer", undefined);
 		this._routes.set("multiplayer", undefined);
 
@@ -39,7 +38,7 @@ export default class ApplicationComponent extends BaseComponent {
 
 		this.setProfileContext = this.setProfileContext.bind(this);
 		this._routes.set("profile", this.setProfileContext);
-		
+
 		this.setSignInContext = this.setSignInContext.bind(this);
 		this._routes.set("signin", this.setSignInContext);
 
@@ -133,12 +132,11 @@ export default class ApplicationComponent extends BaseComponent {
 			multiplayer: false,
 			signin: false,
 			signup: false,
-		}
+		};
 	}
 
 	navigate(item) {
-		debugger;
-		let route = this._routes.get(item);
+		const route = this._routes.get(item);
 
 		if (route !== undefined) {
 			route();
