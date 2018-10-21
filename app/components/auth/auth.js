@@ -47,6 +47,11 @@ export default class AuthComponent extends BaseComponent {
 			text: "Sign Up",
 			onClick: this._onSignUpClick.bind(this),
 		});
+
+		this.renderChild("logout", ButtonComponent, {
+			text: "Log Out",
+			onClick: this._onLogOutClick.bind(this),
+		});
 	}
 
 	/**
