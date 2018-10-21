@@ -2,6 +2,8 @@ import "./auth.scss";
 import template from "./auth.hbs";
 import BaseComponent from "../baseComponent";
 import ButtonComponent from "../button/button";
+import http from "../../modules/http";
+import { backend } from "../../modules/constants";
 
 /**
  * Компонент Auth
@@ -10,6 +12,20 @@ export default class AuthComponent extends BaseComponent {
 	constructor() {
 		super();
 		this.template = template;
+		http.doGet({
+			callback: (xhr) => {
+				if (xhr.status === 200) {
+					this._context = {
+						isOnline: true,
+					};
+				} else {
+					this._context = {
+						isOnline: false,
+					};
+				}
+			},
+			path: `${backend}/session`,
+		});
 	}
 
 	render(context) {
@@ -47,7 +63,13 @@ export default class AuthComponent extends BaseComponent {
 		this._context.navigate("signup");
 	}
 
+	/**
+	 * Callback на нажатие "Log Out"
+	 */
 	_onLogOutClick() {
+		http.doDelete({
+			path: `${backend}/logout`,
+		});
 		this._context.navigate("menu");
 	}
 }

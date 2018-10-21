@@ -43,7 +43,7 @@ export default new class HttpModule {
 		this._http({ ...params, method: "PUT" });
 	}
 
-	doDelete() {
-		this._http({ method: "DELETE" });
+	doDelete(params = {}) {
+		this._http({ ...params, method: "DELETE" });
 	}
 }();
