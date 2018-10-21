@@ -4,6 +4,9 @@
 # NPM-specific files
 package-lock.json
 
+# Bash scripts
+*.sh
+
 # User-specific files
 *.suo
 *.user
