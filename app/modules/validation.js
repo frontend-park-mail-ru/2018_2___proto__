@@ -20,7 +20,7 @@ export default class ValidationModule {
 		}
 
 		if (!login.match(regexLogin)) {
-			return "Login must not starts with a digit or contains non-latin symbols\n";
+			return "Login must not start with a digit or contain non-latin symbols\n";
 		}
 
 		return true;
@@ -56,7 +56,7 @@ export default class ValidationModule {
 		}
 
 		if (!pass.match(regexPass)) {
-			return "Password may contain 6 latin symbols and digits as min.\n";
+			return "Password should contain at least 6 latin symbols and digits.\n";
 		}
 
 		return true;
