@@ -1,0 +1,17 @@
+{
+	"env": {
+		"mocha": true,
+		"node": true,
+		"browser": true
+	},
+	"extends": "airbnb-base",
+	"rules": {
+		"indent": ["error", "tab", { "SwitchCase": 1 }],
+		"quotes": ["error", "double"],
+		"no-tabs": "off",
+		"no-underscore-dangle": "off",
+		"class-methods-use-this": "off",
+		"no-plusplus": ["error", { "allowForLoopAfterthoughts": true }],
+		"no-console": "off"
+	}
+}
