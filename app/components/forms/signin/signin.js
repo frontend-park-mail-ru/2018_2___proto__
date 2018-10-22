@@ -42,7 +42,7 @@ export default class SignInComponent extends BaseComponent {
 	}
 
 	_onSubmitClick() {
-		const errorInfo = validate(this._login.validate, this._pass.value);
+		const errorInfo = validate(this._login.value, this._pass.value);
 		if (errorInfo !== true) {
 			this._info.innerText = errorInfo;
 		} else {

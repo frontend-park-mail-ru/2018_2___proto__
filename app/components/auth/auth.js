@@ -15,13 +15,9 @@ export default class AuthComponent extends BaseComponent {
 		http.doGet({
 			callback: (xhr) => {
 				if (xhr.status === 200) {
-					this._context = {
-						isOnline: true,
-					};
+					this.render({ isOnline: true });
 				} else {
-					this._context = {
-						isOnline: false,
-					};
+					this.render({ isOnline: false });
 				}
 			},
 			path: `${backend}/session`,
