@@ -15,13 +15,9 @@ export default class AuthComponent extends BaseComponent {
 		http.doGet({
 			callback: (xhr) => {
 				if (xhr.status === 200) {
-					this._context = {
-						isOnline: true,
-					};
+					this.render({ isOnline: true });
 				} else {
-					this._context = {
-						isOnline: false,
-					};
+					this.render({ isOnline: false });
 				}
 			},
 			path: `${backend}/session`,
@@ -46,6 +42,11 @@ export default class AuthComponent extends BaseComponent {
 		this.renderChild("signup", ButtonComponent, {
 			text: "Sign Up",
 			onClick: this._onSignUpClick.bind(this),
+		});
+
+		this.renderChild("logout", ButtonComponent, {
+			text: "Log Out",
+			onClick: this._onLogOutClick.bind(this),
 		});
 	}
 
