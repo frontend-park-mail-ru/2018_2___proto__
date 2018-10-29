@@ -1,0 +1,21 @@
+{
+	"compilerOptions": {
+		"module": "es6",
+		"target": "es2018",
+		"outDir": "dist/",
+		"newLine": "LF",
+		"strict": true
+	},
+	"include": ["app/game"],
+	"exclude": [
+		"node_modules",
+		"app/components",
+		"app/modules",
+		"app/index.js",
+		"app/handlebars-min.js",
+		"webpack.config.js",
+		"dist",
+		"server"
+	],
+	"compileOnSave": true
+}
