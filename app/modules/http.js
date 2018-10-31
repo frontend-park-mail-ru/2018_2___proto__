@@ -21,7 +21,8 @@ export default new class HttpModule {
 			email,
 		}).then((response) => {
 			if (response.status === 201) {
-				this.username = response.json().nickname;
+				const info = response.json();
+				this.username = info.nickname;
 			}
 
 			return response.status;
@@ -40,7 +41,8 @@ export default new class HttpModule {
 			password: pass,
 		}).then((response) => {
 			if (response.status === 200) {
-				this.username = response.json().nickname;
+				const info = response.json();
+				this.username = info.nickname;
 			}
 
 			return response.status;
@@ -53,7 +55,7 @@ export default new class HttpModule {
 	 */
 	logout() {
 		this.username = null;
-		return sendRequest(`${this.baseUrl}/logout`, "DELETE", {});
+		return sendRequest(`${this.baseUrl}/logout`, "DELETE");
 	}
 
 	/**
@@ -61,7 +63,7 @@ export default new class HttpModule {
 	 * @returns {Promise}
 	 */
 	getUser() {
-		return sendRequest(`${this.baseUrl}/user`, "GET", {}).then((response) => {
+		return sendRequest(`${this.baseUrl}/user`, "GET").then((response) => {
 			const info = response.json();
 			this.username = info.login;
 			return info;
@@ -107,6 +109,6 @@ export default new class HttpModule {
 	 * Получение данных о текущей сессии
 	 */
 	sessionInfo() {
-		return sendRequest(`${this.baseUrl}/session`, "GET", {}).then((response => response.status === 200 ? { isOnline: true } : { isOnline: false }));
+		return sendRequest(`${this.baseUrl}/session`, "GET").then((response => response.status === 200 ? { isOnline: true } : { isOnline: false }));
 	}
 }();
