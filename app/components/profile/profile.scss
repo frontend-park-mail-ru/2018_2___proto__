@@ -1,8 +1,8 @@
-.profile-user {
+.profile__user {
 	display: inline-block;
 }
 
-.profile-avatar {
+.profile__avatar {
 	border-radius: 40px;
 	border-style: solid;
 	border-width: 1.2px;
@@ -13,11 +13,11 @@
 	display: block;
 }
 
-.profile-name {
+.profile__name {
 	font-weight: bold;
 	display: block;
 }
 
-.profile-info {
+.profile__info {
 	display: inline-block;
 }

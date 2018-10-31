@@ -1,15 +1,15 @@
 <div>
 	<div class="table">
-		<div class="table-body">
-			<div class="table-row">
-				<div class="table-cell table-head">Gamer</div>
-				<div class="table-cell table-head">Score</div>
+		<div class="table__body">
+			<div class="table__row">
+				<div class="table__cell table__head">Gamer</div>
+				<div class="table__cell table__head">Score</div>
 			</div>
 
 			{{#each this.records}}
-			<div class="table-row">
-				<div class="table-cell">{{nickname}}</div>
-				<div class="table-cell">{{score}}</div>
+			<div class="table__row">
+				<div class="table__cell">{{nickname}}</div>
+				<div class="table__cell">{{score}}</div>
 			</div>
 			{{/each}}
 		</div>
@@ -18,7 +18,7 @@
 	<div class="paginator" ref="paginator">
 		{{#each pages}}
 		{{#if isCurrent}}
-		<a class="current-page" tag="page-{{value}}">{{value}}</a>
+		<a class="paginator__current-page" tag="page-{{value}}">{{value}}</a>
 		{{else}}
 		<a tag="page-{{value}}">{{value}}</a>
 		{{/if}}
