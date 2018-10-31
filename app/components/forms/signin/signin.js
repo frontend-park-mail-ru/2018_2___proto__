@@ -46,18 +46,18 @@ export default class SignInComponent extends BaseComponent {
 		if (errorInfo !== true) {
 			this._info.innerText = errorInfo;
 		} else {
-			http.doPost({
-				callback: (xhr) => {
-					if (xhr.status === 200) {
-						this._context.navigate("menu");
-					}
-				},
-				body: {
-					nickname: this._login.value,
-					password: this._pass.value,
-				},
-				path: `${backend}/signin`,
-			});
+			// http.doPost({
+			// 	callback: (xhr) => {
+			// 		if (xhr.status === 200) {
+			// 			this._context.navigate("menu");
+			// 		}
+			// 	},
+			// 	body: {
+			// 		nickname: this._login.value,
+			// 		password: this._pass.value,
+			// 	},
+			// 	path: `${backend}/signin`,
+			// });
 		}
 	}
 
