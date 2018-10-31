@@ -19,8 +19,13 @@ export default class Router {
 	 * @param {string} route - компонент для перехода
 	 */
 	static go(route) {
+		if (route === "/" || route === "menu") {
+			this.currentContext = { ...this.defaultContext, ...{ menu: true } };
+		} else {
+			this.currentContext = { ...this.defaultContext, ...{ [route]: true } };
+		}
+
 		window.history.pushState(null, "", route);
-		this.currentContext = { ...this.defaultContext, ...{ [route]: true } };
 	}
 
 	/**
