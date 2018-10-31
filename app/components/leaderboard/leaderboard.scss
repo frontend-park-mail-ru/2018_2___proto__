@@ -3,17 +3,17 @@
 	width: 100%;
 }
 
-.table-head {
+.table__head {
 	background-color: slateblue;
 	color: white;
 	font-weight: bold;
 }
 
-.table-body {
+.table__body {
 	display: table-row-group;
 }
 
-.table-row {
+.table__row {
 	display: table-row;
 
 	&:nth-child(even) {
@@ -25,7 +25,7 @@
 	}
 }
 
-.table-cell {
+.table__cell {
 	border: 1px solid gray;
 	display: table-cell;
 	padding: 3px 10px;
@@ -40,6 +40,6 @@
 	padding-top: 10%;
 }
 
-.current-page {
+.paginator__current-page {
 	font-weight: bold;
 }
