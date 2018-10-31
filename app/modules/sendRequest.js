@@ -7,7 +7,7 @@
  * @returns {Promise}
  */
 
-export default function sendRequest(path, method, body = {}) {
+export default function sendRequest(path, method, body = undefined) {
 	return fetch(path, {
 		method,
 		mode: "cors",
