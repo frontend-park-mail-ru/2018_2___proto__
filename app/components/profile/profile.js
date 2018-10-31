@@ -21,12 +21,12 @@ export default class ProfileComponent extends BaseComponent {
 	render(context) {
 		let newContext = {};
 
-		http.doGet({
-			callback(xhr) {
-				newContext = JSON.parse(xhr.responseText);
-			},
-			path: `${backend}/user`,
-		});
+		// http.doGet({
+		// 	callback(xhr) {
+		// 		newContext = JSON.parse(xhr.responseText);
+		// 	},
+		// 	path: `${backend}/user`,
+		// });
 
 		super.render(context);
 		this._info = this._element.querySelector("[ref=info]");

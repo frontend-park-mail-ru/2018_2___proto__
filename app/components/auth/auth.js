@@ -12,16 +12,16 @@ export default class AuthComponent extends BaseComponent {
 	constructor() {
 		super();
 		this.template = template;
-		http.doGet({
-			callback: (xhr) => {
-				if (xhr.status === 200) {
-					this.render({ isOnline: true });
-				} else {
-					this.render({ isOnline: false });
-				}
-			},
-			path: `${backend}/session`,
-		});
+		// http.doGet({
+		// 	callback: (xhr) => {
+		// 		if (xhr.status === 200) {
+		// 			this.render({ isOnline: true });
+		// 		} else {
+		// 			this.render({ isOnline: false });
+		// 		}
+		// 	},
+		// 	path: `${backend}/session`,
+		// });
 	}
 
 	render(context) {
