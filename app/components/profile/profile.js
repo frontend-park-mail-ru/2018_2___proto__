@@ -21,14 +21,9 @@ export default class ProfileComponent extends BaseComponent {
 		let newContext = {};
 
 		http.getUser().then((info) => {
+			debugger;
 			newContext = info;
 		});
-		// http.doGet({
-		// 	callback(xhr) {
-		// 		newContext = JSON.parse(xhr.responseText);
-		// 	},
-		// 	path: `${backend}/user`,
-		// });
 
 		super.render(context);
 		this._info = this._element.querySelector("[ref=info]");
@@ -64,13 +59,6 @@ export default class ProfileComponent extends BaseComponent {
 			this._info.innerText = errorInfo;
 		} else {
 			http.updateUser(this._login.value, this._pass.value);
-			// http.doPut({
-			// 	body: {
-			// 		nickname: this._login.value,
-			// 		password: this._password.value,
-			// 	},
-			// 	path: `${backend}/user`,
-			// });
 		}
 	}
 }
