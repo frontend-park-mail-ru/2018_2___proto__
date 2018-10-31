@@ -20,38 +20,6 @@ export default class ApplicationComponent extends BaseComponent {
 		this.template = template;
 		this.navigate = this.navigate.bind(this);
 		this.navigate("menu");
-		// this._context = {
-		// 	menu: true,
-		// 	profile: false,
-		// 	leaderboard: false,
-		// 	about: false,
-		// 	singleplayer: false,
-		// 	multiplayer: false,
-		// 	signin: false,
-		// 	signup: false,
-		// };
-
-		// this._routes = new Map();
-		// this._routes.set("singleplayer", undefined);
-		// this._routes.set("multiplayer", undefined);
-
-		// this.setLeaderboardContext = this.setLeaderboardContext.bind(this);
-		// this._routes.set("leaderboard", this.setLeaderboardContext);
-
-		// this.setProfileContext = this.setProfileContext.bind(this);
-		// this._routes.set("profile", this.setProfileContext);
-
-		// this.setSignInContext = this.setSignInContext.bind(this);
-		// this._routes.set("signin", this.setSignInContext);
-
-		// this.setSignUpContext = this.setSignUpContext.bind(this);
-		// this._routes.set("signup", this.setSignUpContext);
-
-		// this.setAboutContext = this.setAboutContext.bind(this);
-		// this._routes.set("about", this.setAboutContext);
-
-		// this.setMenuContext = this.setMenuContext.bind(this);
-		// this._routes.set("menu", this.setMenuContext);
 	}
 
 	render(context) {
@@ -59,94 +27,9 @@ export default class ApplicationComponent extends BaseComponent {
 		this._renderChildren();
 	}
 
-	// setSignInContext() {
-	// 	this._context = {
-	// 		menu: false,
-	// 		profile: false,
-	// 		leaderboard: false,
-	// 		about: false,
-	// 		singleplayer: false,
-	// 		multiplayer: false,
-	// 		signin: true,
-	// 		signup: false,
-	// 	};
-	// }
-
-	// setSignUpContext() {
-	// 	this._context = {
-	// 		menu: false,
-	// 		profile: false,
-	// 		leaderboard: false,
-	// 		about: false,
-	// 		singleplayer: false,
-	// 		multiplayer: false,
-	// 		signin: false,
-	// 		signup: true,
-	// 	};
-	// }
-
-	// setProfileContext() {
-	// 	this._context = {
-	// 		menu: false,
-	// 		profile: true,
-	// 		leaderboard: false,
-	// 		about: false,
-	// 		singleplayer: false,
-	// 		multiplayer: false,
-	// 		signin: false,
-	// 		signup: false,
-	// 	};
-	// }
-
-	// setAboutContext() {
-	// 	this._context = {
-	// 		menu: false,
-	// 		profile: false,
-	// 		leaderboard: false,
-	// 		about: true,
-	// 		singleplayer: false,
-	// 		multiplayer: false,
-	// 		signin: false,
-	// 		signup: false,
-	// 	};
-	// }
-
-	// setMenuContext() {
-	// 	this._context = {
-	// 		menu: true,
-	// 		profile: false,
-	// 		leaderboard: false,
-	// 		about: false,
-	// 		singleplayer: false,
-	// 		multiplayer: false,
-	// 		signin: false,
-	// 		signup: false,
-	// 	};
-	// }
-
-	// setLeaderboardContext() {
-	// 	this._context = {
-	// 		menu: false,
-	// 		profile: false,
-	// 		leaderboard: true,
-	// 		about: false,
-	// 		singleplayer: false,
-	// 		multiplayer: false,
-	// 		signin: false,
-	// 		signup: false,
-	// 	};
-	// }
-
 	navigate(item) {
-		Router.go(item);
+		this._context = Router.go(item);
 		this.render();
-
-		// const route = this._routes.get(item);
-
-		// if (route !== undefined) {
-		// 	route();
-		// 	this.render();
-		// }
 	}
 
 	/**
