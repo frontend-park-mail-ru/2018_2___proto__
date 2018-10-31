@@ -61,13 +61,13 @@ export default class ProfileComponent extends BaseComponent {
 		if (errorInfo !== true) {
 			this._info.innerText = errorInfo;
 		} else {
-			http.doPut({
-				body: {
-					nickname: this._login.value,
-					password: this._password.value,
-				},
-				path: `${backend}/user`,
-			});
+			// http.doPut({
+			// 	body: {
+			// 		nickname: this._login.value,
+			// 		password: this._password.value,
+			// 	},
+			// 	path: `${backend}/user`,
+			// });
 		}
 	}
 }

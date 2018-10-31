@@ -68,9 +68,9 @@ export default class AuthComponent extends BaseComponent {
 	 * Callback на нажатие "Log Out"
 	 */
 	_onLogOutClick() {
-		http.doDelete({
-			path: `${backend}/logout`,
-		});
+		// http.doDelete({
+		// 	path: `${backend}/logout`,
+		// });
 		this._context.navigate("menu");
 	}
 }
