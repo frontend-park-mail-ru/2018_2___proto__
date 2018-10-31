@@ -15,6 +15,14 @@ export default class Router {
 	}
 
 	/**
+	 * Получение текущего URL
+	 * @param {*} route
+	 */
+	static getLocation() {
+		return `/${window.location.href.split("/").slice(-1)}`;
+	}
+
+	/**
 	 * Переход на новый URL
 	 * @param {string} route - компонент для перехода
 	 */
@@ -26,6 +34,7 @@ export default class Router {
 		}
 
 		window.history.pushState(null, "", route);
+		return this.currentContext;
 	}
 
 	/**
