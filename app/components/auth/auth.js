@@ -3,7 +3,6 @@ import template from "./auth.hbs";
 import BaseComponent from "../baseComponent";
 import ButtonComponent from "../button/button";
 import http from "../../modules/http";
-import { backend } from "../../modules/constants";
 
 /**
  * Компонент Auth
@@ -12,6 +11,9 @@ export default class AuthComponent extends BaseComponent {
 	constructor() {
 		super();
 		this.template = template;
+		http.sessionInfo().then((info) => {
+			this.render(info);
+		});
 		// http.doGet({
 		// 	callback: (xhr) => {
 		// 		if (xhr.status === 200) {
@@ -68,6 +70,7 @@ export default class AuthComponent extends BaseComponent {
 	 * Callback на нажатие "Log Out"
 	 */
 	_onLogOutClick() {
+		http.logout();
 		// http.doDelete({
 		// 	path: `${backend}/logout`,
 		// });

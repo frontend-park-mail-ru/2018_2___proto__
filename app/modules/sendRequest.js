@@ -14,8 +14,5 @@ export default function sendRequest(path, method, body = {}) {
 		credentials: "include",
 		body: Object.is(body, {}) ? {} : JSON.stringify(body),
 		headers: { "Content-Type": "application/json; charset=utf-8" },
-	}).then((response) => {
-		const json = response.json();
-		return json;
-	});
+	}).then(response => response);
 }

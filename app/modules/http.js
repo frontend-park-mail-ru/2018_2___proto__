@@ -19,9 +19,12 @@ export default new class HttpModule {
 			nickname: login,
 			password: pass,
 			email,
-		}).then((info) => {
-			this.username = info.nickname;
-			return info;
+		}).then((response) => {
+			if (response.status === 201) {
+				this.username = response.json().nickname;
+			}
+
+			return response.status;
 		});
 	}
 
@@ -35,9 +38,12 @@ export default new class HttpModule {
 		return sendRequest(`${this.baseUrl}/signin`, "POST", {
 			nickname: login,
 			password: pass,
-		}).then((info) => {
-			this.username = info.nickname;
-			return info;
+		}).then((response) => {
+			if (response.status === 200) {
+				this.username = response.json().nickname;
+			}
+
+			return response.status;
 		});
 	}
 
@@ -55,7 +61,8 @@ export default new class HttpModule {
 	 * @returns {Promise}
 	 */
 	getUser() {
-		return sendRequest(`${this.baseUrl}/user`, "GET", {}).then((info) => {
+		return sendRequest(`${this.baseUrl}/user`, "GET", {}).then((response) => {
+			const info = response.json();
 			this.username = info.login;
 			return info;
 		});
@@ -71,7 +78,8 @@ export default new class HttpModule {
 		return sendRequest(`${this.baseUrl}/user`, "PUT", {
 			nickname: login,
 			password: pass,
-		}).then((info) => {
+		}).then((response) => {
+			const info = response.json();
 			this.username = info.login;
 			return info;
 		});
@@ -89,7 +97,8 @@ export default new class HttpModule {
 	 * @param {*} limit - число записей на странице
 	 */
 	getLeaderboard(offset, limit) {
-		return sendRequest(`${this.baseUrl}/leaders/${offset}/${limit}`, "GET", {}).then(((info) => {
+		return sendRequest(`${this.baseUrl}/leaders/${offset}/${limit}`, "GET", {}).then(((response) => {
+			const info = response.json();
 			return info;
 		}));
 	}
@@ -97,7 +106,7 @@ export default new class HttpModule {
 	/**
 	 * Получение данных о текущей сессии
 	 */
-	// sessionInfo() {
-	// 	return sendRequest(`${this.baseUrl}/session`, "GET", {});
-	// }
+	sessionInfo() {
+		return sendRequest(`${this.baseUrl}/session`, "GET", {}).then((response => response.status === 200 ? { isOnline: true } : { isOnline: false }));
+	}
 }();

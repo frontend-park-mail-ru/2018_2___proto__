@@ -12,6 +12,7 @@
 		"no-underscore-dangle": "off",
 		"class-methods-use-this": "off",
 		"no-plusplus": ["error", { "allowForLoopAfterthoughts": true }],
-		"no-console": "off"
+		"no-console": "off",
+		"no-confusing-arrow": "off"
 	}
 }
