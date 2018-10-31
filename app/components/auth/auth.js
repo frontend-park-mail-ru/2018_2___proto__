@@ -14,16 +14,6 @@ export default class AuthComponent extends BaseComponent {
 		http.sessionInfo().then((info) => {
 			this.render(info);
 		});
-		// http.doGet({
-		// 	callback: (xhr) => {
-		// 		if (xhr.status === 200) {
-		// 			this.render({ isOnline: true });
-		// 		} else {
-		// 			this.render({ isOnline: false });
-		// 		}
-		// 	},
-		// 	path: `${backend}/session`,
-		// });
 	}
 
 	render(context) {
@@ -71,9 +61,6 @@ export default class AuthComponent extends BaseComponent {
 	 */
 	_onLogOutClick() {
 		http.logout();
-		// http.doDelete({
-		// 	path: `${backend}/logout`,
-		// });
 		this._context.navigate("menu");
 	}
 }

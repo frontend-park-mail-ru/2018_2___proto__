@@ -59,33 +59,6 @@ export default class SignUpComponent extends BaseComponent {
 					this._context.navigate("menu");
 				}
 			});
-
-			// http.doPost({
-			// 	callback: (xhr) => {
-			// 		if (xhr.status === 201) {
-			// 			this._context.navigate("menu");
-			// 		}
-			// 	},
-			// 	body: {
-			// 		nickname: this._login.value,
-			// 		password: this._pass.value,
-			// 		email: this._email.value,
-			// 	},
-			// 	path: `${backend}/signup`,
-			// });
-
-			// http.doPost({
-			// 	callback: (xhr) => {
-			// 		if (xhr.status === 200) {
-			// 			this._context.navigate("menu");
-			// 		}
-			// 	},
-			// 	body: {
-			// 		nickname: this._login.value,
-			// 		password: this._pass.value,
-			// 	},
-			// 	path: `${backend}/signin`,
-			// });
 		}
 	}
 
