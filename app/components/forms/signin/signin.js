@@ -5,7 +5,6 @@ import ButtonComponent from "../../button/button";
 import LinkComponent from "../../link/link";
 import http from "../../../modules/http";
 import validate from "../../../modules/authorization";
-import { backend } from "../../../modules/constants";
 
 /**
  * Компонент SignIn
@@ -46,6 +45,11 @@ export default class SignInComponent extends BaseComponent {
 		if (errorInfo !== true) {
 			this._info.innerText = errorInfo;
 		} else {
+			http.signin(this._login.value, this._pass.value).then((status) => {
+				if (status === 200) {
+					this._context.navigate("menu");
+				}
+			});
 			// http.doPost({
 			// 	callback: (xhr) => {
 			// 		if (xhr.status === 200) {

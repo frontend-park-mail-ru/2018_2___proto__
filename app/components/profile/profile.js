@@ -4,7 +4,6 @@ import BaseComponent from "../baseComponent";
 import ButtonComponent from "../button/button";
 import http from "../../modules/http";
 import validate from "../../modules/authorization";
-import { backend } from "../../modules/constants";
 
 /**
  * Компонент profile
@@ -21,6 +20,9 @@ export default class ProfileComponent extends BaseComponent {
 	render(context) {
 		let newContext = {};
 
+		http.getUser().then((info) => {
+			newContext = info;
+		});
 		// http.doGet({
 		// 	callback(xhr) {
 		// 		newContext = JSON.parse(xhr.responseText);
@@ -61,6 +63,7 @@ export default class ProfileComponent extends BaseComponent {
 		if (errorInfo !== true) {
 			this._info.innerText = errorInfo;
 		} else {
+			http.updateUser(this._login.value, this._pass.value);
 			// http.doPut({
 			// 	body: {
 			// 		nickname: this._login.value,
