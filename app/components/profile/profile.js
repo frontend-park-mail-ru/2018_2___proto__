@@ -21,6 +21,7 @@ export default class ProfileComponent extends BaseComponent {
 		let newContext = {};
 
 		http.getUser().then((info) => {
+			debugger;
 			newContext = info;
 		});
 
