@@ -61,6 +61,9 @@ export default class AuthComponent extends BaseComponent {
 	 */
 	_onLogOutClick() {
 		http.logout();
+		http.sessionInfo().then((info) => {
+			this.render(info);
+		});
 		this._context.navigate("menu");
 	}
 }
