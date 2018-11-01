@@ -18,35 +18,25 @@ export default class ProfileComponent extends BaseComponent {
 	}
 
 	render() {
-		let newContext = {};
-
 		http.getUser().then((info) => {
-			console.log("Profile info:");
-			console.log(info);
-			newContext = info;
+			super.render(info);
+			this._info = this._element.querySelector("[ref=info]");
+			this._login = this._element.querySelector("[ref=login]");
+			this._pass = this._element.querySelector("[ref=pass]");
+			this._info = this._element.querySelector("[ref=info]");
+
+			if (info !== {}) {
+				this.renderChild("changeProfile", ButtonComponent, {
+					text: "Change profile",
+					onClick: this._onChangeProfileClick.bind(this),
+				});
+
+				this.renderChild("saveProfile", ButtonComponent, {
+					text: "Save profile",
+					onClick: this._onSaveProfileClick.bind(this),
+				});
+			}
 		});
-
-		console.log("newContext (Profile):");
-		console.log(newContext);
-		debugger;
-
-		super.render(newContext);
-		this._info = this._element.querySelector("[ref=info]");
-		this._login = this._element.querySelector("[ref=login]");
-		this._pass = this._element.querySelector("[ref=pass]");
-		this._info = this._element.querySelector("[ref=info]");
-
-		if (newContext !== {}) {
-			this.renderChild("changeProfile", ButtonComponent, {
-				text: "Change profile",
-				onClick: this._onChangeProfileClick.bind(this),
-			});
-
-			this.renderChild("saveProfile", ButtonComponent, {
-				text: "Save profile",
-				onClick: this._onSaveProfileClick.bind(this),
-			});
-		}
 	}
 
 	_onChangeProfileClick() {
