@@ -26,6 +26,10 @@ export default class ProfileComponent extends BaseComponent {
 			newContext = info;
 		});
 
+		console.log("newContext (Profile):");
+		console.log(newContext);
+		debugger;
+
 		super.render(newContext);
 		this._info = this._element.querySelector("[ref=info]");
 		this._login = this._element.querySelector("[ref=login]");
