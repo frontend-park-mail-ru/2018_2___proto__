@@ -17,7 +17,7 @@ export default class ProfileComponent extends BaseComponent {
 		};
 	}
 
-	render(context) {
+	render() {
 		let newContext = {};
 
 		http.getUser().then((info) => {
@@ -26,9 +26,7 @@ export default class ProfileComponent extends BaseComponent {
 			newContext = info;
 		});
 
-		console.log(newContext);
-
-		super.render(context);
+		super.render(newContext);
 		this._info = this._element.querySelector("[ref=info]");
 		this._login = this._element.querySelector("[ref=login]");
 		this._pass = this._element.querySelector("[ref=pass]");
