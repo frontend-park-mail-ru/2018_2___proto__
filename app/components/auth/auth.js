@@ -12,7 +12,7 @@ export default class AuthComponent extends BaseComponent {
 		super();
 		this.template = template;
 		http.sessionInfo().then((info) => {
-			debugger;
+			console.log(`Session info: ${info}`);
 			this.render(info);
 		});
 	}
