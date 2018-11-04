@@ -82,7 +82,7 @@ export default new class HttpModule {
 	 * @param {*} limit - число записей на странице
 	 */
 	getLeaderboard(offset, limit) {
-		return sendRequest(`${this.baseUrl}/leaders/${offset}/${limit}`, "GET", {}).then((response => response.json()));
+		return sendRequest(`${this.baseUrl}/leaders/${offset}/${limit}`, "GET").then((response => response.json()));
 	}
 
 	/**
