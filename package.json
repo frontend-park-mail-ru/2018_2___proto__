@@ -6,7 +6,7 @@
 	"scripts": {
 		"launch": "node ./server/server.js",
 		"test": "mocha ./server/*.test.js",
-		"start": "webpack -p -mode=development | node ./server/server.js",
+		"start": "webpack -d | node ./server/server.js",
 		"prod": "webpack -p",
 		"dev": "webpack -d --watch",
 		"lint": "eslint . --ext .js"
