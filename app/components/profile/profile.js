@@ -22,6 +22,7 @@ export default class ProfileComponent extends BaseComponent {
 			super.render();
 		} else {
 			http.getUser().then((info) => {
+				debugger;
 				const context = info;
 				context.avatar = `./public/avatars/${info.avatar}`;
 				super.render(context);
