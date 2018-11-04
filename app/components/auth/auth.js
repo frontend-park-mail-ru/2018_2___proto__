@@ -11,11 +11,11 @@ export default class AuthComponent extends BaseComponent {
 	constructor() {
 		super();
 		this.template = template;
-		http.sessionInfo().then((info) => {
-			// console.log("Session info:");
-			// console.log(info);
-			this.render(info);
-		});
+		if (http.username === null) {
+			this.render({ isOnline: false });
+		} else {
+			this.render({ isOnline: true });
+		}
 	}
 
 	render(context) {

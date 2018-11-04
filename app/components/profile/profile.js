@@ -18,12 +18,11 @@ export default class ProfileComponent extends BaseComponent {
 	}
 
 	render() {
-		super.render();
-
-		http.getUser().then((info) => {
-			console.log(info);
-			super.render(info);
-			if (info.isOnline === true) {
+		if (http.username === null) {
+			super.render();
+		} else {
+			http.getUser().then((info) => {
+				super.render(info);
 				this._info = this._element.querySelector("[ref=info]");
 				this._login = this._element.querySelector("[ref=login]");
 				this._pass = this._element.querySelector("[ref=pass]");
@@ -40,8 +39,8 @@ export default class ProfileComponent extends BaseComponent {
 						onClick: this._onSaveProfileClick.bind(this),
 					});
 				}
-			}
-		});
+			});
+		}
 	}
 
 	_onChangeProfileClick() {
