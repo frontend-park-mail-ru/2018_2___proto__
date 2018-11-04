@@ -68,12 +68,10 @@ export default new class HttpModule {
 				return { isOnline: false };
 			}
 
-			debugger;
-			const info = response.json();
-			console.log(info);
-			console.log({ ...info, ...{ isOnline: true } });
-			this.username = info.login;
-			return { ...info, ...{ isOnline: true } };
+			return response.json().then((result) => {
+				this.username = result.login;
+				return { ...result, ...{ isOnline: true } };
+			});
 		});
 	}
 
