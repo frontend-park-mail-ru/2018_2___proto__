@@ -12,6 +12,7 @@ export default class LeaderboardComponent extends BaseComponent {
 		this.template = template;
 		this._currentPage = "1";
 		this._offset = 0;
+		debugger;
 		http.getLeaderboard(this._offset, 10).then((data) => {
 			this.render(data);
 		});
