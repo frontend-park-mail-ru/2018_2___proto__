@@ -1,12 +1,13 @@
 {
 	"compilerOptions": {
-		"module": "es6",
-		"target": "es2018",
+		"module": "commonjs",
+		"target": "es2016",
 		"outDir": "dist/",
 		"newLine": "LF",
-		"strict": true
+		"strict": true,
+		"sourceMap": true
 	},
-	"include": ["app/game"],
+	"include": ["app/game", "app/index.ts"],
 	"exclude": [
 		"node_modules",
 		"app/components",

@@ -16,9 +16,9 @@ export default class GameScene {
 	 */
 	public getGameObjectById(id: number): GameObject | null {
 		this.gameObjects.forEach((object) => {
-			if (object.getObjectInfo[0] == id) {
+			/*if (object.getObjectInfo[0] == id) {
 				return object;
-			}
+			}*/
 		});
 
 		return null;
@@ -31,9 +31,9 @@ export default class GameScene {
 	 */
 	public getGameObjectByName(name: string) : GameObject | null {
 		this.gameObjects.forEach((object) => {
-			if (object.getObjectInfo[1] == name) {
+			/*if (object.getObjectInfo[1] == name) {
 				return object;
-			}
+			}*/
 		});
 
 		return null;

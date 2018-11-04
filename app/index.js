@@ -1,10 +1,12 @@
-import ApplicationComponent from "./components/application/application";
-import "./modules/http";
-
-function createApplication() {
-	const application = new ApplicationComponent();
-	application.render();
-	document.body.appendChild(application.element);
-}
-
-window.onload = createApplication();
+"use strict";
+exports.__esModule = true;
+var Startup = /** @class */ (function () {
+    function Startup() {
+    }
+    Startup.main = function () {
+        console.log('Hello World');
+        return 0;
+    };
+    return Startup;
+}());
+Startup.main();
