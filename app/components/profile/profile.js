@@ -19,7 +19,7 @@ export default class ProfileComponent extends BaseComponent {
 
 	render() {
 		http.getUser().then((info) => {
-			// console.log(info);
+			console.log(info);
 			super.render(info);
 			this._info = this._element.querySelector("[ref=info]");
 			this._login = this._element.querySelector("[ref=login]");
