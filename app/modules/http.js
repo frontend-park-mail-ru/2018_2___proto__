@@ -4,7 +4,6 @@ import { backend } from "./constants";
 export default new class HttpModule {
 	constructor() {
 		this.baseUrl = backend;
-		this.username = null;
 	}
 
 	/**
@@ -19,14 +18,7 @@ export default new class HttpModule {
 			nickname: login,
 			password: pass,
 			email,
-		}).then((response) => {
-			if (response.status === 201) {
-				const info = response.json();
-				this.username = info.nickname;
-			}
-
-			return response.status;
-		});
+		}).then((response => response.status));
 	}
 
 	/**
@@ -39,14 +31,7 @@ export default new class HttpModule {
 		return sendRequest(`${this.baseUrl}/signin`, "POST", {
 			nickname: login,
 			password: pass,
-		}).then((response) => {
-			if (response.status === 200) {
-				const info = response.json();
-				this.username = info.nickname;
-			}
-
-			return response.status;
-		});
+		}).then((response => response.status));
 	}
 
 	/**
@@ -68,10 +53,7 @@ export default new class HttpModule {
 				return { isOnline: false };
 			}
 
-			return response.json().then((result) => {
-				this.username = result.login;
-				return { ...result, ...{ isOnline: true } };
-			});
+			return response.json().then(result => ({ ...result, ...{ isOnline: true } }));
 		});
 	}
 
@@ -85,11 +67,7 @@ export default new class HttpModule {
 		return sendRequest(`${this.baseUrl}/user`, "PUT", {
 			nickname: login,
 			password: pass,
-		}).then((response) => {
-			const info = response.json();
-			this.username = info.login;
-			return info;
-		});
+		}).then(response => response.json());
 	}
 
 	/**
@@ -104,10 +82,7 @@ export default new class HttpModule {
 	 * @param {*} limit - число записей на странице
 	 */
 	getLeaderboard(offset, limit) {
-		return sendRequest(`${this.baseUrl}/leaders/${offset}/${limit}`, "GET", {}).then(((response) => {
-			const info = response.json();
-			return info;
-		}));
+		return sendRequest(`${this.baseUrl}/leaders/${offset}/${limit}`, "GET", {}).then((response => response.json()));
 	}
 
 	/**

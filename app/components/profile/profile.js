@@ -18,32 +18,29 @@ export default class ProfileComponent extends BaseComponent {
 	}
 
 	render() {
-		if (http.username === null) {
-			super.render();
-		} else {
-			http.getUser().then((info) => {
-				debugger;
-				const context = info;
-				context.avatar = `./public/avatars/${info.avatar}`;
-				super.render(context);
-				this._info = this._element.querySelector("[ref=info]");
-				this._login = this._element.querySelector("[ref=login]");
-				this._pass = this._element.querySelector("[ref=pass]");
-				this._info = this._element.querySelector("[ref=info]");
+		super.render();
 
-				if (info !== {}) {
-					this.renderChild("changeProfile", ButtonComponent, {
-						text: "Change profile",
-						onClick: this._onChangeProfileClick.bind(this),
-					});
+		http.getUser().then((info) => {
+			const context = info;
+			context.avatar = `./public/avatars/${info.avatar}`;
+			super.render(context);
+			this._info = this._element.querySelector("[ref=info]");
+			this._login = this._element.querySelector("[ref=login]");
+			this._pass = this._element.querySelector("[ref=pass]");
+			this._info = this._element.querySelector("[ref=info]");
 
-					this.renderChild("saveProfile", ButtonComponent, {
-						text: "Save profile",
-						onClick: this._onSaveProfileClick.bind(this),
-					});
-				}
-			});
-		}
+			if (info !== {}) {
+				this.renderChild("changeProfile", ButtonComponent, {
+					text: "Change profile",
+					onClick: this._onChangeProfileClick.bind(this),
+				});
+
+				this.renderChild("saveProfile", ButtonComponent, {
+					text: "Save profile",
+					onClick: this._onSaveProfileClick.bind(this),
+				});
+			}
+		});
 	}
 
 	_onChangeProfileClick() {
