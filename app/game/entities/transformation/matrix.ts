@@ -1,5 +1,5 @@
 export default class Matrix {
-    private _values: Array<Array<Number>>;
+    private _values: Array<Array<number>>;
     private _height: number;
     private _width: number;
 
@@ -16,13 +16,13 @@ export default class Matrix {
     }
 
 
-    constructor(array: Array<Number>, width: number, height: number) {
+    constructor(array: Array<number>, width: number, height: number) {
         this._width = width;
         this._height = height;
-        this._values = new Array<Array<Number>>();
+        this._values = new Array<Array<number>>();
 
         for(let i: number = 0; i < height; i++) {
-            this._values[i] = new Array<Number>(this._width);
+            this._values[i] = new Array<number>(this._width);
 
             for(let j: number = 0; j < width; j++)
                 this._values[i][j] = array[i * width + j];
@@ -36,7 +36,7 @@ export default class Matrix {
     }
 
     public static Empty(width: number, height: number) : Matrix {
-        let initArray = new Array<Number>(height * width);
+        let initArray = new Array<number>(height * width);
         let matrix = new Matrix(initArray, width, height);
         matrix.DropValues();
 
@@ -47,9 +47,9 @@ export default class Matrix {
         if(matrix._height != this._height || matrix._width != this._width)
             throw new Error("dimensions doesn't match");
 
-        //for(let i: number = 0; i < this._height; i++)
-            //for(let j: number = 0; j < this._width; j++)
-                //this._values[i][j] = this._values[i][j] + matrix._values[i][j];
+        for(let i: number = 0; i < this._height; i++)
+            for(let j: number = 0; j < this._width; j++)
+                this._values[i][j] += matrix._values[i][j];
     } 
 
     public static Sum(m1: Matrix, m2: Matrix) : Matrix {
@@ -69,8 +69,8 @@ export default class Matrix {
         
         for(let i: number = 0; i < res._height; i++)
             for(let j: number = 0; j < res._width; j++){
-                //for(let k: number = 0; k < m2._height; k++)
-                    //res._values[i][j] += m1._values[i][k] * m2._values[k][j];
+                for(let k: number = 0; k < m2._height; k++)
+                    res._values[i][j] += m1._values[i][k] * m2._values[k][j];
             }
 
         return res;
