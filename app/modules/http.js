@@ -64,6 +64,7 @@ export default new class HttpModule {
 	 */
 	getUser() {
 		return sendRequest(`${this.baseUrl}/user`, "GET").then((response) => {
+			debugger;
 			if (response.status === 401) {
 				return { isOnline: false };
 			}

@@ -19,6 +19,7 @@ export default class ProfileComponent extends BaseComponent {
 
 	render() {
 		http.getUser().then((info) => {
+			debugger;
 			console.log(info);
 			super.render(info);
 			if (info.isOnline === true) {
