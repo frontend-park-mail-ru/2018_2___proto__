@@ -1,34 +1,34 @@
 <div>
 	{{#if isOnline}}
-	{{#if changeProfile}}
-	<form>
-		<input type="text" class="form__field" placeholder="Login" ref="login">
-		<input type="password" class="form__field" placeholder="Password" ref="pass">
-		<input type="file" class="form__field">
-	</form>
-	<div ref="saveProfile"></div>
-	<div class="form__info" ref="info"></div>
+		{{#if changeProfile}}
+			<form>
+				<input type="text" class="form__field" placeholder="Login" ref="login">
+				<input type="password" class="form__field" placeholder="Password" ref="pass">
+				<input type="file" class="form__field">
+			</form>
+			<div ref="saveProfile"></div>
+			<div class="form__info" ref="info"></div>
+		{{else}}
+			<div class="profile__user">
+				<img src="{{{avatar}}}" alt="avatar" class="profile__avatar">
+				<span class="profile__name">{{nickname}}</span>
+			</div>
+			<div class="profile__info">
+				<ul>
+					<li>
+						<p><strong>E-Mail:</strong>&nbsp;{{email}}</p>
+					</li>
+					<li>
+						<p><strong>Wins:</strong>&nbsp;{{wins}}</p>
+					</li>
+					<li>
+						<p><strong>Loses:</strong>&nbsp;{{loses}}</p>
+					</li>
+				</ul>
+			</div>
+			<div ref="changeProfile"></div>
+		{{/if}}
 	{{else}}
-	<div class="profile__user">
-		<img src="{{{avatar}}}" alt="avatar" class="profile__avatar">
-		<span class="profile__name">{{nickname}}</span>
-	</div>
-	<div class="profile__info">
-		<ul>
-			<li>
-				<p><strong>E-Mail:</strong>&nbsp;{{email}}</p>
-			</li>
-			<li>
-				<p><strong>Wins:</strong>&nbsp;{{wins}}</p>
-			</li>
-			<li>
-				<p><strong>Loses:</strong>&nbsp;{{loses}}</p>
-			</li>
-		</ul>
-	</div>
-	<div ref="changeProfile"></div>
-	{{/if}}
-	{{else}}
-		<strong>You are not authorized</strong>
+	<strong>You are not authorized</strong>
 	{{/if}}
 </div>

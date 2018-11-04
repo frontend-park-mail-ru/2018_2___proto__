@@ -21,21 +21,23 @@ export default class ProfileComponent extends BaseComponent {
 		http.getUser().then((info) => {
 			console.log(info);
 			super.render(info);
-			this._info = this._element.querySelector("[ref=info]");
-			this._login = this._element.querySelector("[ref=login]");
-			this._pass = this._element.querySelector("[ref=pass]");
-			this._info = this._element.querySelector("[ref=info]");
+			if (info.isOnline === true) {
+				this._info = this._element.querySelector("[ref=info]");
+				this._login = this._element.querySelector("[ref=login]");
+				this._pass = this._element.querySelector("[ref=pass]");
+				this._info = this._element.querySelector("[ref=info]");
 
-			if (info !== {}) {
-				this.renderChild("changeProfile", ButtonComponent, {
-					text: "Change profile",
-					onClick: this._onChangeProfileClick.bind(this),
-				});
+				if (info !== {}) {
+					this.renderChild("changeProfile", ButtonComponent, {
+						text: "Change profile",
+						onClick: this._onChangeProfileClick.bind(this),
+					});
 
-				this.renderChild("saveProfile", ButtonComponent, {
-					text: "Save profile",
-					onClick: this._onSaveProfileClick.bind(this),
-				});
+					this.renderChild("saveProfile", ButtonComponent, {
+						text: "Save profile",
+						onClick: this._onSaveProfileClick.bind(this),
+					});
+				}
 			}
 		});
 	}
