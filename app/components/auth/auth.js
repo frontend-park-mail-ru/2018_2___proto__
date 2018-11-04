@@ -12,8 +12,8 @@ export default class AuthComponent extends BaseComponent {
 		super();
 		this.template = template;
 		http.sessionInfo().then((info) => {
-			console.log("Session info:");
-			console.log(info);
+			// console.log("Session info:");
+			// console.log(info);
 			this.render(info);
 		});
 	}
