@@ -64,9 +64,13 @@ export default new class HttpModule {
 	 */
 	getUser() {
 		return sendRequest(`${this.baseUrl}/user`, "GET").then((response) => {
+			if (response.status === 401) {
+				return { isOnline: false };
+			}
+
 			const info = response.json();
 			this.username = info.login;
-			return info;
+			return { ...info, ...{ isOnline: true } };
 		});
 	}
 

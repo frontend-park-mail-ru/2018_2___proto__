@@ -1,4 +1,5 @@
 <div>
+	{{#if isOnline}}
 	{{#if changeProfile}}
 	<form>
 		<input type="text" class="form__field" placeholder="Login" ref="login">
@@ -26,5 +27,8 @@
 		</ul>
 	</div>
 	<div ref="changeProfile"></div>
+	{{/if}}
+	{{else}}
+		<strong>You are not authorized</strong>
 	{{/if}}
 </div>
