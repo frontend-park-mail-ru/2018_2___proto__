@@ -55,8 +55,6 @@ export default class BaseComponent {
 			return;
 		}
 
-		debugger;
-
 		const newChild = new Component();
 		newChild.render(context);
 		const newChildNodes = newChild.element.querySelectorAll("*");

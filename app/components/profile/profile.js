@@ -18,9 +18,9 @@ export default class ProfileComponent extends BaseComponent {
 	}
 
 	render() {
+		super.render();
+
 		http.getUser().then((info) => {
-			debugger;
-			console.log(info);
 			super.render(info);
 			if (info.isOnline === true) {
 				this._info = this._element.querySelector("[ref=info]");
