@@ -18,6 +18,6 @@ export default class LogoComponent extends BaseComponent {
 	 * Нажатие на сам логотип рендерит меню (как возврат на index)
 	 */
 	_onLogoClick() {
-		this._context.navigate("menu");
+		this._context.navigate("/");
 	}
 }

@@ -19,7 +19,7 @@ export default class Router {
 	 * @param {*} route
 	 */
 	static getLocation() {
-		return `/${window.location.href.split("/").slice(-1)}`;
+		return window.location.pathname;
 	}
 
 	/**
@@ -27,10 +27,20 @@ export default class Router {
 	 * @param {string} route - компонент для перехода
 	 */
 	static go(route) {
-		if (route === "/" || route === "menu") {
+		if (route === "/" || route === "/menu/") {
 			this.currentContext = { ...this.defaultContext, ...{ menu: true } };
 		} else {
-			this.currentContext = { ...this.defaultContext, ...{ [route]: true } };
+			let correctedRoute = route;
+
+			if (route.startsWith("/")) {
+				correctedRoute = route.slice(1);
+			}
+
+			if (route.endsWith("/")) {
+				correctedRoute = correctedRoute.slice(0, -1);
+			}
+
+			this.currentContext = { ...this.defaultContext, ...{ [correctedRoute]: true } };
 		}
 
 		window.history.pushState(null, "", route);
