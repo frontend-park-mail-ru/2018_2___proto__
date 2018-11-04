@@ -68,6 +68,7 @@ export default new class HttpModule {
 				return { isOnline: false };
 			}
 
+			debugger;
 			const info = response.json();
 			console.log(info);
 			console.log({ ...info, ...{ isOnline: true } });
