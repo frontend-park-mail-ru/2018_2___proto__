@@ -22,7 +22,9 @@ export default class ProfileComponent extends BaseComponent {
 			super.render();
 		} else {
 			http.getUser().then((info) => {
-				super.render(info);
+				const context = info;
+				context.avatar = `./public/avatars/${info.avatar}`;
+				super.render(context);
 				this._info = this._element.querySelector("[ref=info]");
 				this._login = this._element.querySelector("[ref=login]");
 				this._pass = this._element.querySelector("[ref=pass]");
