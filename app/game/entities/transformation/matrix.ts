@@ -1,7 +1,7 @@
 export default class Matrix {
-    private _values: Array<Array<number>>;
-    private _height: number;
-    private _width: number;
+    protected _values: Array<Array<number>>;
+    protected _height: number;
+    protected _width: number;
 
     public get Height(): number {
         return this._height;
@@ -11,8 +11,8 @@ export default class Matrix {
         return this._width;
     }
 
-    public Value(x: number, y: number) {
-        return this._values[y][x];
+    public GetByIndex(row: number, column: number) {
+        return this._values[row][column];
     }
 
 
@@ -43,20 +43,52 @@ export default class Matrix {
         return matrix;
     }
 
+    public static IsDimensionsXYMismatch(m1: Matrix, m2: Matrix) : boolean {
+        return m1._height != m2._height || m1._width != m2._width;
+    }
+
     public Add(matrix: Matrix) {
-        if(matrix._height != this._height || matrix._width != this._width)
+        if(Matrix.IsDimensionsXYMismatch(this, matrix))
             throw new Error("dimensions doesn't match");
 
         for(let i: number = 0; i < this._height; i++)
             for(let j: number = 0; j < this._width; j++)
                 this._values[i][j] += matrix._values[i][j];
-    } 
+    }
+    
+    public Substract(matrix: Matrix) {
+        if(Matrix.IsDimensionsXYMismatch(this, matrix))
+            throw new Error("dimensions doesn't match");
+
+        for(let i: number = 0; i < this._height; i++)
+            for(let j: number = 0; j < this._width; j++)
+                this._values[i][j] -= matrix._values[i][j];
+    }
+
+    public Transpose() : Matrix {
+        let res = Matrix.Empty(this._height, this._width)
+
+        for(let i: number = 0; i < this._height; i++)
+            for(let j: number = 0; j < this._width; j++)
+                res._values[i][j] = this._values[j][i];
+
+        return res;
+    }
 
     public static Sum(m1: Matrix, m2: Matrix) : Matrix {
         let res = Matrix.Empty(m1._width, m2._height);
 
         res.Add(m1);
         res.Add(m2);
+
+        return res;
+    }
+
+    public static Difference(m1: Matrix, m2: Matrix) : Matrix {
+        let res = Matrix.Empty(m1._width, m2._height);
+
+        res.Substract(m1);
+        res.Substract(m2);
 
         return res;
     }
