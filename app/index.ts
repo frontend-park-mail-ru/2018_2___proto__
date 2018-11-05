@@ -1,5 +1,6 @@
 import Matrix3x3 from "./game/entities/transformation/matrix3x3";
 import Vector3 from "./game/entities/transformation/vector3";
+import Transform2d from "./game/entities/transformation/transform";
 
 // это нельзя называть тестами
 
@@ -35,4 +36,31 @@ function TestTransformation() {
     console.log("");
 }
 
-TestTransformation();
+function TestTrasform() {
+    let transformParent: Transform2d = new Transform2d();
+    let transformChild: Transform2d = new Transform2d();
+    let dot: Vector3 = Vector3.CreateVector(1, 1, 1);
+
+    transformParent.AddChild(transformChild);
+    let translateRU: Vector3 = Vector3.CreateVector(1, 1, 1); // move up-rigth
+    let translateL: Vector3 = Vector3.CreateVector(-2, 0, 1); // move left
+    let translateD: Vector3 = Vector3.CreateVector(0, -3, 1); // move down
+
+    console.log(transformChild.CalcGlobalVectorCoords(dot));
+
+    transformChild.Move(translateRU);
+    console.log(transformChild.CalcGlobalVectorCoords(dot));
+
+    transformParent.Move(translateRU);
+    console.log(transformChild.CalcGlobalVectorCoords(dot));
+
+    transformParent.Move(translateL);
+    console.log(transformChild.CalcGlobalVectorCoords(dot));
+
+    transformChild.Move(translateD);
+    console.log(transformChild.CalcGlobalVectorCoords(dot));
+}
+
+//TestTransformation();
+TestTrasform();
+console.log("");
