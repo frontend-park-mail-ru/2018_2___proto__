@@ -27,14 +27,7 @@ export default abstract class AMatrix {
             this._values[i] = 0;
     }
 
-    protected CalcIndex(row: number, column: number): number {
-        let index: number = this._width * row + column;
-
-        if (index >= this._height * this._width || index < 0)
-            throw new Error("index out of range");
-
-        return index;
-    }
+    protected abstract CalcIndex(row: number, column: number): number;
 
     public GetByIndex(row: number, column: number) {
         return this._values[this.CalcIndex(row, column)];

@@ -25,11 +25,12 @@ function TestBasicMatrix() {
 function TestTransformation() {
     let matrix: Matrix3x3 = Matrix3x3.One();
     let vector: Vector3 = Vector3.CreateVector(-1, -1, 1);
-    console.log(Matrix3x3.MultiplyMatrixToVector(matrix, vector));
+    console.log(Matrix3x3.MultiplyToVector(matrix, vector));
 
     let transition: Vector3 = Vector3.CreateVector(2, 2, 0);
-    console.log(matrix.Transition(transition));
-    console.log(Matrix3x3.MultiplyMatrixToVector(matrix, vector));
+    matrix.Transition(transition);
+    console.log(matrix);
+    console.log(Matrix3x3.MultiplyToVector(matrix, vector));
 
     console.log("");
 }

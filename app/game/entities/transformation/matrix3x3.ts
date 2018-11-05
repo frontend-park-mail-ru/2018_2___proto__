@@ -31,6 +31,15 @@ export default class Matrix3x3 extends AMatrix {
         return new Matrix3x3(array);
     }
 
+    protected CalcIndex(row: number, column: number): number {
+        let index: number = this._width * row + column;
+
+        if (index >= this._height * this._width || index < 0)
+            throw new Error("index out of range");
+
+        return index;
+    }
+
     public Add(matrix: Matrix3x3) {
         for (let i: number = 0; i < MATRIX3x3_LENGTH; i++)
             this._values[i] += matrix._values[i];
@@ -55,7 +64,7 @@ export default class Matrix3x3 extends AMatrix {
         return res;
     }
 
-    public Multiply(matrix: AMatrix) {
+    public Multiply(matrix: Matrix3x3) {
         let newValues: Array<number> = new Array<number>(this._height * matrix.Width);
 
         for (let i: number = 0; i < this._height; i++)
@@ -71,9 +80,26 @@ export default class Matrix3x3 extends AMatrix {
         this._values = newValues;
     }
 
-    public static MultiplyMatrixToVector(matrix: Matrix3x3, vector: Vector3) : Vector3 {
+    // TODO: исправить этот костыль
+    public MultiplyToVector(vec: Vector3) {
+        let newValues: Array<number> = new Array<number>(this._height * vec.Width);
+
+        for (let i: number = 0; i < this._height; i++)
+            for (let j: number = 0; j < vec.Width; j++)
+            {
+                let newValueIndex: number = i; 
+                newValues[newValueIndex] = 0;
+
+                for (let k: number = 0; k < vec.Height; k++)
+                    newValues[newValueIndex] += this.GetByIndex(i, k) * vec.GetByIndex(k, j);
+            }
+
+        this._values = newValues;
+    }
+
+    public static MultiplyToVector(matrix: Matrix3x3, vector: Vector3) : Vector3 {
         let res: Matrix3x3 = new Matrix3x3(matrix._values);
-        res.Multiply(vector);
+        res.MultiplyToVector(vector);
 
         return new Vector3(res._values);
     }

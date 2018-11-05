@@ -19,6 +19,13 @@ export default class Vector3 extends AMatrix {
     constructor(array: Array<number>) {
         super(array, VEC3_LENGTH, 1);
     }
+    
+    protected CalcIndex(row: number, column: number): number {
+        if (row >= this._height || row < 0 || column != 0)
+            throw new Error("index out of range");
+
+        return row;
+    }
 
     // по-хорошему это должен быть конструктор, но я так и не понял, как по-нормальному перегрузить конструктор
     public static CreateVector(x: number, y: number, z: number): Vector3 {

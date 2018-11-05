@@ -58,7 +58,7 @@ export default class Transform2d {
 		let transitionMatrix: Matrix3x3 = this.CalcTransitionMatrix();
 		let globalCoords: Vector3 = Vector3.CreateVector(x, y, 1);
 		
-		return Matrix3x3.MultiplyMatrixToVector(transitionMatrix, globalCoords);
+		return Matrix3x3.MultiplyToVector(transitionMatrix, globalCoords);
 	}
 
 	public Move(vec: Vector3) {
