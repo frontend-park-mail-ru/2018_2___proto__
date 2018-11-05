@@ -1,12 +1,18 @@
 import Matrix3x3 from "./matrix3x3";
 import Vector3 from "./vector3";
 import Vector2 from "./vector2";
-import HashTable from "../../utility/hashtable"
+import HashTable from "../../utility/hashTable"
+import GameObject from "../gameObject";
 
 export default class Transform2d {
 	private _basis: Matrix3x3;
 	private _parent: Transform2d;	//по какой-то причине я не могу обнулить это
-	private _childs: HashTable<Transform2d>; //нужно предусмотреть возможность удаления детей
+	private _childs: HashTable<Transform2d>;
+	private _gameObject: GameObject;
+
+	public get GameObject() {
+		return this._gameObject;
+	}
 
 	public get Position(): Vector3 {
 		let position: Vector3 = Vector3.CreateVector(
@@ -35,8 +41,9 @@ export default class Transform2d {
 		return rotation;
 	}
 
-	constructor() {
+	constructor(gameObject: GameObject) {
 		this._parent = this;
+		this._gameObject = gameObject;
 		this._basis = Matrix3x3.One();
 		this._childs = new HashTable<Transform2d>();
 	}

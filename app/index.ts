@@ -1,6 +1,7 @@
 import Matrix3x3 from "./game/entities/transformation/matrix3x3";
 import Vector3 from "./game/entities/transformation/vector3";
 import Transform2d from "./game/entities/transformation/transform";
+import GameObject from "./game/entities/gameObject";
 
 // это нельзя называть тестами
 
@@ -37,8 +38,8 @@ function TestTransformation() {
 }
 
 function TestTrasform() {
-    let transformParent: Transform2d = new Transform2d();
-    let transformChild: Transform2d = new Transform2d();
+    let transformParent: Transform2d = new GameObject("").Transform;
+    let transformChild: Transform2d = new GameObject("").Transform;;
     let dot: Vector3 = Vector3.CreateVector(1, 1, 1);
 
     transformParent.AddChild(transformChild);
@@ -62,8 +63,8 @@ function TestTrasform() {
 }
 
 function TestChilds() {
-    let transformParent: Transform2d = new Transform2d();
-    let transformChild: Transform2d = new Transform2d();
+    let transformParent: Transform2d = new GameObject("").Transform;
+    let transformChild: Transform2d = new GameObject("").Transform;
 
     transformChild.SetParent(transformParent);
 

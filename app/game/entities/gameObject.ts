@@ -1,41 +1,55 @@
+import Vector2 from "./transformation/vector2";
 import Behaviour from "./gameBehaviour/behaviour";
+import Transform2d from "./transformation/transform";
+import IdManager from "../utility/idManager";
 
 export default class GameObject {
-	private behaviourMap: Map<string, Array<Behaviour>>;
-	private behaviourArr: Array<Behaviour>;
+	private _name: string;
 	private readonly id: number;
-	private name: string;
-	private isEnabled: boolean;
-	private objectCoordinates: Array<Number>;
-	private textureCoordinates: Array<Number>;
+	private _isEnabled: boolean;
+	private _transform: Transform2d;
+	private _behaviourArr: Array<Behaviour>;
+	private _objectCoordinates: Array<Vector2>;
+	private _textureCoordinates: Array<Vector2>;
+	private _behaviourMap: Map<string, Array<Behaviour>>;
 
-	constructor(id: number, name: string) {
-		this.id = id;
-		this.name = name;
-		this.isEnabled = true;
-		this.behaviourMap = new Map<string, Array<Behaviour>>();
-		this.behaviourArr = new Array<Behaviour>();
-		this.objectCoordinates = new Array<Number>(0, 0, 0);
-		this.textureCoordinates = new Array<Number>(0, 0, 0);
+	public get Enabled() {
+		return this._isEnabled;
+	}
+
+	public get Transform() {
+		return this._transform;
+	}
+
+
+	constructor(name: string) {
+		this._name = name;
+		this._isEnabled = true;
+		this.id = IdManager.GenerateId();
+		this._behaviourArr = new Array<Behaviour>();
+		this._objectCoordinates = new Array<Vector2>();
+		this._textureCoordinates = new Array<Vector2>();
+		this._behaviourMap = new Map<string, Array<Behaviour>>();
+		this._transform = new Transform2d(this);
 	}
 
 	/**
 	 * Рендеринг объекта
 	 */
-	public render(): void {}
+	public Render(): void {}
 
 	/**
 	 * Добавление скрипта поведения к объекту
 	 * @param script
 	 */
-	public addBehaviour(script: Behaviour): void {
+	public AddBehaviour(script: Behaviour): void {
 		let scriptType: string = script.getType();
 
-		if (this.behaviourMap.has(scriptType)) {
-			if (typeof this.behaviourMap.get(scriptType) === "undefined") {
-				this.behaviourMap.set(scriptType, new Array<Behaviour>(script));
+		if (this._behaviourMap.has(scriptType)) {
+			if (typeof this._behaviourMap.get(scriptType) === "undefined") {
+				this._behaviourMap.set(scriptType, new Array<Behaviour>(script));
 			} else {
-				(this.behaviourMap.get(scriptType))!.push(script);
+				(this._behaviourMap.get(scriptType))!.push(script);
 			}
 		}
 
@@ -47,8 +61,8 @@ export default class GameObject {
 	 * @param {number} id
 	 * @returns {Behaviour || null}
 	 */
-	private getBehaviourById(id: number): Behaviour | null {
-		this.behaviourArr.forEach(script => {
+	private GetBehaviourById(id: number): Behaviour | null {
+		this._behaviourArr.forEach(script => {
 			if (script.getId() == id) {
 				return script;
 			}
@@ -62,8 +76,8 @@ export default class GameObject {
 	 * @param {string} name
 	 * @returns {Behaviour || null}
 	 */
-	private getBehaviourByName(name: string): Behaviour | null {
-		this.behaviourArr.forEach(script => {
+	private GetBehaviourByName(name: string): Behaviour | null {
+		this._behaviourArr.forEach(script => {
 			if (script.getName() == name) {
 				return script;
 			}
@@ -75,8 +89,8 @@ export default class GameObject {
 	/**
 	 * Получение всех скриптов поведения
 	 */
-	private getBehaviours(): Array<Behaviour> {
-		return this.behaviourArr;
+	private GetBehaviours(): Array<Behaviour> {
+		return this._behaviourArr;
 	}
 
 	/**
@@ -84,36 +98,36 @@ export default class GameObject {
 	 * @param {string} type
 	 * @returns {Array<Behaviour> || undefined}
 	 */
-	private getBehavioursByType(type: string): Array<Behaviour> | undefined {
-		return this.behaviourMap.get(type);
+	private GetBehavioursByType(type: string): Array<Behaviour> | undefined {
+		return this._behaviourMap.get(type);
 	}
 
 	/**
 	 * Получение всей информации об игровом объекте
 	 * @returns {Array<any>}
 	 */
-	public getObjectInfo(): Array<any> {
+	public GetObjectInfo(): Array<any> {
 		return new Array<any>(
 			this.id,
-			this.name,
-			this.behaviourMap,
-			this.behaviourArr,
-			this.objectCoordinates,
-			this.textureCoordinates
+			this._name,
+			this._behaviourMap,
+			this._behaviourArr,
+			this._objectCoordinates,
+			this._textureCoordinates
 		);
 	}
 
 	/**
 	 * Активация игрового объекта (отображается на сцене, скрипты исполняются)
 	 */
-	public enable(): void {
-		this.isEnabled = true;
+	public Enable(): void {
+		this._isEnabled = true;
 	}
 
 	/**
 	 * Деактивация игрового объекта (не отображается на сцене, скрипты исполняются)
 	 */
-	public disable(): void {
-		this.isEnabled = false;
+	public Disable(): void {
+		this._isEnabled = false;
 	}
 }
