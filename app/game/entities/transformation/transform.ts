@@ -1,11 +1,12 @@
 import Matrix3x3 from "./matrix3x3";
 import Vector3 from "./vector3";
 import Vector2 from "./vector2";
+import HashTable from "../../utility/hashtable"
 
 export default class Transform2d {
 	private _basis: Matrix3x3;
 	private _parent: Transform2d;	//по какой-то причине я не могу обнулить это
-	private _childs: Array<Transform2d>; //нужно предусмотреть возможность удаления детей
+	private _childs: HashTable<Transform2d>; //нужно предусмотреть возможность удаления детей
 
 	public get Position(): Vector3 {
 		let position: Vector3 = Vector3.CreateVector(
@@ -15,6 +16,10 @@ export default class Transform2d {
 		);
 
 		return position;
+	}
+
+	public get Parent(): Transform2d {
+		return this._parent;
 	}
 
 	public get IsOrphan(): boolean {
@@ -32,44 +37,51 @@ export default class Transform2d {
 
 	constructor() {
 		this._parent = this;
-		this._childs = new Array<Transform2d>();
 		this._basis = Matrix3x3.One();
+		this._childs = new HashTable<Transform2d>();
 	}
 
-	public AddChild(transform: Transform2d): void {
-		this._childs.push(transform);
-		transform._parent = this;
+	public SetParent(newParent: Transform2d) {
+		if (!this.IsOrphan)
+			this._parent.RemoveChild(this);
+
+		newParent._childs.AddKey(this);
+		this._parent = newParent;
 	}
 
-	// TODO: implement this later
-	public RemoveChild(transform: Transform2d): void {
-
+	public AddChild(newChild: Transform2d) {
+		newChild.SetParent(this);
 	}
-	
+
+	public RemoveChild(child: Transform2d) {
+		this._childs.RemoveKey(child);
+		child._parent = child;
+	}
+
 	private CalcTransitionMatrix(): Matrix3x3 {
 		let parentsMatricies: Array<Matrix3x3> = new Array<Matrix3x3>();
 		let parent: Transform2d = this;
 
 		parentsMatricies.push(parent._basis)
-		while(!parent.IsOrphan) {
+		while (!parent.IsOrphan) {
 			parent = parent._parent;
 			parentsMatricies.push(parent._basis);
 		}
 
 		let transitionMatrix: Matrix3x3 = Matrix3x3.One();
-		for(let i: number = parentsMatricies.length-1; i >= 0; i--) {
+		for (let i: number = parentsMatricies.length - 1; i >= 0; i--) {
 			transitionMatrix = Matrix3x3.Multiply(transitionMatrix, parentsMatricies[i]);
 		}
 
 		return transitionMatrix;
 	}
 
-	public CalcGlobalVectorCoords(dot: Vector3) : Vector3 {
+	public CalcGlobalVectorCoords(dot: Vector3): Vector3 {
 		let transitionMatrix: Matrix3x3 = this.CalcTransitionMatrix();
 		return Matrix3x3.MultiplyToVector(transitionMatrix, dot);
 	}
-	
-	public CalcGlobalValues(x: number, y: number) : Vector2 {
+
+	public CalcGlobalValues(x: number, y: number): Vector2 {
 		let localCoords: Vector3 = Vector3.CreateVector(x, y, 1);
 		let globalCoords: Vector3 = this.CalcGlobalVectorCoords(localCoords);
 

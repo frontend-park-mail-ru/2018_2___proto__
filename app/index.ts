@@ -61,6 +61,21 @@ function TestTrasform() {
     console.log(transformChild.CalcGlobalVectorCoords(dot));
 }
 
+function TestChilds() {
+    let transformParent: Transform2d = new Transform2d();
+    let transformChild: Transform2d = new Transform2d();
+
+    transformChild.SetParent(transformParent);
+
+    if (transformParent != transformChild.Parent)
+        throw new Error("wrong parent setting");
+
+    transformParent.RemoveChild(transformChild)
+    if (transformParent == transformChild.Parent)
+        throw new Error("wrong child deleting");
+}
+
 //TestTransformation();
-TestTrasform();
+//TestTrasform();
+TestChilds();
 console.log("");
