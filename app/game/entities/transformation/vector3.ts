@@ -1,36 +1,28 @@
-import Matrix from "./matrix";
+import AMatrix from "./amatrix";
 
-export default class Vector3 extends Matrix {
-    constructor(x: number, y: number, z: number, isColumn: boolean) {
+const VEC3_LENGTH = 3;
+
+export default class Vector3 extends AMatrix {
+    public get X() {
+        return this._values[0];
+    }
+
+    public get Y() {
+        return this._values[1];
+    }
+
+    public get Z() {
+        return this._values[2];
+    }
+
+
+    constructor(array: Array<number>) {
+        super(array, VEC3_LENGTH, 1);
+    }
+
+    // по-хорошему это должен быть конструктор, но я так и не понял, как по-нормальному перегрузить конструктор
+    public static CreateVector(x: number, y: number, z: number): Vector3 {
         let array: Array<number> = new Array<number>(x, y, z);
-        let len: number = 3;
-
-        if (isColumn)
-            super(array, 1, len);
-        else
-            super(array, len, 1);
-    }
-
-    public IsColumn(): boolean {
-        return this._height > this._width;
-    }
-
-    public GetByIndex(index: number): number {
-        if (this.IsColumn)
-            return this._values[index][0];
-        else
-            return this._values[0][index];
-    }
-
-    public get X(): number {
-        return this.GetByIndex(0);
-    }
-
-    public get Y(): number {
-        return this.GetByIndex(1);
-    }
-
-    public get Z(): number {
-        return this.GetByIndex(2);
+		return new Vector3(array);
     }
 }

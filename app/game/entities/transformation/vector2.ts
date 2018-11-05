@@ -1,6 +1,6 @@
-import Matrix from "./matrix";
+import AMatrix from "./amatrix";
 
-export default class Vector2 extends Matrix {
+export default class Vector2 extends AMatrix {
     constructor(x: number, y: number, isColumn: boolean) {
         let array: Array<number> = new Array<number>(x, y);
         let len: number = 2;
@@ -15,18 +15,11 @@ export default class Vector2 extends Matrix {
         return this._height > this._width;
     }
 
-    public GetByIndex(index: number): number {
-        if (this.IsColumn)
-            return this._values[index][0];
-        else
-            return this._values[0][index];
-    }
-
     public get X(): number {
-        return this.GetByIndex(0);
+        return this.GetByRowIndex(0);
     }
 
     public get Y(): number {
-        return this.GetByIndex(1);
+        return this.GetByRowIndex(1);
     }
 }

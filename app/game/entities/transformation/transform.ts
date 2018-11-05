@@ -1,7 +1,6 @@
 import Matrix3x3 from "./matrix3x3";
 import Vector3 from "./vector3";
 import Vector2 from "./vector2";
-import Matrix from "./matrix";
 
 export default class Transform2d {
 	public Basis: Matrix3x3;
@@ -9,11 +8,10 @@ export default class Transform2d {
 	private Childs: Array<Transform2d>;
 
 	public get Position(): Vector3 {
-		let position: Vector3 = new Vector3(
+		let position: Vector3 = Vector3.CreateVector(
 			this.Basis.GetByIndex(0, 2),
 			this.Basis.GetByIndex(1, 2),
 			this.Basis.GetByIndex(2, 2),
-			true
 		);
 
 		return position;
@@ -39,7 +37,7 @@ export default class Transform2d {
 		this.Childs.push(transform);
 	}
 	
-	private CalcTransitionMatrix(): Matrix {
+	private CalcTransitionMatrix(): Matrix3x3 {
 		let parentsMatricies: Array<Matrix3x3> = new Array<Matrix3x3>();
 		let parent: Transform2d = this.Parent;
 
@@ -48,7 +46,7 @@ export default class Transform2d {
 			parent = parent.Parent;
 		}
 
-		let transitionMatrix: Matrix = Matrix3x3.One();
+		let transitionMatrix: Matrix3x3 = Matrix3x3.One();
 		for(let i: number = parentsMatricies.length; i >= 0; i--) {
 			transitionMatrix = Matrix3x3.Multiply(transitionMatrix, parentsMatricies[i]);
 		}
@@ -56,11 +54,11 @@ export default class Transform2d {
 		return transitionMatrix;
 	}
 
-	public CalcGlobalCoords(x: number, y: number) : Matrix {
-		let transitionMatrix: Matrix = this.CalcTransitionMatrix();
-		let globalCoords: Vector3 = new Vector3(x, y, 1, true);
+	public CalcGlobalCoords(x: number, y: number) : Vector3 {
+		let transitionMatrix: Matrix3x3 = this.CalcTransitionMatrix();
+		let globalCoords: Vector3 = Vector3.CreateVector(x, y, 1);
 		
-		return Matrix.Multiply(transitionMatrix, globalCoords);
+		return Matrix3x3.MultiplyMatrixToVector(transitionMatrix, globalCoords);
 	}
 
 	public Move(vec: Vector3) {
