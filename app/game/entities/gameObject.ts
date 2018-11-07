@@ -14,16 +14,15 @@ export default class GameObject {
 	private _textureCoordinates: Array<Vector2>;
 	private _behaviourMap: Map<string, Array<Behaviour>>;
 
-	public get Enabled() {
+	public get Enabled(): boolean {
 		return this._isEnabled;
 	}
 
-	public get Transform() {
+	public get Transform(): Transform2d {
 		return this._transform;
 	}
 
 
-	// TODO сделать мэнеджер имен, который будет генерить имена, для того, чтобы избавиться от этого нелепого конструктора
 	constructor() {
 		this._isEnabled = true;
 		this.id = IdManager.GenerateId();
@@ -42,20 +41,20 @@ export default class GameObject {
 
 	/**
 	 * Добавление скрипта поведения к объекту
-	 * @param script
+	 * @param behaviour
 	 */
-	public AddBehaviour(script: Behaviour): void {
-		let scriptType: string = script.getType();
+	public AddBehaviour(behaviour: Behaviour): void {
+		let behaviourType: string = behaviour.Type;
 
-		if (this._behaviourMap.has(scriptType)) {
-			if (typeof this._behaviourMap.get(scriptType) === "undefined") {
-				this._behaviourMap.set(scriptType, new Array<Behaviour>(script));
+		if (this._behaviourMap.has(behaviourType)) {
+			if (typeof this._behaviourMap.get(behaviourType) === "undefined") {
+				this._behaviourMap.set(behaviourType, new Array<Behaviour>(behaviour));
 			} else {
-				(this._behaviourMap.get(scriptType))!.push(script);
+				(this._behaviourMap.get(behaviourType))!.push(behaviour);
 			}
 		}
 
-		script.setParent(this);
+		behaviour.GameObject = this;
 	}
 
 	/**
@@ -65,7 +64,7 @@ export default class GameObject {
 	 */
 	private GetBehaviourById(id: number): Behaviour | null {
 		this._behaviourArr.forEach(script => {
-			if (script.getId() == id) {
+			if (script.Id == id) {
 				return script;
 			}
 		});
@@ -80,7 +79,7 @@ export default class GameObject {
 	 */
 	private GetBehaviourByName(name: string): Behaviour | null {
 		this._behaviourArr.forEach(script => {
-			if (script.getName() == name) {
+			if (script.Name == name) {
 				return script;
 			}
 		});
@@ -122,14 +121,28 @@ export default class GameObject {
 	/**
 	 * Активация игрового объекта (отображается на сцене, скрипты исполняются)
 	 */
-	public Enable(): void {
+	public Enable() {
 		this._isEnabled = true;
+
+		this._behaviourArr.forEach(behaviour => {
+			behaviour.Enable();
+		});
 	}
 
 	/**
 	 * Деактивация игрового объекта (не отображается на сцене, скрипты исполняются)
 	 */
-	public Disable(): void {
+	public Disable() {
 		this._isEnabled = false;
+
+		this._behaviourArr.forEach(behaviour => {
+			behaviour.Disable();
+		});
+	}
+
+	public Update() {
+		this._behaviourArr.forEach(behaviour => {
+			behaviour.OnUpdate();
+		});
 	}
 }

@@ -1,4 +1,6 @@
 import GameObject from "../gameObject";
+import IdManager from "../../utility/idManager";
+import NameManager from "../../utility/nameManager";
 
 /**
  * Базовый абстрактный класс поведенческого скрипта игрового объекта
@@ -6,51 +8,57 @@ import GameObject from "../gameObject";
  * Используется для реализации скриптов каждого из игровых объектов
  */
 export default abstract class Behaviour {
-	private readonly id: number;
-	private name: string;
-	private type: string;
-	private parent: GameObject;
-	private isEnabled: boolean;
+	private readonly _id: number;
+	private _name: string;
+	private _type: string;
+	private _gameObject: GameObject;
+	private _isEnabled: boolean;
 
-	constructor(id: number, name: string, type: string, parent: GameObject) {
-		this.id = id;
-		this.name = name;
-		this.type = type;
-		this.parent = parent;
-		this.isEnabled = true;
+	constructor(type: string, parent: GameObject) {
+		this._type = type;
+		this._gameObject = parent;
+		this._isEnabled = true;
+		this._id = IdManager.GenerateId();
+		this._name = NameManager.GenerateName(this);
 	}
 
-	public getId(): number {
-		return this.id;
+	public get Id(): number {
+		return this._id;
 	}
 
-	public getName(): string {
-		return this.name;
+	public get Name(): string {
+		return this._name;
 	}
 
-	public setName(name: string): void {
-		this.name = name;
+	public set Name(name: string) {
+		this._name = name;
 	}
 
-	public getType(): string {
-		return this.type;
+	public get Type(): string {
+		return this._type;
 	}
 
-	public setType(type: string): void {
-		this.type = type;
+	public set Type(type: string) {
+		this._type = type;
 	}
 
-	public setParent(parent: GameObject): void {
-		this.parent = parent;
+	public set GameObject(parent: GameObject) {
+		this._gameObject = parent;
 	}
 
-	public onUpdate(): void {}
+	public OnUpdate(): void {}
 
-	public onEnable(): void {
-		this.isEnabled = true;
+	public Enable() {
+		this._isEnabled = true;
+		this.OnEnable();
 	}
 
-	public onDisable(): void {
-		this.isEnabled = false;
+	public Disable() {
+		this._isEnabled = false;
+		this.OnDisable();
 	}
+
+	protected OnEnable(): void {}
+
+	protected OnDisable(): void {}
 }
