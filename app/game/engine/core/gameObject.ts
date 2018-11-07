@@ -1,8 +1,8 @@
-import Vector2 from "./transformation/vector2";
-import Behaviour from "./gameBehaviour/behaviour";
-import Transform2d from "./transformation/transform";
-import IdManager from "../utility/idManager";
-import NameManager from "../utility/nameManager";
+import Vector2 from "../transformation/vector2";
+import Behaviour from "./behaviour";
+import Transform2d from "../transformation/transform";
+import IdManager from "../../utility/idManager";
+import NameManager from "../../utility/nameManager";
 
 export default class GameObject {
 	private _name: string;

@@ -1,4 +1,4 @@
-import GameObject from "../gameObject";
+import GameObject from "./gameObject";
 import IdManager from "../../utility/idManager";
 import NameManager from "../../utility/nameManager";
 

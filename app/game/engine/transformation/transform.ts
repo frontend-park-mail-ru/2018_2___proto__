@@ -2,7 +2,7 @@ import Matrix3x3 from "./matrix3x3";
 import Vector3 from "./vector3";
 import Vector2 from "./vector2";
 import HashTable from "../../utility/hashTable"
-import GameObject from "../gameObject";
+import GameObject from "../core/gameObject";
 
 export default class Transform2d {
 	private _basis: Matrix3x3;

@@ -1,7 +1,7 @@
-import Matrix3x3 from "./game/entities/transformation/matrix3x3";
-import Vector3 from "./game/entities/transformation/vector3";
-import Transform2d from "./game/entities/transformation/transform";
-import GameObject from "./game/entities/gameObject";
+import Matrix3x3 from "./game/engine/transformation/matrix3x3";
+import Vector3 from "./game/engine/transformation/vector3";
+import Transform2d from "./game/engine/transformation/transform";
+import GameObject from "./game/engine/core/gameObject";
 
 // это нельзя называть тестами
 

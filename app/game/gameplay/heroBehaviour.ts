@@ -1,5 +1,5 @@
-import Behaviour from "./behaviour";
-import GameObject from "../gameObject";
+import Behaviour from "../engine/core/behaviour";
+import GameObject from "../engine/core/gameObject";
 
 /**
  * Класс поведения героя игрока

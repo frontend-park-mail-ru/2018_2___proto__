@@ -1,5 +1,5 @@
 import GameObject from "./gameObject";
-import InputManager from "../utility/inputManager";
+import InputManager from "../../utility/inputManager";
 
 export default class GameScene {
 	private static _currentScene: GameScene;
