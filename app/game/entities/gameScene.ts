@@ -1,24 +1,45 @@
 import GameObject from "./gameObject";
+import InputManager from "../utility/inputManager";
 
 export default class GameScene {
-	public gameObjects: Array<GameObject>;
+	private static _currentScene: GameScene;
+	public GameObjects: Array<GameObject>;
+	public InputManager: InputManager;
 
-	constructor() {
-		this.gameObjects = new Array<GameObject>();
+	public static get CurrentScene(): GameScene {
+		return this._currentScene;
 	}
 
-	public render() {}
+
+	constructor() {
+		this.GameObjects = new Array<GameObject>();
+		this.InputManager = new InputManager();
+
+		GameScene._currentScene = this;
+	}
+
+	public Render() {
+		this.InputManager.ReadInputs();
+
+		this.GameObjects.forEach(gameObject => {
+			gameObject.Update();
+		});
+
+		this.GameObjects.forEach(gameObject => {
+			gameObject.Render();
+		});
+	}
 
 	/**
 	 * Получение игрового объекта на сцене по ID
 	 * @param id
 	 * @returns {GameObject || null}
 	 */
-	public getGameObjectById(id: number): GameObject | null {
-		this.gameObjects.forEach((object) => {
-			/*if (object.getObjectInfo[0] == id) {
+	public GetGameObjectById(id: number): GameObject | null {
+		this.GameObjects.forEach((object) => {
+			if (object.Id == id) {
 				return object;
-			}*/
+			}
 		});
 
 		return null;
@@ -29,11 +50,11 @@ export default class GameScene {
 	 * @param name
 	 * @returns {GameObject || null}
 	 */
-	public getGameObjectByName(name: string) : GameObject | null {
-		this.gameObjects.forEach((object) => {
-			/*if (object.getObjectInfo[1] == name) {
+	public GetGameObjectByName(name: string) : GameObject | null {
+		this.GameObjects.forEach((object) => {
+			if (object.Name == name) {
 				return object;
-			}*/
+			}
 		});
 
 		return null;

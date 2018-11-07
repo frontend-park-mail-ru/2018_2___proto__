@@ -6,7 +6,7 @@ import NameManager from "../utility/nameManager";
 
 export default class GameObject {
 	private _name: string;
-	private readonly id: number;
+	private readonly _id: number;
 	private _isEnabled: boolean;
 	private _transform: Transform2d;
 	private _behaviourArr: Array<Behaviour>;
@@ -22,10 +22,18 @@ export default class GameObject {
 		return this._transform;
 	}
 
+	public get Id(): number {
+		return this._id;
+	}
+
+	public get Name(): string {
+		return this._name;
+	}
+
 
 	constructor() {
 		this._isEnabled = true;
-		this.id = IdManager.GenerateId();
+		this._id = IdManager.GenerateId();
 		this._behaviourArr = new Array<Behaviour>();
 		this._name = NameManager.GenerateName(this);
 		this._objectCoordinates = new Array<Vector2>();
@@ -109,7 +117,7 @@ export default class GameObject {
 	 */
 	public GetObjectInfo(): Array<any> {
 		return new Array<any>(
-			this.id,
+			this._id,
 			this._name,
 			this._behaviourMap,
 			this._behaviourArr,
