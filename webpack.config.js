@@ -12,6 +12,9 @@ module.exports = {
 		filename: "bundle.js",
 	},
 	target: "web",
+	resolve: {
+		extensions: [".ts", ".js"],
+	},
 	module: {
 		rules: [
 			{
@@ -21,6 +24,10 @@ module.exports = {
 			{
 				test: /\.hbs$/,
 				loader: "handlebars-loader",
+			},
+			{
+				test: /\.ts$/,
+				loader: "ts-loader",
 			},
 		],
 	},
