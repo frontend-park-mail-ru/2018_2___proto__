@@ -38,8 +38,8 @@ function TestTransformation() {
 }
 
 function TestTrasform() {
-    let transformParent: Transform2d = new GameObject("").Transform;
-    let transformChild: Transform2d = new GameObject("").Transform;;
+    let transformParent: Transform2d = new GameObject().Transform;
+    let transformChild: Transform2d = new GameObject().Transform;;
     let dot: Vector3 = Vector3.CreateVector(1, 1, 1);
 
     transformParent.AddChild(transformChild);
@@ -63,8 +63,8 @@ function TestTrasform() {
 }
 
 function TestChilds() {
-    let transformParent: Transform2d = new GameObject("").Transform;
-    let transformChild: Transform2d = new GameObject("").Transform;
+    let transformParent: Transform2d = new GameObject().Transform;
+    let transformChild: Transform2d = new GameObject().Transform;
 
     transformChild.SetParent(transformParent);
 

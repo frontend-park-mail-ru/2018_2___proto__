@@ -2,6 +2,7 @@ import Vector2 from "./transformation/vector2";
 import Behaviour from "./gameBehaviour/behaviour";
 import Transform2d from "./transformation/transform";
 import IdManager from "../utility/idManager";
+import NameManager from "../utility/nameManager";
 
 export default class GameObject {
 	private _name: string;
@@ -22,11 +23,12 @@ export default class GameObject {
 	}
 
 
-	constructor(name: string) {
-		this._name = name;
+	// TODO сделать мэнеджер имен, который будет генерить имена, для того, чтобы избавиться от этого нелепого конструктора
+	constructor() {
 		this._isEnabled = true;
 		this.id = IdManager.GenerateId();
 		this._behaviourArr = new Array<Behaviour>();
+		this._name = NameManager.GenerateName(this);
 		this._objectCoordinates = new Array<Vector2>();
 		this._textureCoordinates = new Array<Vector2>();
 		this._behaviourMap = new Map<string, Array<Behaviour>>();
