@@ -5,7 +5,6 @@ import ButtonComponent from "../../button/button";
 import LinkComponent from "../../link/link";
 import http from "../../../modules/http";
 import validate from "../../../modules/registration";
-import { backend } from "../../../modules/constants";
 
 /**
  * Компонент SignUp
@@ -49,18 +48,16 @@ export default class SignUpComponent extends BaseComponent {
 		if (errorInfo !== true) {
 			this._info.innerText = errorInfo;
 		} else {
-			http.doPost({
-				callback: (xhr) => {
-					if (xhr.status === 201) {
-						this._context.navigate("menu");
-					}
-				},
-				body: {
-					nickname: this._login.value,
-					password: this._pass.value,
-					email: this._email.value,
-				},
-				path: `${backend}/signup`,
+			http.signup(this._login.value, this._email.value, this._pass.value).then((status) => {
+				if (status === 201) {
+					this._context.navigate("menu");
+				}
+			});
+
+			http.signin(this._login.value, this._pass.value).then((status) => {
+				if (status === 200) {
+					this._context.navigate("menu");
+				}
 			});
 		}
 	}

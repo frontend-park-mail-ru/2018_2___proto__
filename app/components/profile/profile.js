@@ -4,7 +4,6 @@ import BaseComponent from "../baseComponent";
 import ButtonComponent from "../button/button";
 import http from "../../modules/http";
 import validate from "../../modules/authorization";
-import { backend } from "../../modules/constants";
 
 /**
  * Компонент profile
@@ -18,33 +17,30 @@ export default class ProfileComponent extends BaseComponent {
 		};
 	}
 
-	render(context) {
-		let newContext = {};
+	render() {
+		super.render();
 
-		http.doGet({
-			callback(xhr) {
-				newContext = JSON.parse(xhr.responseText);
-			},
-			path: `${backend}/user`,
+		http.getUser().then((info) => {
+			const context = info;
+			context.avatar = `./public/avatars/${info.avatar}`;
+			super.render(context);
+			this._info = this._element.querySelector("[ref=info]");
+			this._login = this._element.querySelector("[ref=login]");
+			this._pass = this._element.querySelector("[ref=pass]");
+			this._info = this._element.querySelector("[ref=info]");
+
+			if (info !== {}) {
+				this.renderChild("changeProfile", ButtonComponent, {
+					text: "Change profile",
+					onClick: this._onChangeProfileClick.bind(this),
+				});
+
+				this.renderChild("saveProfile", ButtonComponent, {
+					text: "Save profile",
+					onClick: this._onSaveProfileClick.bind(this),
+				});
+			}
 		});
-
-		super.render(context);
-		this._info = this._element.querySelector("[ref=info]");
-		this._login = this._element.querySelector("[ref=login]");
-		this._pass = this._element.querySelector("[ref=pass]");
-		this._info = this._element.querySelector("[ref=info]");
-
-		if (newContext !== {}) {
-			this.renderChild("changeProfile", ButtonComponent, {
-				text: "Change profile",
-				onClick: this._onChangeProfileClick.bind(this),
-			});
-
-			this.renderChild("saveProfile", ButtonComponent, {
-				text: "Save profile",
-				onClick: this._onSaveProfileClick.bind(this),
-			});
-		}
 	}
 
 	_onChangeProfileClick() {
@@ -61,13 +57,7 @@ export default class ProfileComponent extends BaseComponent {
 		if (errorInfo !== true) {
 			this._info.innerText = errorInfo;
 		} else {
-			http.doPut({
-				body: {
-					nickname: this._login.value,
-					password: this._password.value,
-				},
-				path: `${backend}/user`,
-			});
+			http.updateUser(this._login.value, this._pass.value);
 		}
 	}
 }

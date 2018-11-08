@@ -56,7 +56,7 @@ export default class ValidationModule {
 		}
 
 		if (!pass.match(regexPass)) {
-			return "Password should contain at least 6 latin symbols and digits.\n";
+			return "Password should contain at least 8 symbols (one uppercase and one digit).\n";
 		}
 
 		return true;

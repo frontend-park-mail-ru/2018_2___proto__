@@ -1,49 +1,94 @@
+import sendRequest from "./sendRequest";
+import { backend } from "./constants";
+
 export default new class HttpModule {
-	_http({
-		callback = () => null,
-		method = "GET",
-		path = "/",
-		body,
-	} = {}) {
-		const xhr = new XMLHttpRequest();
-		xhr.open(method, path, true);
-		xhr.withCredentials = true;
+	constructor() {
+		this.baseUrl = backend;
+	}
 
-		if (body) {
-			xhr.setRequestHeader(
-				"Content-Type",
-				"application/json; charset=utf-8",
-			);
-		}
+	/**
+	 * Регистрация нового пользователя
+	 * @param {string} login - логин
+	 * @param {string} email - почта
+	 * @param {string} pass - пароль
+	 * @returns {Promise}
+	 */
+	signup(login, email, pass) {
+		return sendRequest(`${this.baseUrl}/signup`, "POST", {
+			nickname: login,
+			password: pass,
+			email,
+		}).then((response => response.status));
+	}
 
-		xhr.onreadystatechange = () => {
-			if (xhr.readyState !== 4) {
-				return;
+	/**
+	 * Авторизация пользователя
+	 * @param {string} login - логин
+	 * @param {string} pass - пароль
+	 * @returns {Promise}
+	 */
+	signin(login, pass) {
+		return sendRequest(`${this.baseUrl}/signin`, "POST", {
+			nickname: login,
+			password: pass,
+		}).then((response => response.status));
+	}
+
+	/**
+	 * Выход пользователя
+	 * @returns {Promise}
+	 */
+	logout() {
+		this.username = null;
+		return sendRequest(`${this.baseUrl}/logout`, "DELETE");
+	}
+
+	/**
+	 * Получание данных о себе
+	 * @returns {Promise}
+	 */
+	getUser() {
+		return sendRequest(`${this.baseUrl}/user`, "GET").then((response) => {
+			if (response.status === 401) {
+				return { isOnline: false };
 			}
 
-			callback(xhr);
-		};
-
-		if (body) {
-			xhr.send(JSON.stringify(body));
-		} else {
-			xhr.send();
-		}
+			return response.json().then(result => ({ ...result, ...{ isOnline: true } }));
+		});
 	}
 
-	doGet(params = {}) {
-		this._http({ ...params, method: "GET" });
+	/**
+	 * Обновление данных пользователя
+	 * @param {string} login - логин
+	 * @param {string} pass - пароль
+	 * @returns {Promise}
+	 */
+	updateUser(login, pass) {
+		return sendRequest(`${this.baseUrl}/user`, "PUT", {
+			nickname: login,
+			password: pass,
+		}).then(response => response.json());
 	}
 
-	doPost(params = {}) {
-		this._http({ ...params, method: "POST" });
+	/**
+	 * Обновление аватара пользователя (нужно реализовать)
+	 * @returns {Promise}
+	 */
+	updateAvatar() {}
+
+	/**
+	 * Получение текущего состояния таблицы лидеров
+	 * @param {*} offset - смещение по таблице
+	 * @param {*} limit - число записей на странице
+	 */
+	getLeaderboard(offset, limit) {
+		return sendRequest(`${this.baseUrl}/leaders/${offset}/${limit}`, "GET").then((response => response.json()));
 	}
 
-	doPut(params = {}) {
-		this._http({ ...params, method: "PUT" });
-	}
-
-	doDelete(params = {}) {
-		this._http({ ...params, method: "DELETE" });
+	/**
+	 * Получение данных о текущей сессии
+	 */
+	sessionInfo() {
+		return sendRequest(`${this.baseUrl}/session`, "GET").then((response => response.status === 200 ? { isOnline: true } : { isOnline: false }));
 	}
 }();
