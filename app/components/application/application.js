@@ -19,8 +19,8 @@ export default class ApplicationComponent extends BaseComponent {
 		super();
 		this.template = template;
 		this.navigate = this.navigate.bind(this);
-		window.onpopstate = (route) => {
-			this.navigate(route);
+		window.onpopstate = (state) => {
+			this.navigate(state.route);
 		};
 
 		this.navigate(Router.getLocation());
