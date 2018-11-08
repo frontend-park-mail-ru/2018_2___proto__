@@ -43,7 +43,7 @@ export default class Router {
 			this.currentContext = { ...this.defaultContext, ...{ [correctedRoute]: true } };
 		}
 
-		window.history.pushState(null, route, route);
+		window.history.pushState(route, route, route);
 		return this.currentContext;
 	}
 
