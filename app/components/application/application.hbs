@@ -1,4 +1,7 @@
 <div class="root" ref="root">
+	{{#if notfound}}
+		<img class="not-found-page" src="/public/service/404.jpg" alt="Not Found">
+	{{else}}
 	<div class="auth-block" ref="auth"></div>
 
 	<div class="logo-block" ref="logo"></div>
@@ -30,4 +33,5 @@
 			{{/if}}
 		</div>
 	</div>
+	{{/if}}
 </div>

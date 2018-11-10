@@ -19,7 +19,12 @@ export default class ApplicationComponent extends BaseComponent {
 		super();
 		this.template = template;
 		this.navigate = this.navigate.bind(this);
-		this.navigate(Router.getLocation());
+		this.router = new Router();
+		window.onpopstate = () => {
+			this.navigate(this.router.getLocation());
+		};
+
+		this.navigate(this.router.getLocation());
 	}
 
 	render(context) {
@@ -27,8 +32,8 @@ export default class ApplicationComponent extends BaseComponent {
 		this._renderChildren();
 	}
 
-	navigate(item) {
-		this._context = Router.go(item);
+	navigate(route) {
+		this._context = this.router.go(route);
 		this.render();
 	}
 
