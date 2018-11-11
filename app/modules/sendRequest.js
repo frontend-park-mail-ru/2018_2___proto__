@@ -12,7 +12,7 @@ export default function sendRequest(path, method, body = null) {
 		method,
 		mode: "cors",
 		credentials: "include",
-		body: null && JSON.stringify(body),
+		body: null && JSON.stringify(body) ? null : body,
 		headers: { "Content-Type": "application/json; charset=utf-8" },
 	});
 }
