@@ -14,6 +14,7 @@ export default new class HttpModule {
 	 * @returns {Promise}
 	 */
 	signup(login, email, pass) {
+		debugger;
 		return sendRequest(`${this.baseUrl}/signup`, "POST", {
 			nickname: login,
 			password: pass,
