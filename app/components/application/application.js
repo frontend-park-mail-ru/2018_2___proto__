@@ -26,7 +26,7 @@ export default class ApplicationComponent extends BaseComponent {
 
 		this._context = this.router.go(this.router.getLocation());
 		debugger;
-		this.render({ preloader: true });
+		this.render({ preloader: false });
 	}
 
 	render(context) {
@@ -52,6 +52,8 @@ export default class ApplicationComponent extends BaseComponent {
 		this.renderChild("about", AboutComponent, {});
 		http.sessionInfo().then((info) => {
 			this.renderChild("menu", MenuComponent, { ...{ navigate: this.navigate }, ...info });
+		}).catch(() => {
+			this.renderChild("menu", MenuComponent, { ...{ navigate: this.navigate }, ...{ preloader: false, sessionExists: false } });
 		});
 	}
 }
