@@ -34,7 +34,7 @@ export default class ApplicationComponent extends BaseComponent {
 
 	navigate(route) {
 		this._context = this.router.go(route);
-		this.render({ preloader: true });
+		this.render();
 	}
 
 	/**
