@@ -13,8 +13,7 @@ export default class MenuComponent extends BaseComponent {
 		this.template = template;
 
 		http.sessionInfo().then((info) => {
-			debugger;
-			this.render({ ...this._context, ...info });
+			this.render(info);
 		});
 	}
 
