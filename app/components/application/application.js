@@ -24,7 +24,8 @@ export default class ApplicationComponent extends BaseComponent {
 			this.navigate(this.router.getLocation());
 		};
 
-		this.navigate(this.router.getLocation());
+		this._context = this.router.go(this.router.getLocation());
+		this.render();
 	}
 
 	render(context) {
