@@ -6,30 +6,30 @@
 	<div class="main-block" ref="main">
 		{{#if preloader}}
 			<img src="/public/service/preloader.svg" width="80" alt="Loading...">
-		{{/if}}
+		{{else}}
+			{{#if menu}}
+			<div ref="menu"></div>
+			{{/if}}
 
-		{{#if menu}}
-		<div ref="menu"></div>
-		{{/if}}
+			{{#if profile}}
+			<div ref="profile"></div>
+			{{/if}}
 
-		{{#if profile}}
-		<div ref="profile"></div>
-		{{/if}}
+			{{#if leaderboard}}
+			<div ref="leaderboard"></div>
+			{{/if}}
 
-		{{#if leaderboard}}
-		<div ref="leaderboard"></div>
-		{{/if}}
+			{{#if about}}
+			<div ref="about"></div>
+			{{/if}}
 
-		{{#if about}}
-		<div ref="about"></div>
-		{{/if}}
+			{{#if signin}}
+			<div ref="signin"></div>
+			{{/if}}
 
-		{{#if signin}}
-		<div ref="signin"></div>
-		{{/if}}
-
-		{{#if signup}}
-		<div ref="signup"></div>
+			{{#if signup}}
+			<div ref="signup"></div>
+			{{/if}}
 		{{/if}}
 	</div>
 	{{/if}}
