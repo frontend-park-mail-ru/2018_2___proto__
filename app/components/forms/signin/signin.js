@@ -41,7 +41,7 @@ export default class SignInComponent extends BaseComponent {
 		// if (errorInfo !== true) {
 		// 	this._info.innerText = errorInfo;
 		// } else {
-		if (!errorInfo) {
+		if (errorInfo === true) {
 			console.log(`SignIn Request: ${this._login.value} ${this._pass.value}`);
 			http.signin(this._login.value, this._pass.value).then((response) => {
 				if (response.status === 200) {
@@ -57,6 +57,8 @@ export default class SignInComponent extends BaseComponent {
 				// 	console.log
 				// }
 			});
+		} else {
+			console.log(`FrontendValidation failed: ${errorInfo}`);
 		}
 	}
 

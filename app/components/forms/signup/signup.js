@@ -44,7 +44,8 @@ export default class SignUpComponent extends BaseComponent {
 		// if (errorInfo !== true) {
 		// 	this._info.innerText = errorInfo;
 		// } else {
-		if (!errorInfo) {
+		// debugger;
+		if (errorInfo === true) {
 			console.log(`SignUp Request: ${this._login.value} ${this._email.value} ${this._pass.value}`);
 			http.signup(this._login.value, this._email.value, this._pass.value).then((signUpResponse) => {
 				if (signUpResponse.status === 201) {
@@ -74,6 +75,8 @@ export default class SignUpComponent extends BaseComponent {
 			// 		this._context.navigate("menu");
 			// 	}
 			// });
+		} else {
+			console.log(`FrontendValidation failed: ${errorInfo}`);
 		}
 	}
 
