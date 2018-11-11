@@ -15,19 +15,11 @@ export default class LeaderboardComponent extends BaseComponent {
 		this._context = {
 			preloader: true,
 		};
-		// this.render({ preloader: true });
-		// http.getLeaderboard(this._offset, 10).then((data) => {
-		// 	debugger;
-		// 	this.render({ preloader: true);
-		// });
-		// http.getLeaderboard(this._offset, 10).then((data) =>
-		// 	this.render({ ...{ preloader: false }, data });
-		// });
 	}
 
 	render() {
+		super.render();
 		http.getLeaderboard(this._offset, 10).then((data) => {
-			debugger;
 			const newContext = this._pagination({ ...{ preloader: false }, ...data });
 			super.render(newContext);
 			this._context.pages.forEach((page) => {
