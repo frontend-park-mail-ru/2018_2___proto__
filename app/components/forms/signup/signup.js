@@ -48,6 +48,7 @@ export default class SignUpComponent extends BaseComponent {
 		if (errorInfo === true) {
 			console.log(`SignUp Request: ${this._login.value} ${this._email.value} ${this._pass.value}`);
 			http.signup(this._login.value, this._email.value, this._pass.value).then((signUpResponse) => {
+				debugger;
 				if (signUpResponse.status === 201) {
 					http.signin(this._login.value, this._pass.value).then((signInResponse) => {
 						if (signInResponse.status === 200) {
