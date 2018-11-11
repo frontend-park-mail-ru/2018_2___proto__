@@ -24,6 +24,7 @@ export default class LeaderboardComponent extends BaseComponent {
 
 	render() {
 		http.getLeaderboard(this._offset, 10).then((data) => {
+			debugger;
 			const newContext = this._pagination({ ...context, ...{ preloader: false }, ...data });
 			super.render(newContext);
 			this._context.pages.forEach((page) => {
