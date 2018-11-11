@@ -14,7 +14,7 @@ export default class LeaderboardComponent extends BaseComponent {
 		this._offset = 0;
 		http.getLeaderboard(this._offset, 10).then((data) => {
 			debugger;
-			this.render(data);
+			this.render({ ...{ preloader: true }, ...data });
 		});
 		// http.getLeaderboard(this._offset, 10).then((data) =>
 		// 	this.render({ ...{ preloader: false }, data });
