@@ -42,10 +42,10 @@ export default class ApplicationComponent extends BaseComponent {
 	_renderChildren() {
 		this.renderChild("signin", SignInComponent, { navigate: this.navigate });
 		this.renderChild("signup", SignUpComponent, { navigate: this.navigate });
-		this.renderChild("menu", MenuComponent, { navigate: this.navigate });
+		this.renderChild("menu", MenuComponent, { navigate: this.navigate, preloader: true });
 		this.renderChild("logo", LogoComponent, { navigate: this.navigate });
-		this.renderChild("leaderboard", LeaderboardComponent, { records: [] });
-		this.renderChild("profile", ProfileComponent, {});
+		this.renderChild("leaderboard", LeaderboardComponent, { records: [], preloader: true });
+		this.renderChild("profile", ProfileComponent, { preloader: true });
 		this.renderChild("about", AboutComponent, {});
 	}
 }

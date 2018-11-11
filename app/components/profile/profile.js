@@ -19,9 +19,8 @@ export default class ProfileComponent extends BaseComponent {
 
 	render() {
 		super.render();
-
 		http.getUser().then((info) => {
-			const context = info;
+			const context = { ...{ preloader: false }, ...info };
 			context.avatar = `./public/avatars/${info.avatar}`;
 			super.render(context);
 			this._info = this._element.querySelector("[ref=info]");
