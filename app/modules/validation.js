@@ -16,11 +16,11 @@ export default class ValidationModule {
 	 */
 	static validateLogin(login) {
 		if (!login) {
-			return "Login field is empty\n";
+			return "Field is empty";
 		}
 
 		if (!login.match(regexLogin)) {
-			return "Login must not start with a digit or contain non-latin symbols\n";
+			return "Login must not start with a digit \nor contain non-latin symbols";
 		}
 
 		return true;
@@ -34,11 +34,11 @@ export default class ValidationModule {
 	 */
 	static validateEmail(email) {
 		if (!email) {
-			return "E-Mail field is empty\n";
+			return "Field is empty";
 		}
 
 		if (!email.match(regexEmail)) {
-			return "E-Mail is incorrect\n";
+			return "E-Mail is incorrect";
 		}
 
 		return true;
@@ -52,11 +52,11 @@ export default class ValidationModule {
 	 */
 	static validatePass(pass) {
 		if (!pass) {
-			return "Password field is empty\n";
+			return "Field is empty";
 		}
 
 		if (!pass.match(regexPass)) {
-			return "Password should contain at least 8 symbols (one uppercase and one digit).\n";
+			return "Password must contain at least 8 \nsymbols (one uppercase and one digit)";
 		}
 
 		return true;

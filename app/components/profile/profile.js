@@ -3,7 +3,8 @@ import template from "./profile.hbs";
 import BaseComponent from "../baseComponent";
 import ButtonComponent from "../button/button";
 import http from "../../modules/http";
-import validate from "../../modules/authorization";
+import Validator from "../../modules/validation";
+import { loginPopup, passPopup } from "../../modules/constants";
 
 /**
  * Компонент profile
@@ -24,10 +25,10 @@ export default class ProfileComponent extends BaseComponent {
 			const context = { ...{ preloader: false }, ...info };
 			context.avatar = `./public/avatars/${info.avatar}`;
 			super.render(context);
-			this._info = this._element.querySelector("[ref=info]");
 			this._login = this._element.querySelector("[ref=login]");
 			this._pass = this._element.querySelector("[ref=pass]");
-			this._info = this._element.querySelector("[ref=info]");
+			this._loginInfo = this._element.querySelector(`[class=${loginPopup}]`);
+			this._passInfo = this._element.querySelector(`[class=${passPopup}]`);
 
 			this.renderChild("changeProfile", ButtonComponent, {
 				text: "Change profile",
@@ -51,12 +52,35 @@ export default class ProfileComponent extends BaseComponent {
 	}
 
 	_onSaveProfileClick() {
-		const errorInfo = validate(this._login.value, this._pass.value);
+		const errorLoginInfo = Validator.validateLogin(this._login.value);
+		const errorPassInfo = Validator.validatePass(this._pass.value);
 
-		if (errorInfo !== true) {
-			this._info.innerText = errorInfo;
+		if (errorLoginInfo === "" && errorPassInfo === "") {
+			http.updateUser(this._login.value, this._pass.value).then((response) => {
+				if (response.status === 200) {
+					this._context.navigate("menu");
+				} else {
+					response.json().then((result) => {
+						console.log(result.msg);
+					});
+				}
+			});
 		} else {
-			http.updateUser(this._login.value, this._pass.value);
+			if (errorLoginInfo === true) {
+				this._login.classList.remove("error");
+				this._loginInfo.innerHTML = "";
+			} else {
+				this._login.classList.add("error");
+				this._loginInfo.innerHTML = errorLoginInfo;
+			}
+
+			if (errorPassInfo === true) {
+				this._pass.classList.add("error");
+				this._passInfo.innerHTML = "";
+			} else {
+				this._pass.classList.add("error");
+				this._passInfo.innerHTML = errorPassInfo;
+			}
 		}
 	}
 }

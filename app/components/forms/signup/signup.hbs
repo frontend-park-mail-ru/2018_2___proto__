@@ -1,15 +1,14 @@
 <div>
-	<form>
-		<input type="text" class="form__field" placeholder="Login" ref="login">
-		<input type="email" class="form__field" placeholder="E-Mail" ref="email">
-		<input type="password" class="form__field" placeholder="Password" ref="pass">
-		<input type="password" class="form__field" placeholder="Repeat your password" ref="passRep">
+	<form class="form">
+		<input type="text" class="form__field" placeholder="Login" data="login">
+		<span class="form__field__popup-login"></span>
+		<input type="email" class="form__field" placeholder="E-Mail" data="email">
+		<span class="form__field__popup-email"></span>
+		<input type="password" class="form__field" placeholder="Password" data="pass">
+		<span class="form__field__popup-pass"></span>
+		<input type="password" class="form__field" placeholder="Repeat your password" data="passRep">
+		<span class="form__field__popup-passRep"></span>
 		<div ref="submit"></div>
 		<p class="form__link" ref="toSignIn"></p>
-		{{!-- <div class="form__links">
-			<p class="form__links__link" ref="toSignIn"></p>
-			<p class="form__links__link" ref="resetPass"></p>
-		</div>
-		<div class="form__info" ref="info"></div> --}}
 	</form>
 </div>

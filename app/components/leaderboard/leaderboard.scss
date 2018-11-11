@@ -27,7 +27,7 @@
 	&__cell {
 		border: 1px solid gray;
 		display: table-cell;
-		padding: 3px 10px;
+		padding: 4px 12px;
 	}
 }
 
@@ -37,7 +37,7 @@
 	text-decoration: none;
 	cursor: pointer;
 	user-select: none;
-	padding-top: 10%;
+	padding-top: 16px;
 
 	&__current-page {
 		font-weight: bold;

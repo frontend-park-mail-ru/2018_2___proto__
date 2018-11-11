@@ -1,14 +1,45 @@
 .form {
+	display: flex;
+	flex-direction: column;
+	-webkit-transition: 0.5s;
+	-moz-transition: 0.5s;
+	-o-transition: 0.5s;
+	transition: 0.5s;
+
 	&__field {
 		border: 0;
-		outline: 0;
 		padding: 16px;
-		display: block;
 		font-size: 14px;
 		width: 244px;
 		box-sizing: border-box;
 		margin-bottom: 16px;
 		background: #f2f2f2;
+
+		&:focus {
+			-webkit-transition: all 0.5s ease;
+			-moz-transition: all 0.5s ease;
+			-o-transition: all 0.5s ease;
+			transition: all 0.3s ease;
+			-webkit-transform: scale(1.05);
+			-moz-transform: scale(1.05);
+			-o-transform: scale(1.05);
+			transform: scale(1.05);
+		}
+
+		&.error {
+			box-shadow: 0 0 5px red;
+		}
+
+		&__popup-login, &__popup-email, &__popup-pass, &__popup-passRep {
+			white-space: pre-wrap;
+			text-align: center;
+			font-size: 14px;
+			margin: 0 auto 12px auto;
+			-webkit-transition: opacity 1s ease-in-out;
+			-moz-transition: opacity 1s ease-in-out;
+			-o-transition: opacity 1s ease-in-out;
+			transition: opacity 1s ease-in-out;
+		}
 	}
 
 	&__link {
@@ -51,6 +82,4 @@
 	// 	color: red;
 	// 	padding-top: 8px;
 	// }
-
-
 }

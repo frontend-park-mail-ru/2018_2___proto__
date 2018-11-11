@@ -1,13 +1,10 @@
 <div>
-	<form>
-		<input type="text" class="form__field" placeholder="Login" ref="login">
-		<input type="password" class="form__field" placeholder="Password" ref="pass">
+	<form class="form">
+		<input type="text" class="form__field" placeholder="Login" data="login">
+		<span class="form__field__popup-login"></span>
+		<input type="password" class="form__field" placeholder="Password" data="pass">
+		<span class="form__field__popup-pass"></span>
 		<div ref="submit"></div>
 		<p class="form__link" ref="toSignUp"></p>
-		{{!-- <div class="form__links">
-			<p class="form__links__link" ref="toSignUp"></p>
-			<p class="form__links__link" ref="resetPass"></p>
-		</div>
-		<div class="form__info" ref="info"></div> --}}
 	</form>
 </div>

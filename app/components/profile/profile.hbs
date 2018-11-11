@@ -5,12 +5,13 @@
 		{{#if sessionExists}}
 			{{#if changeProfile}}
 				<form>
-					<input type="text" class="form__field" placeholder="Login" ref="login">
-					<input type="password" class="form__field" placeholder="Password" ref="pass">
+					<input type="text" class="form__field" placeholder="Login" data="login">
+					<span class="form__field__popup-login"></span>
+					<input type="password" class="form__field" placeholder="Password" data="pass">
+					<span class="form__field__popup-pass"></span>
 					<input type="file" class="form__field">
 				</form>
 				<div ref="saveProfile"></div>
-				<div class="form__info" ref="info"></div>
 			{{else}}
 				<div class="profile__user">
 					<img src="{{{avatar}}}" alt="avatar" class="profile__avatar">
