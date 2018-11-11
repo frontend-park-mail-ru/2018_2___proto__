@@ -4,6 +4,10 @@
 	{{else}}
 	<div class="logo-block" ref="logo"></div>
 	<div class="main-block" ref="main">
+		{{#if preloader}}
+			<img src="/public/service/preloader.svg" width="80" alt="Loading...">
+		{{/if}}
+
 		{{#if menu}}
 		<div ref="menu"></div>
 		{{/if}}

@@ -6,7 +6,6 @@ import LogoComponent from "../logo/logo";
 import AboutComponent from "../about/about";
 import LeaderboardComponent from "../leaderboard/leaderboard";
 import ProfileComponent from "../profile/profile";
-import AuthComponent from "../auth/auth";
 import SignInComponent from "../forms/signin/signin";
 import SignUpComponent from "../forms/signup/signup";
 import Router from "../../modules/router";
@@ -35,7 +34,7 @@ export default class ApplicationComponent extends BaseComponent {
 
 	navigate(route) {
 		this._context = this.router.go(route);
-		this.render();
+		this.render({ preloader: true });
 	}
 
 	/**

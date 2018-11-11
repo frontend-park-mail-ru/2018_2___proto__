@@ -89,6 +89,12 @@ export default new class HttpModule {
 	 * Получение данных о текущей сессии
 	 */
 	sessionInfo() {
-		return sendRequest(`${this.baseUrl}/session`, "GET").then((response => response.status === 200 ? { sessionExists: true } : { sessionExists: false }));
+		return sendRequest(`${this.baseUrl}/session`, "GET").then((response) => {
+			if (response.status === 200) {
+				return { sessionExists: true, preloader: false };
+			}
+
+			return { sessionExists: false, preloader: false };
+		});
 	}
 }();
