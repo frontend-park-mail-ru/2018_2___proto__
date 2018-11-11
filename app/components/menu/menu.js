@@ -2,6 +2,7 @@ import "./menu.scss";
 import template from "./menu.hbs";
 import BaseComponent from "../baseComponent";
 import ButtonComponent from "../button/button";
+import http from "../../modules/http";
 
 /**
  * Компонент меню
@@ -10,6 +11,10 @@ export default class MenuComponent extends BaseComponent {
 	constructor() {
 		super();
 		this.template = template;
+
+		http.sessionInfo().then((info) => {
+			this.render({ ...this._context, ...info });
+		});
 	}
 
 	render(context) {
@@ -44,6 +49,21 @@ export default class MenuComponent extends BaseComponent {
 		this.renderChild("about", ButtonComponent, {
 			text: "About",
 			onClick: this._onAboutClick.bind(this),
+		});
+
+		this.renderChild("signin", ButtonComponent, {
+			text: "Sign In",
+			onClick: this._onSignInClick.bind(this),
+		});
+
+		this.renderChild("signup", ButtonComponent, {
+			text: "Sign Up",
+			onClick: this._onSignUpClick.bind(this),
+		});
+
+		this.renderChild("logout", ButtonComponent, {
+			text: "Log Out",
+			onClick: this._onLogOutClick.bind(this),
 		});
 	}
 
@@ -80,5 +100,34 @@ export default class MenuComponent extends BaseComponent {
 	 */
 	_onAboutClick() {
 		this._context.navigate("about");
+	}
+
+	/**
+	 * Callback на нажатие "Sign In"
+	 */
+	_onSignInClick() {
+		this._context.navigate("signin");
+	}
+
+	/**
+	 * Callback на нажатие "Sign Up"
+	 */
+	_onSignUpClick() {
+		this._context.navigate("signup");
+	}
+
+	/**
+	 * Callback на нажатие "Log Out"
+	 */
+	_onLogOutClick() {
+		http.logout().then((response) => {
+			if (response.status === 410) {
+				this._context.navigate("menu");
+			} else {
+				response.json().then((result) => {
+					console.log(result.msg);
+				});
+			}
+		});
 	}
 }

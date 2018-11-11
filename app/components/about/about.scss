@@ -1,9 +1,40 @@
 .about {
+	display: flex;
+	flex-direction: column;
 	list-style-type: none;
 	padding-left: 0;
-	text-align: center;
 
-	&__link {
-		margin-top: 10%;
+	&__item {
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		margin: 16px;
+
+		&__link {
+			margin-left: 16px;
+
+			a {
+				color: black;
+				font-weight: bold;
+				font-size: 20px;
+				text-decoration: none;
+				user-select: none;
+
+				&:hover {
+					color: slateblue;
+				}
+
+				&:active {
+					color: rgb(90, 77, 173);
+				}
+			}
+		}
+
+		&__avatar {
+			border-radius: 40px;
+			border: none !important;
+			width: 80px;
+			height: 80px;
+		}
 	}
 }

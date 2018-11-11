@@ -31,12 +31,8 @@ export default class SignInComponent extends BaseComponent {
 		});
 
 		this.renderChild("toSignUp", LinkComponent, {
-			text: "Not registered?",
+			text: "Not registered? Sign Up!",
 			onClick: this._onNotRegisteredClick.bind(this),
-		});
-
-		this.renderChild("resetPass", LinkComponent, {
-			text: "Forgot your password?",
 		});
 	}
 
@@ -45,10 +41,19 @@ export default class SignInComponent extends BaseComponent {
 		if (errorInfo !== true) {
 			this._info.innerText = errorInfo;
 		} else {
-			http.signin(this._login.value, this._pass.value).then((status) => {
-				if (status === 200) {
+			http.signin(this._login.value, this._pass.value).then((response) => {
+				if (response.status === 200) {
 					this._context.navigate("menu");
+				} else {
+					response.json().then((result) => {
+						console.log(result.msg);
+					});
 				}
+				// if (status === 200) {
+				// 	this._context.navigate("menu");
+				// } else {
+				// 	console.log
+				// }
 			});
 		}
 	}

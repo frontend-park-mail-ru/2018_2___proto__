@@ -18,7 +18,7 @@ export default new class HttpModule {
 			nickname: login,
 			password: pass,
 			email,
-		}).then((response => response.status));
+		});
 	}
 
 	/**
@@ -31,7 +31,7 @@ export default new class HttpModule {
 		return sendRequest(`${this.baseUrl}/signin`, "POST", {
 			nickname: login,
 			password: pass,
-		}).then((response => response.status));
+		});
 	}
 
 	/**
@@ -89,6 +89,6 @@ export default new class HttpModule {
 	 * Получение данных о текущей сессии
 	 */
 	sessionInfo() {
-		return sendRequest(`${this.baseUrl}/session`, "GET").then((response => response.status === 200 ? { isOnline: true } : { isOnline: false }));
+		return sendRequest(`${this.baseUrl}/session`, "GET").then((response => response.status === 200 ? { hasSession: true } : { hasSession: false }));
 	}
 }();

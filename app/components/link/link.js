@@ -12,6 +12,7 @@ export default class LinkComponent extends BaseComponent {
 		this._context = {
 			text: "",
 			onClick: null,
+			href: null,
 		};
 
 		this.events = {
@@ -22,7 +23,11 @@ export default class LinkComponent extends BaseComponent {
 	/**
 	 * Нажатие на ссылку
 	 */
-	_onClick() {
+	_onClick(event) {
+		if (!this._context.href) {
+			event.preventDefault();
+		}
+
 		if (this._context.onClick) {
 			this._context.onClick();
 		}

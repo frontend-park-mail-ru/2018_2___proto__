@@ -32,12 +32,8 @@ export default class SignUpComponent extends BaseComponent {
 		});
 
 		this.renderChild("toSignIn", LinkComponent, {
-			text: "Already registered?",
+			text: "Already registered? Sign In!",
 			onClick: this._onAlreadyRegisteredClick.bind(this),
-		});
-
-		this.renderChild("resetPass", LinkComponent, {
-			text: "Forgot your password?",
 		});
 	}
 
@@ -48,17 +44,34 @@ export default class SignUpComponent extends BaseComponent {
 		if (errorInfo !== true) {
 			this._info.innerText = errorInfo;
 		} else {
-			http.signup(this._login.value, this._email.value, this._pass.value).then((status) => {
-				if (status === 201) {
-					this._context.navigate("menu");
+			http.signup(this._login.value, this._email.value, this._pass.value).then((signUpResponse) => {
+				if (signUpResponse.status === 201) {
+					http.signin(this._login.value, this._pass.value).then((signInResponse) => {
+						if (signInResponse.status === 200) {
+							this._context.navigate("menu");
+						} else {
+							signInResponse.json().then((result) => {
+								console.log(result.msg);
+							});
+						}
+					});
+				} else {
+					signUpResponse.json().then((result) => {
+						console.log(result.msg);
+					});
 				}
 			});
+			// http.signup(this._login.value, this._email.value, this._pass.value).then((status) => {
+			// 	if (status === 201) {
+			// 		this._context.navigate("menu");
+			// 	}
+			// });
 
-			http.signin(this._login.value, this._pass.value).then((status) => {
-				if (status === 200) {
-					this._context.navigate("menu");
-				}
-			});
+			// http.signin(this._login.value, this._pass.value).then((status) => {
+			// 	if (status === 200) {
+			// 		this._context.navigate("menu");
+			// 	}
+			// });
 		}
 	}
 

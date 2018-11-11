@@ -1,10 +1,11 @@
 * {
-	font-family: "Century Gothic", CenturyGothic, AppleGothic, sans-serif;
+	// font-family: "Century Gothic", CenturyGothic, AppleGothic, sans-serif;
+	font-family: "Helvetica", "Arial", sans-serif;
 }
 
-html {
-	background-color: lightcyan;
-}
+// html {
+// 	background-color: lightcyan;
+// }
 
 body {
 	margin: 0; /* Because of grid issue */
@@ -36,12 +37,13 @@ body {
 	position: relative;
 }
 
-.backside {
-	background: white;
-	padding: 30px 80px;
-	box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
-	border-radius: 5px;
-}
+// .backside {
+// 	width: 80px;
+// 	background: white;
+// 	padding: 30px 80px;
+// 	box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+// 	border-radius: 5px;
+// }
 
 .not-found-page {
 	position: absolute;
