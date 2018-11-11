@@ -9,7 +9,6 @@ import ProfileComponent from "../profile/profile";
 import SignInComponent from "../forms/signin/signin";
 import SignUpComponent from "../forms/signup/signup";
 import Router from "../../modules/router";
-import http from "../../modules/http";
 
 /**
  * Компонент приложения
@@ -24,9 +23,7 @@ export default class ApplicationComponent extends BaseComponent {
 			this.navigate(this.router.getLocation());
 		};
 
-		this._context = this.router.go(this.router.getLocation());
-		debugger;
-		this.render({ preloader: false });
+		this.navigate(this.router.getLocation());
 	}
 
 	render(context) {
@@ -35,7 +32,6 @@ export default class ApplicationComponent extends BaseComponent {
 	}
 
 	navigate(route) {
-		super.render({ preloader: true });
 		this._context = this.router.go(route);
 		this.render();
 	}
@@ -46,14 +42,10 @@ export default class ApplicationComponent extends BaseComponent {
 	_renderChildren() {
 		this.renderChild("signin", SignInComponent, { navigate: this.navigate });
 		this.renderChild("signup", SignUpComponent, { navigate: this.navigate });
+		this.renderChild("menu", MenuComponent, { navigate: this.navigate });
 		this.renderChild("logo", LogoComponent, { navigate: this.navigate });
 		this.renderChild("leaderboard", LeaderboardComponent, { records: [] });
 		this.renderChild("profile", ProfileComponent, {});
 		this.renderChild("about", AboutComponent, {});
-		http.sessionInfo().then((info) => {
-			this.renderChild("menu", MenuComponent, { ...{ navigate: this.navigate }, ...info });
-		}).catch(() => {
-			this.renderChild("menu", MenuComponent, { ...{ navigate: this.navigate }, ...{ preloader: false, sessionExists: false } });
-		});
 	}
 }

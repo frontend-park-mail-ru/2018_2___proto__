@@ -50,10 +50,10 @@ export default new class HttpModule {
 	getUser() {
 		return sendRequest(`${this.baseUrl}/user`, "GET").then((response) => {
 			if (response.status === 401) {
-				return { isOnline: false };
+				return { sessionExists: false };
 			}
 
-			return response.json().then(result => ({ ...result, ...{ isOnline: true } }));
+			return response.json().then(result => ({ ...result, ...{ sessionExists: true } }));
 		});
 	}
 

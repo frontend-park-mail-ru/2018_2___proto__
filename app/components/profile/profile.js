@@ -29,17 +29,15 @@ export default class ProfileComponent extends BaseComponent {
 			this._pass = this._element.querySelector("[ref=pass]");
 			this._info = this._element.querySelector("[ref=info]");
 
-			if (info !== {}) {
-				this.renderChild("changeProfile", ButtonComponent, {
-					text: "Change profile",
-					onClick: this._onChangeProfileClick.bind(this),
-				});
+			this.renderChild("changeProfile", ButtonComponent, {
+				text: "Change profile",
+				onClick: this._onChangeProfileClick.bind(this),
+			});
 
-				this.renderChild("saveProfile", ButtonComponent, {
-					text: "Save profile",
-					onClick: this._onSaveProfileClick.bind(this),
-				});
-			}
+			this.renderChild("saveProfile", ButtonComponent, {
+				text: "Save profile",
+				onClick: this._onSaveProfileClick.bind(this),
+			});
 		});
 	}
 
