@@ -13,6 +13,7 @@ export default class ProfileComponent extends BaseComponent {
 		super();
 		this.template = template;
 		this._context = {
+			preloader: true,
 			changeProfile: false,
 		};
 	}

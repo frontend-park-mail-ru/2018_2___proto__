@@ -12,9 +12,6 @@ export default class LeaderboardComponent extends BaseComponent {
 		this.template = template;
 		this._currentPage = "1";
 		this._offset = 0;
-		http.getLeaderboard(this._offset, 10).then((data) => {
-			this.render({ ...{ preloader: false }, data });
-		});
 	}
 
 	render(context) {
@@ -45,7 +42,7 @@ export default class LeaderboardComponent extends BaseComponent {
 		this._currentPage = event.target.innerText;
 		this._offset = (this._currentPage - 1) * 10;
 		http.getLeaderboard(this._offset, 10).then((data) => {
-			this.render(data);
+			this.render({ ...{ preloader: false }, ...data });
 		});
 	}
 }
