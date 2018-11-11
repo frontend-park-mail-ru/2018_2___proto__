@@ -44,7 +44,7 @@ export default class ApplicationComponent extends BaseComponent {
 		this.renderChild("signup", SignUpComponent, { navigate: this.navigate });
 		this.renderChild("menu", MenuComponent, { navigate: this.navigate, preloader: true });
 		this.renderChild("logo", LogoComponent, { navigate: this.navigate });
-		this.renderChild("leaderboard", LeaderboardComponent, { records: [], preloader: true });
+		this.renderChild("leaderboard", LeaderboardComponent, { preloader: true });
 		this.renderChild("profile", ProfileComponent, { preloader: true });
 		this.renderChild("about", AboutComponent, {});
 	}
