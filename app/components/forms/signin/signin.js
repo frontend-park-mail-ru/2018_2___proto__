@@ -21,7 +21,7 @@ export default class SignInComponent extends BaseComponent {
 		this._info = this._element.querySelector("[ref=info]");
 		this._login = this._element.querySelector("[ref=login]");
 		this._pass = this._element.querySelector("[ref=pass]");
-		this._info = this._element.querySelector("[ref=info]");
+		// this._info = this._element.querySelector("[ref=info]");
 	}
 
 	_renderChildren() {
@@ -38,9 +38,11 @@ export default class SignInComponent extends BaseComponent {
 
 	_onSubmitClick() {
 		const errorInfo = validate(this._login.value, this._pass.value);
-		if (errorInfo !== true) {
-			this._info.innerText = errorInfo;
-		} else {
+		// if (errorInfo !== true) {
+		// 	this._info.innerText = errorInfo;
+		// } else {
+		if (!errorInfo) {
+			console.log(`SignIn Request: ${this._login.value} ${this._pass.value}`);
 			http.signin(this._login.value, this._pass.value).then((response) => {
 				if (response.status === 200) {
 					this._context.navigate("menu");

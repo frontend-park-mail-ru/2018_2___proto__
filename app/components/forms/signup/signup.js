@@ -22,7 +22,7 @@ export default class SignUpComponent extends BaseComponent {
 		this._email = this._element.querySelector("[ref=email]");
 		this._pass = this._element.querySelector("[ref=pass]");
 		this._passRep = this._element.querySelector("[ref=passRep]");
-		this._info = this._element.querySelector("[ref=info]");
+		// this._info = this._element.querySelector("[ref=info]");
 	}
 
 	_renderChildren() {
@@ -41,9 +41,11 @@ export default class SignUpComponent extends BaseComponent {
 		const errorInfo = validate(this._login.value,
 			this._email.value, this._pass.value, this._passRep.value);
 
-		if (errorInfo !== true) {
-			this._info.innerText = errorInfo;
-		} else {
+		// if (errorInfo !== true) {
+		// 	this._info.innerText = errorInfo;
+		// } else {
+		if (!errorInfo) {
+			console.log(`SignUp Request: ${this._login.value} ${this._email.value} ${this._pass.value}`);
 			http.signup(this._login.value, this._email.value, this._pass.value).then((signUpResponse) => {
 				if (signUpResponse.status === 201) {
 					http.signin(this._login.value, this._pass.value).then((signInResponse) => {
