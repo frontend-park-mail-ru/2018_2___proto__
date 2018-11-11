@@ -33,10 +33,9 @@ export default class ApplicationComponent extends BaseComponent {
 	}
 
 	navigate(route) {
-		debugger;
-		this.render({ preloader: true });
+		super.render({ preloader: true });
 		this._context = this.router.go(route);
-		this.render({ preloader: false });
+		this.render();
 	}
 
 	/**
