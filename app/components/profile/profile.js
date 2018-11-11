@@ -43,6 +43,7 @@ export default class ProfileComponent extends BaseComponent {
 
 	_onChangeProfileClick() {
 		this._context = {
+			preloader: true,
 			changeProfile: true,
 		};
 

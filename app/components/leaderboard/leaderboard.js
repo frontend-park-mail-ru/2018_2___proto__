@@ -15,7 +15,7 @@ export default class LeaderboardComponent extends BaseComponent {
 	}
 
 	render(context) {
-		const newContext = this._pagination(context);
+		const newContext = this._pagination({ ...context, ...{ preloader: false } });
 		super.render(newContext);
 		this._context.pages.forEach((page) => {
 			this._element
