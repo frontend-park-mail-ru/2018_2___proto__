@@ -42,6 +42,7 @@ export default class LeaderboardComponent extends BaseComponent {
 		this._currentPage = event.target.innerText;
 		this._offset = (this._currentPage - 1) * 10;
 		http.getLeaderboard(this._offset, 10).then((data) => {
+			console.log(data);
 			this.render({ ...{ preloader: false }, data });
 		});
 	}
