@@ -52,9 +52,9 @@ export default class SignUpComponent extends BaseComponent {
 		const errorEmailInfo = Validator.validateEmail(this._email.value);
 		const errorPassInfo = Validator.validatePass(this._pass.value);
 
-		if (errorLoginInfo === ""
-			&& errorEmailInfo === ""
-			&& errorPassInfo === ""
+		if (errorLoginInfo === true
+			&& errorEmailInfo === true
+			&& errorPassInfo === true
 			&& this._pass.value === this._passRep.value) {
 			http.signup(this._login.value, this._email.value, this._pass.value).then((signUpResponse) => {
 				if (signUpResponse.status === 201) {

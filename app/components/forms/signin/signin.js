@@ -41,7 +41,7 @@ export default class SignInComponent extends BaseComponent {
 		const errorLoginInfo = Validator.validateLogin(this._login.value);
 		const errorPassInfo = Validator.validatePass(this._pass.value);
 
-		if (errorLoginInfo === "" && errorPassInfo === "") {
+		if (errorLoginInfo === true && errorPassInfo === true) {
 			http.signin(this._login.value, this._pass.value).then((response) => {
 				if (response.status === 200) {
 					this._context.navigate("menu");
