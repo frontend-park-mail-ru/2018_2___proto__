@@ -25,7 +25,8 @@ export default class ApplicationComponent extends BaseComponent {
 		};
 
 		this._context = this.router.go(this.router.getLocation());
-		this.render();
+		debugger;
+		this.render({ preloader: true });
 	}
 
 	render(context) {
