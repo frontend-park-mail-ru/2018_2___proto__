@@ -1,3 +1,18 @@
-h2 {
-	text-align: center;
+.game-screen {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+	align-items: center;
+
+	&__hero-sprite {
+		border: 1px solid black;
+		width: 144px;
+		height: 192px;
+	}
+
+	&__question-window {
+		border: 1px solid black;
+		width: 600px;
+		height: 540px;
+	}
 }
