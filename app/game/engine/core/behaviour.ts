@@ -1,6 +1,6 @@
-import GameObject from "./gameObject";
 import IdManager from "../../utility/idManager";
 import NameManager from "../../utility/nameManager";
+import GameObject from "./gameObject";
 
 /**
  * Базовый абстрактный класс поведенческого скрипта игрового объекта

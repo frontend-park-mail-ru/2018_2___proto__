@@ -13,7 +13,6 @@
 		"app/components",
 		"app/modules",
 		"app/index.js",
-		"app/handlebars-min.js",
 		"webpack.config.js",
 		"dist",
 		"server"

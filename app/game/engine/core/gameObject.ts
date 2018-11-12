@@ -1,8 +1,8 @@
-import Vector2 from "../transformation/vector2";
-import Behaviour from "./behaviour";
-import Transform2d from "../transformation/transform";
 import IdManager from "../../utility/idManager";
 import NameManager from "../../utility/nameManager";
+import Transform2d from "../transformation/transform";
+import Vector2 from "../transformation/vector2";
+import Behaviour from "./behaviour";
 
 export default class GameObject {
 	private _name: string;
@@ -30,7 +30,6 @@ export default class GameObject {
 		return this._name;
 	}
 
-
 	constructor() {
 		this._isEnabled = true;
 		this._id = IdManager.GenerateId();
@@ -52,63 +51,20 @@ export default class GameObject {
 	 * @param behaviour
 	 */
 	public AddBehaviour(behaviour: Behaviour): void {
-		let behaviourType: string = behaviour.Type;
+		const behaviourType: string = behaviour.Type;
 
 		if (this._behaviourMap.has(behaviourType)) {
 			if (typeof this._behaviourMap.get(behaviourType) === "undefined") {
-				this._behaviourMap.set(behaviourType, new Array<Behaviour>(behaviour));
+				this._behaviourMap.set(
+					behaviourType,
+					new Array<Behaviour>(behaviour),
+				);
 			} else {
-				(this._behaviourMap.get(behaviourType))!.push(behaviour);
+				this._behaviourMap.get(behaviourType)!.push(behaviour);
 			}
 		}
 
 		behaviour.GameObject = this;
-	}
-
-	/**
-	 * Получение скрипта поведения по ID
-	 * @param {number} id
-	 * @returns {Behaviour || null}
-	 */
-	private GetBehaviourById(id: number): Behaviour | null {
-		this._behaviourArr.forEach(script => {
-			if (script.Id == id) {
-				return script;
-			}
-		});
-
-		return null;
-	}
-
-	/**
-	 * Получение скрипта поведения по имени
-	 * @param {string} name
-	 * @returns {Behaviour || null}
-	 */
-	private GetBehaviourByName(name: string): Behaviour | null {
-		this._behaviourArr.forEach(script => {
-			if (script.Name == name) {
-				return script;
-			}
-		});
-
-		return null;
-	}
-
-	/**
-	 * Получение всех скриптов поведения
-	 */
-	private GetBehaviours(): Array<Behaviour> {
-		return this._behaviourArr;
-	}
-
-	/**
-	 * Получение всех скриптов поведения по типу
-	 * @param {string} type
-	 * @returns {Array<Behaviour> || undefined}
-	 */
-	private GetBehavioursByType(type: string): Array<Behaviour> | undefined {
-		return this._behaviourMap.get(type);
 	}
 
 	/**
@@ -122,7 +78,7 @@ export default class GameObject {
 			this._behaviourMap,
 			this._behaviourArr,
 			this._objectCoordinates,
-			this._textureCoordinates
+			this._textureCoordinates,
 		);
 	}
 
@@ -152,5 +108,51 @@ export default class GameObject {
 		this._behaviourArr.forEach(behaviour => {
 			behaviour.OnUpdate();
 		});
+	}
+
+	/**
+	 * Получение скрипта поведения по ID
+	 * @param {number} id
+	 * @returns {Behaviour || null}
+	 */
+	private GetBehaviourById(id: number): Behaviour | null {
+		this._behaviourArr.forEach(script => {
+			if (script.Id === id) {
+				return script;
+			}
+		});
+
+		return null;
+	}
+
+	/**
+	 * Получение скрипта поведения по имени
+	 * @param {string} name
+	 * @returns {Behaviour || null}
+	 */
+	private GetBehaviourByName(name: string): Behaviour | null {
+		this._behaviourArr.forEach(script => {
+			if (script.Name === name) {
+				return script;
+			}
+		});
+
+		return null;
+	}
+
+	/**
+	 * Получение всех скриптов поведения
+	 */
+	private GetBehaviours(): Array<Behaviour> {
+		return this._behaviourArr;
+	}
+
+	/**
+	 * Получение всех скриптов поведения по типу
+	 * @param {string} type
+	 * @returns {Array<Behaviour> || undefined}
+	 */
+	private GetBehavioursByType(type: string): Array<Behaviour> | undefined {
+		return this._behaviourMap.get(type);
 	}
 }

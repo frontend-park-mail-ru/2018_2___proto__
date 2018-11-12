@@ -1,0 +1,14 @@
+{
+	"extends": [
+		"tslint-config-airbnb-base",
+		"tslint:latest",
+		"tslint-config-prettier"
+	],
+	"rules": {
+		"indent": [true, "tabs"],
+		"quotemark": [true, "double"],
+		"variable-name": [true, "allow-leading-underscore", "ban-keywords", "check-format"],
+		"trailing-comma": [true, { "multiline": "always", "singleline": "never" }],
+		"array-type": false
+	}
+}
