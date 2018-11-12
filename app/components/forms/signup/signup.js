@@ -76,16 +76,16 @@ export default class SignUpComponent extends BaseComponent {
 				.then(() => http.signin(this._login.value, this._pass.value)
 					.then((response) => {
 						if (response.status !== 200) {
-							response.json().then((info) => {
-								throw new Error(info.msg);
-							});
+							throw new Error(response);
 						}
 
 						this._context.navigate("menu");
 					}))
 				.catch((error) => {
-					this._element.querySelector("[data=modal-info]").innerHTML = error;
-					this._onModalOpen();
+					error.json().then((info) => {
+						this._element.querySelector("[data=modal-info]").innerHTML = info;
+						this._onModalOpen();
+					});
 				});
 		} else {
 			if (errorLoginInfo === true) {
