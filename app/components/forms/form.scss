@@ -1,10 +1,6 @@
 .form {
 	display: flex;
 	flex-direction: column;
-	-webkit-transition: 0.5s;
-	-moz-transition: 0.5s;
-	-o-transition: 0.5s;
-	transition: 0.5s;
 
 	&__field {
 		border: 0;
@@ -14,6 +10,10 @@
 		box-sizing: border-box;
 		margin-bottom: 16px;
 		background: #f2f2f2;
+		-webkit-transition: 0.5s;
+		-moz-transition: 0.5s;
+		-o-transition: 0.5s;
+		transition: 0.5s;
 
 		&:focus {
 			-webkit-transition: all 0.5s ease;
@@ -31,6 +31,7 @@
 		}
 
 		&__popup-login, &__popup-email, &__popup-pass, &__popup-passRep {
+			color: red;
 			white-space: pre-wrap;
 			text-align: center;
 			font-size: 14px;
@@ -55,5 +56,76 @@
 				color: rgb(90, 77, 173);
 			}
 		}
+	}
+
+	&__modal {
+		display: none;
+		position: fixed;
+		z-index: 1;
+		padding-top: 100px;
+		left: 0;
+		top: 0;
+		width: 100%;
+		height: 100%;
+		overflow: auto;
+		background-color: rgb(0, 0, 0);
+		background-color: rgba(0, 0, 0, 0.4);
+
+		&-content {
+			position: relative;
+			background-color: #fefefe;
+			margin: auto;
+			padding: 0;
+			border: 1px solid #888;
+			width: 80%;
+			box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+			animation-name: animatetop;
+			animation-duration: 0.4s;
+
+			&__header {
+				padding: 2px 16px;
+				background-color: red;
+				color: white;
+
+				&__close {
+					color: white;
+					float: right;
+					font-size: 28px;
+					font-weight: bold;
+
+					&:hover, &:focus {
+						color: #000;
+						text-decoration: none;
+						cursor: pointer;
+					}
+				}
+			}
+
+			&__body {
+				padding: 2px 16px;
+			}
+		}
+	}
+}
+
+@-webkit-keyframes animatetop {
+	from {
+		top: -300px;
+		opacity: 0;
+	}
+	to {
+		top: 0;
+		opacity: 1;
+	}
+}
+
+@keyframes animatetop {
+	from {
+		top: -300px;
+		opacity: 0;
+	}
+	to {
+		top: 0;
+		opacity: 1;
 	}
 }

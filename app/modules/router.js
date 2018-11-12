@@ -49,7 +49,7 @@ export default class Router {
 					correctedRoute = correctedRoute.slice(0, -1);
 				}
 
-				if (Object.keys(this.defaultContext).includes(correctedRoute)) {
+				if (this.defaultContext[correctedRoute] !== undefined) {
 					this.currentContext = { ...this.defaultContext, ...{ [correctedRoute]: true } };
 				} else {
 					return { notfound: true };

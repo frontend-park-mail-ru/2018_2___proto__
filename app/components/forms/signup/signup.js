@@ -29,7 +29,7 @@ export default class SignUpComponent extends BaseComponent {
 		this._email = this._element.querySelector("[data=email]");
 		this._pass = this._element.querySelector("[data=pass]");
 		this._passRep = this._element.querySelector("[data=passRep]");
-		this._loginInfo = this._element.querySelector(`[class=${loginPopup}]`)
+		this._loginInfo = this._element.querySelector(`[class=${loginPopup}]`);
 		this._emailInfo = this._element.querySelector(`[class=${emailPopup}]`);
 		this._passInfo = this._element.querySelector(`[class=${passPopup}]`);
 		this._passRepInfo = this._element.querySelector(`[class=${passRepPopup}]`);
@@ -45,6 +45,14 @@ export default class SignUpComponent extends BaseComponent {
 			text: "Already registered? Sign In!",
 			onClick: this._onAlreadyRegisteredClick.bind(this),
 		});
+
+		this._element.querySelector("[id=close]").onclick = this._onModalCloseClick.bind(this);
+
+		window.onclick = (event) => {
+			if (event.target === this._element.querySelector("[id=modal]")) {
+				this._onModalCloseClick();
+			}
+		};
 	}
 
 	_onSubmitClick() {
@@ -55,24 +63,28 @@ export default class SignUpComponent extends BaseComponent {
 		if (errorLoginInfo === true
 			&& errorEmailInfo === true
 			&& errorPassInfo === true
-			&& this._pass.value === this._passRep.value) {
-			http.signup(this._login.value, this._email.value, this._pass.value).then((signUpResponse) => {
-				if (signUpResponse.status === 201) {
-					http.signin(this._login.value, this._pass.value).then((signInResponse) => {
-						if (signInResponse.status === 200) {
-							this._context.navigate("menu");
-						} else {
-							signInResponse.json().then((result) => {
-								console.log(result.msg);
-							});
-						}
-					});
-				} else {
-					signUpResponse.json().then((result) => {
-						console.log(result.msg);
-					});
-				}
-			});
+			&& this._pass.value === this._passRep.value
+		) {
+			http.signup(this._login.value, this._email.value, this._pass.value)
+				.then((signUpResponse) => {
+					if (signUpResponse.status === 201) {
+						http.signin(this._login.value, this._pass.value).then((signInResponse) => {
+							if (signInResponse.status === 200) {
+								this._context.navigate("menu");
+							} else {
+								signInResponse.json().then((result) => {
+									this._element.querySelector("[data=modal-info]").innerHTML = result.msg;
+									this._onModalOpen();
+								});
+							}
+						});
+					} else {
+						signUpResponse.json().then((result) => {
+							this._element.querySelector("[data-modal-info]").innerHTML = result.msg;
+							this._onModalOpen();
+						});
+					}
+				});
 		} else {
 			if (errorLoginInfo === true) {
 				this._login.classList.remove("error");
@@ -113,5 +125,13 @@ export default class SignUpComponent extends BaseComponent {
 
 	_onAlreadyRegisteredClick() {
 		this._context.navigate("signin");
+	}
+
+	_onModalCloseClick() {
+		this._element.querySelector("[id=modal]").style.display = "none";
+	}
+
+	_onModalOpen() {
+		this._element.querySelector("[id=modal]").style.display = "block";
 	}
 }
