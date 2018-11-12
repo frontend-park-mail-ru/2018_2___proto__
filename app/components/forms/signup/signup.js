@@ -66,25 +66,58 @@ export default class SignUpComponent extends BaseComponent {
 			&& this._pass.value === this._passRep.value
 		) {
 			http.signup(this._login.value, this._email.value, this._pass.value)
-				.then((signUpResponse) => {
-					if (signUpResponse.status === 201) {
-						http.signin(this._login.value, this._pass.value).then((signInResponse) => {
-							if (signInResponse.status === 200) {
-								this._context.navigate("menu");
-							} else {
-								signInResponse.json().then((result) => {
-									this._element.querySelector("[data=modal-info]").innerHTML = result.msg;
-									this._onModalOpen();
-								});
-							}
-						});
-					} else {
-						signUpResponse.json().then((result) => {
-							this._element.querySelector("[data=modal-info]").innerHTML = result.msg;
+				.then((response) => {
+					if (response.status !== 201) {
+						response.json().then((info) => {
+							this._element.querySelector("[data=modal-info]").innerHTML = info.msg;
 							this._onModalOpen();
 						});
 					}
-				});
+				})
+				.then(() => http.signin(this._login.value, this._pass.value)
+					.then((response) => {
+						if (response.status !== 200) {
+							response.json().then((info) => {
+								this._element.querySelector("[data=modal-info]").innerHTML = info.msg;
+								this._onModalOpen();
+							});
+						} else {
+							this._context.navigate("menu");
+						}
+					}));
+			// http.signup(this._login.value, this._email.value, this._pass.value)
+			// 	.then((signUpResponse) => {
+			// 		if (signUpResponse.status !== 201) {
+			// 			signUpResponse.json().then((info) => {
+			// 				this._element.querySelector("[data=modal-info]").innerHTML = info.msg;
+			// 				this._onModalOpen();
+			// 			});
+			// 		})
+			// 	.then(() => {
+			// 			http.signin(this._login.value, this._pass.value)
+			// 			.then((signInResponse)) => {
+			// 			});
+			// 		}
+			// 		})
+
+
+			// 		if (signUpResponse.status === 201) {
+			// 			http.signin(this._login.value, this._pass.value).then((signInResponse) => {
+			// 				if (signInResponse.status === 200) {
+			// 					this._context.navigate("menu");
+			// 				} else {
+			// 					signInResponse.json().then((result) => {
+
+			// 					});
+			// 				}
+			// 			});
+			// 		} else {
+			// 			signUpResponse.json().then((result) => {
+			// 				this._element.querySelector("[data=modal-info]").innerHTML = result.msg;
+			// 				this._onModalOpen();
+			// 			});
+			// 		}
+			// 	});
 		} else {
 			if (errorLoginInfo === true) {
 				this._login.classList.remove("error");
