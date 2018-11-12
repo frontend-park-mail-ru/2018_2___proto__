@@ -131,16 +131,14 @@ export default class MenuComponent extends BaseComponent {
 		http.logout()
 			.then((response) => {
 				if (response.status !== 410) {
-					throw new Error(response);
+					throw new Error(response.msg);
 				}
 
 				this._context.navigate("menu");
 			})
 			.catch((error) => {
-				error.json().then((info) => {
-					this._element.querySelector("[data=modal-info]").innerHTML = info;
-					this._onModalOpen();
-				});
+				this._element.querySelector("[data=modal-info]").innerHTML = error;
+				this._onModalOpen();
 			});
 	}
 

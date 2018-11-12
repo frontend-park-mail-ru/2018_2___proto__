@@ -18,7 +18,7 @@ export default new class HttpModule {
 			nickname: login,
 			password: pass,
 			email,
-		});
+		}).then(response => response.json());
 	}
 
 	/**
@@ -31,7 +31,7 @@ export default new class HttpModule {
 		return sendRequest(`${this.baseUrl}/signin`, "POST", {
 			nickname: login,
 			password: pass,
-		});
+		}).then(response => response.json());
 	}
 
 	/**
@@ -40,7 +40,7 @@ export default new class HttpModule {
 	 */
 	logout() {
 		this.username = null;
-		return sendRequest(`${this.baseUrl}/logout`, "DELETE");
+		return sendRequest(`${this.baseUrl}/logout`, "DELETE").then(response => response.json());
 	}
 
 	/**
