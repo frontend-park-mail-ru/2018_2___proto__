@@ -68,9 +68,7 @@ export default class SignUpComponent extends BaseComponent {
 			http.signup(this._login.value, this._email.value, this._pass.value)
 				.then((response) => {
 					if (response.status !== 201) {
-						response.json().then((info) => {
-							throw new Error(info.msg);
-						});
+						throw new Error(response.msg);
 					}
 				})
 				.then(() => http.signin(this._login.value, this._pass.value)
