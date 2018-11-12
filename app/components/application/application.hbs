@@ -1,32 +1,36 @@
 <div class="root" ref="root">
 	{{#if notfound}}
-	<img class="not-found-page" src="/public/service/404.jpg" alt="Not Found">
+		<img class="not-found-page" src="/public/service/404.jpg" alt="Not Found">
 	{{else}}
-	<div class="logo-block" ref="logo"></div>
-	<div class="main-block" ref="main">
-		{{#if menu}}
-		<div ref="menu"></div>
-		{{/if}}
+		{{#if game}}
+			<div ref="game"></div>
+		{{else}}
+			<div class="logo-block" ref="logo"></div>
+			<div class="main-block" ref="main">
+				{{#if menu}}
+					<div ref="menu"></div>
+				{{/if}}
 
-		{{#if profile}}
-		<div ref="profile"></div>
-		{{/if}}
+				{{#if profile}}
+					<div ref="profile"></div>
+				{{/if}}
 
-		{{#if leaderboard}}
-		<div ref="leaderboard"></div>
-		{{/if}}
+				{{#if leaderboard}}
+					<div ref="leaderboard"></div>
+				{{/if}}
 
-		{{#if about}}
-		<div ref="about"></div>
-		{{/if}}
+				{{#if about}}
+					<div ref="about"></div>
+				{{/if}}
 
-		{{#if signin}}
-		<div ref="signin"></div>
-		{{/if}}
+				{{#if signin}}
+					<div ref="signin"></div>
+				{{/if}}
 
-		{{#if signup}}
-		<div ref="signup"></div>
+				{{#if signup}}
+					<div ref="signup"></div>
+				{{/if}}
+			</div>
 		{{/if}}
-	</div>
 	{{/if}}
 </div>
