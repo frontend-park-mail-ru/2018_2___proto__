@@ -35,6 +35,14 @@ export default class SignInComponent extends BaseComponent {
 			text: "Not registered? Sign Up!",
 			onClick: this._onNotRegisteredClick.bind(this),
 		});
+
+		this._element.querySelector("[id=close]").onclick = this._onModalCloseClick.bind(this);
+
+		window.onclick = (event) => {
+			if (event.target === this._element.querySelector("[id=modal]")) {
+				this._onModalCloseClick();
+			}
+		};
 	}
 
 	_onSubmitClick() {
@@ -42,15 +50,20 @@ export default class SignInComponent extends BaseComponent {
 		const errorPassInfo = Validator.validatePass(this._pass.value);
 
 		if (errorLoginInfo === true && errorPassInfo === true) {
-			http.signin(this._login.value, this._pass.value).then((response) => {
-				if (response.status === 200) {
+			http.signin(this._login.value, this._pass.value)
+				.then((response) => {
+					if (response.status !== 200) {
+						response.json().then((info) => {
+							throw new Error(info.msg);
+						});
+					}
+
 					this._context.navigate("menu");
-				} else {
-					response.json().then((result) => {
-						console.log(result.msg);
-					});
-				}
-			});
+				})
+				.catch((error) => {
+					this._element.querySelector("[data=modal-info]").innerHTML = error;
+					this._onModalOpen();
+				});
 		} else {
 			if (errorLoginInfo === true) {
 				this._login.classList.remove("error");
@@ -72,5 +85,19 @@ export default class SignInComponent extends BaseComponent {
 
 	_onNotRegisteredClick() {
 		this._context.navigate("signup");
+	}
+
+	/**
+	 * Callback на нажатие "X" в модальной форме
+	 */
+	_onModalCloseClick() {
+		this._element.querySelector("[id=modal]").style.display = "none";
+	}
+
+	/**
+	 * Callback на открытие модальной формы
+	 */
+	_onModalOpen() {
+		this._element.querySelector("[id=modal]").style.display = "block";
 	}
 }

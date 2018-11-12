@@ -65,6 +65,14 @@ export default class MenuComponent extends BaseComponent {
 			text: "Log Out",
 			onClick: this._onLogOutClick.bind(this),
 		});
+
+		this._element.querySelector("[id=close]").onclick = this._onModalCloseClick.bind(this);
+
+		window.onclick = (event) => {
+			if (event.target === this._element.querySelector("[id=modal]")) {
+				this._onModalCloseClick();
+			}
+		};
 	}
 
 	/**
@@ -120,14 +128,33 @@ export default class MenuComponent extends BaseComponent {
 	 * Callback на нажатие "Log Out"
 	 */
 	_onLogOutClick() {
-		http.logout().then((response) => {
-			if (response.status === 410) {
+		http.logout()
+			.then((response) => {
+				if (response.status !== 410) {
+					response.json().then((info) => {
+						throw new Error(info.msg);
+					});
+				}
+
 				this._context.navigate("menu");
-			} else {
-				response.json().then((result) => {
-					console.log(result.msg);
-				});
-			}
-		});
+			})
+			.catch((error) => {
+				this._element.querySelector("[data=modal-info]").innerHTML = error;
+				this._onModalOpen();
+			});
+	}
+
+	/**
+	 * Callback на нажатие "X" в модальной форме
+	 */
+	_onModalCloseClick() {
+		this._element.querySelector("[id=modal]").style.display = "none";
+	}
+
+	/**
+	 * Callback на открытие модальной формы
+	 */
+	_onModalOpen() {
+		this._element.querySelector("[id=modal]").style.display = "block";
 	}
 }

@@ -1,4 +1,5 @@
-<ul class="menu" ref="menu">
+<div>
+	<ul class="menu" ref="menu">
 	{{#if preloader}}
 		<img src="/public/service/preloader.svg" width="80" alt="Loading...">
 	{{else}}
@@ -16,4 +17,17 @@
 			<li class="menu__link" ref="about"></li>
 		{{/if}}
 	{{/if}}
-</ul>
+	</ul>
+
+	<div id="modal" class="menu__modal">
+		<div class="menu__modal-content">
+			<div class="menu__modal-content__header">
+				<span id="close" class="menu__modal-content__header__close">&times;</span>
+				<h2>Information from the server: some problems</h2>
+			</div>
+			<div class="menu__modal-content__body">
+				<p data="modal-info"></p>
+			</div>
+		</div>
+	</div>
+</div>
