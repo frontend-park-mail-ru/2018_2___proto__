@@ -7,28 +7,17 @@
 }
 
 body {
-	margin: 0; /* Because of grid issue */
+	margin: 0;
 }
 
 .root {
-	height: 100vh; /* Because of grid issue */
-	display: grid;
-	grid-template-columns: 1fr 1fr 1fr;
-	grid-template-rows: 1fr 1fr 3fr 1fr;
-}
-
-.auth-block {
-	grid-column: 3 / 4;
-	grid-row: 1 / 2;
+	height: 100vh;
 	display: flex;
-	justify-content: center;
-	align-items: center;
-	white-space: nowrap;
+	flex-direction: column;
+	justify-content: space-evenly;
 }
 
 .main-block {
-	grid-column: 2 / 3;
-	grid-row: 3 / 4;
 	display: flex;
 	justify-content: center;
 	align-items: center;
