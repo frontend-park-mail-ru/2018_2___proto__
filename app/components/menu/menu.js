@@ -131,7 +131,7 @@ export default class MenuComponent extends BaseComponent {
 		http.logout()
 			.then((response) => {
 				if (response.status !== 410) {
-					throw new Error(response);
+					throw response;
 				}
 
 				this._context.navigate("menu");

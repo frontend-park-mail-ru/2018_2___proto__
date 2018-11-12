@@ -53,7 +53,7 @@ export default class SignInComponent extends BaseComponent {
 			http.signin(this._login.value, this._pass.value)
 				.then((response) => {
 					if (response.status !== 200) {
-						throw new Error(response);
+						throw response;
 					}
 
 					this._context.navigate("menu");
