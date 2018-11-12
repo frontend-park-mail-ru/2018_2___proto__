@@ -80,7 +80,7 @@ export default class SignUpComponent extends BaseComponent {
 						});
 					} else {
 						signUpResponse.json().then((result) => {
-							this._element.querySelector("[data-modal-info]").innerHTML = result.msg;
+							this._element.querySelector("[data=modal-info]").innerHTML = result.msg;
 							this._onModalOpen();
 						});
 					}
