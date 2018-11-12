@@ -4,6 +4,8 @@
 # NPM-specific files
 package-lock.json
 
+bundle.js
+
 # Bash scripts
 *.sh
 
