@@ -31,7 +31,9 @@ export default new class HttpModule {
 		return sendRequest(`${this.baseUrl}/signin`, "POST", {
 			nickname: login,
 			password: pass,
-		}).then(response => response.json());
+		}).then(response => {
+			return response.json();
+		});
 	}
 
 	/**
