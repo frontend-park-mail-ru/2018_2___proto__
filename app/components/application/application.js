@@ -8,6 +8,7 @@ import LeaderboardComponent from "../leaderboard/leaderboard";
 import ProfileComponent from "../profile/profile";
 import SignInComponent from "../forms/signin/signin";
 import SignUpComponent from "../forms/signup/signup";
+import GameComponent from "../game/game";
 import Router from "../../modules/router";
 
 /**
@@ -47,5 +48,6 @@ export default class ApplicationComponent extends BaseComponent {
 		this.renderChild("leaderboard", LeaderboardComponent, { preloader: true });
 		this.renderChild("profile", ProfileComponent, { preloader: true });
 		this.renderChild("about", AboutComponent, {});
+		this.renderChild("game", GameComponent, {});
 	}
 }

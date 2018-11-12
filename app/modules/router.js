@@ -1,6 +1,7 @@
 export default class Router {
 	constructor() {
 		this.defaultContext = {
+			game: false,
 			menu: false,
 			profile: false,
 			leaderboard: false,

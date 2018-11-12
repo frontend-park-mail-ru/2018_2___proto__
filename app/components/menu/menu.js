@@ -71,14 +71,14 @@ export default class MenuComponent extends BaseComponent {
 	 * Callback на нажатие "Play singleplayer"
 	 */
 	_onSingleplayerClick() {
-		this._context.navigate("singleplayer");
+		this._context.navigate("game");
 	}
 
 	/**
 	 * Callback на нажатие "Play multiplayer"
 	 */
 	_onMultiplayerClick() {
-		this._context.navigate("multiplayer");
+		this._context.navigate("game");
 	}
 
 	/**
