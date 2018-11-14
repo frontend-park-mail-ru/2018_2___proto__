@@ -1,4 +1,3 @@
-import HashTable from "../../utility/hashTable";
 import GameObject from "../core/gameObject";
 import Matrix3x3 from "./matrix3x3";
 import Vector2 from "./vector2";
@@ -37,14 +36,14 @@ export default class Transform2d {
 	}
 	private _basis: Matrix3x3;
 	private _parent: Transform2d; // по какой-то причине я не могу обнулить это
-	private _childs: HashTable<Transform2d>;
+	private _children: Set<Transform2d>;
 	private _gameObject: GameObject;
 
 	constructor(gameObject: GameObject) {
 		this._parent = this;
 		this._gameObject = gameObject;
 		this._basis = Matrix3x3.One();
-		this._childs = new HashTable<Transform2d>();
+		this._children = new Set<Transform2d>();
 	}
 
 	public CalcGlobalVectorCoords(dot: Vector3): Vector3 {
@@ -68,7 +67,7 @@ export default class Transform2d {
 			this._parent.RemoveChild(this);
 		}
 
-		newParent._childs.AddKey(this);
+		newParent._children.add(this);
 		this._parent = newParent;
 	}
 
@@ -77,7 +76,7 @@ export default class Transform2d {
 	}
 
 	public RemoveChild(child: Transform2d) {
-		this._childs.RemoveKey(child);
+		this._children.delete(child);
 		child._parent = child;
 	}
 

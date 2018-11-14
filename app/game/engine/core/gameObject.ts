@@ -88,7 +88,7 @@ export default class GameObject {
 	public Enable() {
 		this._isEnabled = true;
 
-		this._behaviourArr.forEach(behaviour => {
+		this._behaviourArr.forEach((behaviour) => {
 			behaviour.Enable();
 		});
 	}
@@ -99,13 +99,13 @@ export default class GameObject {
 	public Disable() {
 		this._isEnabled = false;
 
-		this._behaviourArr.forEach(behaviour => {
+		this._behaviourArr.forEach((behaviour) => {
 			behaviour.Disable();
 		});
 	}
 
 	public Update() {
-		this._behaviourArr.forEach(behaviour => {
+		this._behaviourArr.forEach((behaviour) => {
 			behaviour.OnUpdate();
 		});
 	}
@@ -116,7 +116,7 @@ export default class GameObject {
 	 * @returns {Behaviour || null}
 	 */
 	private GetBehaviourById(id: number): Behaviour | null {
-		this._behaviourArr.forEach(script => {
+		this._behaviourArr.forEach((script) => {
 			if (script.Id === id) {
 				return script;
 			}
@@ -131,7 +131,7 @@ export default class GameObject {
 	 * @returns {Behaviour || null}
 	 */
 	private GetBehaviourByName(name: string): Behaviour | null {
-		this._behaviourArr.forEach(script => {
+		this._behaviourArr.forEach((script) => {
 			if (script.Name === name) {
 				return script;
 			}

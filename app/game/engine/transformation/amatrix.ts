@@ -13,7 +13,7 @@ export default abstract class AMatrix {
 
 	constructor(array: Array<number>, height: number, width: number) {
 		if (height * width !== array.length) {
-			throw new Error("dimensions doesn't match");
+			throw new Error("Dimensions doesn't match");
 		}
 
 		this._height = height;

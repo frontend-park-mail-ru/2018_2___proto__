@@ -22,12 +22,12 @@ export default class GameScene {
 		this.inputManager.ReadInputs();
 
 		this.gameObjects.forEach(gameObject => {
-		gameObject.Update();
-	});
+			gameObject.Update();
+		});
 
 		this.gameObjects.forEach(gameObject => {
-		gameObject.Render();
-	});
+			gameObject.Render();
+		});
 	}
 
 	/**

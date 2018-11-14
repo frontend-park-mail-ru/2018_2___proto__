@@ -2,40 +2,19 @@ import AMatrix from "./amatrix";
 import Vector2 from "./vector2";
 import Vector3 from "./vector3";
 
-const MATRIX3X3_LENGTH = 9;
-const MATRIX3X3_HEIGHT = 3;
-const MATRIX3X3_WIDTH = 3;
-
 export default class Matrix3x3 extends AMatrix {
 	public static One(): Matrix3x3 {
 		const array: Array<number> = new Array<number>(
-			1,
-			0,
-			0,
-			0,
-			1,
-			0,
-			0,
-			0,
-			1,
+			1, 0, 0,
+			0, 1, 0,
+			0, 0, 1,
 		);
 
 		return new Matrix3x3(array);
 	}
 
 	public static Empty(): Matrix3x3 {
-		const array: Array<number> = new Array<number>(
-			0,
-			0,
-			0,
-			0,
-			0,
-			0,
-			0,
-			0,
-			0,
-		);
-
+		const array: Array<number> = (new Array(9)).fill(0);
 		return new Matrix3x3(array);
 	}
 
@@ -88,17 +67,17 @@ export default class Matrix3x3 extends AMatrix {
 		return res;
 	}
 	constructor(array: Array<number>) {
-		super(array, MATRIX3X3_HEIGHT, MATRIX3X3_WIDTH);
+		super(array, 3, 3);
 	}
 
 	public Add(matrix: Matrix3x3) {
-		for (let i: number = 0; i < MATRIX3X3_LENGTH; i++) {
+		for (let i: number = 0; i < 9; i++) {
 			this._values[i] += matrix._values[i];
 		}
 	}
 
 	public Substract(matrix: Matrix3x3) {
-		for (let i: number = 0; i < MATRIX3X3_LENGTH; i++) {
+		for (let i: number = 0; i < 9; i++) {
 			this._values[i] -= matrix._values[i];
 		}
 	}
@@ -114,8 +93,7 @@ export default class Matrix3x3 extends AMatrix {
 				newValues[newValueIndex] = 0;
 
 				for (let k: number = 0; k < matrix.Height; k++) {
-					newValues[newValueIndex] +=
-						this.GetByIndex(i, k) * matrix.GetByIndex(k, j);
+					newValues[newValueIndex] += this.GetByIndex(i, k) * matrix.GetByIndex(k, j);
 				}
 			}
 		}
@@ -135,8 +113,7 @@ export default class Matrix3x3 extends AMatrix {
 				newValues[newValueIndex] = 0;
 
 				for (let k: number = 0; k < vec.Height; k++) {
-					newValues[newValueIndex] +=
-						this.GetByIndex(i, k) * vec.GetByIndex(k, j);
+					newValues[newValueIndex] += this.GetByIndex(i, k) * vec.GetByIndex(k, j);
 				}
 			}
 		}

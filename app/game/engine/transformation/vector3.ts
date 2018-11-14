@@ -1,7 +1,5 @@
 import AMatrix from "./amatrix";
 
-const VEC3_LENGTH = 3;
-
 export default class Vector3 extends AMatrix {
 	public get X() {
 		return this._values[0];
@@ -22,7 +20,7 @@ export default class Vector3 extends AMatrix {
 	}
 
 	constructor(array: Array<number>) {
-		super(array, VEC3_LENGTH, 1);
+		super(array, 3, 1);
 	}
 
 	protected CalcIndex(row: number, column: number): number {
