@@ -2,10 +2,10 @@ import "./game.scss";
 import template from "./game.hbs";
 import BaseComponent from "../baseComponent";
 import ButtonComponent from "../button/button";
-import GameScene from "../../game/engine/core/gameScene";
-import GameObject from "../../game/engine/core/gameObject";
-import HeroBehaviour from "../../game/gameplay/heroBehaviour";
-import LocalServer from "../../game/serverSide/localGameServer";
+import GameScene from "../../game/engine/core/gameScene.ts";
+import GameObject from "../../game/engine/core/gameObject.ts";
+import HeroBehaviour from "../../game/gameplay/heroBehaviour.ts";
+import LocalServer from "../../game/serverSide/localGameServer.ts";
 
 /**
  * Компонент игры
