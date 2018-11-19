@@ -10,7 +10,6 @@ export default class GameScene {
 		return this._currentScene;
 	}
 
-
 	constructor() {
 		this.gameObjects = new Array<GameObject>();
 		this.inputManager = new InputManager();
@@ -21,11 +20,11 @@ export default class GameScene {
 	public Render() {
 		this.inputManager.ReadInputs();
 
-		this.gameObjects.forEach(gameObject => {
+		this.gameObjects.forEach((gameObject) => {
 			gameObject.Update();
 		});
 
-		this.gameObjects.forEach(gameObject => {
+		this.gameObjects.forEach((gameObject) => {
 			gameObject.Render();
 		});
 	}
@@ -37,10 +36,10 @@ export default class GameScene {
 	 */
 	public GetGameObjectById(id: number): GameObject | null {
 		this.gameObjects.forEach((object) => {
-		if (object.Id === id) {
-		return object;
-	}
-	});
+			if (object.Id === id) {
+				return object;
+			}
+		});
 
 		return null;
 	}
@@ -52,10 +51,10 @@ export default class GameScene {
 	 */
 	public GetGameObjectByName(name: string) : GameObject | null {
 		this.gameObjects.forEach((object) => {
-		if (object.Name === name) {
-		return object;
-	}
-	});
+			if (object.Name === name) {
+				return object;
+			}
+		});
 
 		return null;
 	}
