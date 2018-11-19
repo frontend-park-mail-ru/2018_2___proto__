@@ -26,7 +26,6 @@ export default class GameComponent extends BaseComponent {
 	}
 
 	prepareGame() {
-		debugger;
 		this._scene = new GameScene();
 		this._heroObject = new GameObject();
 		this._heroObject.AddBehaviour(new HeroBehaviour("test", this._scene));
