@@ -3,6 +3,9 @@
 	flex-direction: row;
 	justify-content: space-around;
 	align-items: center;
+	left: 0;
+	top: 0;
+
 
 	&__hero-sprite {
 		border: 1px solid black;
@@ -15,4 +18,23 @@
 		width: 600px;
 		height: 540px;
 	}
+
+	&__canvas {
+		position: absolute;
+		left: 0;
+		top: 0;
+	}
+
+	&__backgound {
+		z-index: 0;
+	}
+
+	&__interface {
+		z-index: 1;
+	}
+
+	&__heroes {
+		z-index: 2;
+	}
+
 }

@@ -1,16 +1,11 @@
 <div class="game-screen">
 	{{#if isReady}}
-		<div class="game-screen__hero-sprite">
 
-		</div>
-
-		<div class="game-screen__question-window">
-
-		</div>
-
-		<div class="game-screen__hero-sprite">
-
-		</div>
+        <div class="game_screen__canvas">
+           <canvas id="kek" class="game-screen__canvas game-screen__background"></canvas>
+           <canvas class="game-screen__canvas game-screen__interface"></canvas>
+           <canvas class="game-screen__canvas game-screen__heroes"></canvas>
+           </div>
 	{{else}}
 		<div ref="isReadyButton"></div>
 	{{/if}}
