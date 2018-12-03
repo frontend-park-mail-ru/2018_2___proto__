@@ -53,8 +53,7 @@ export default class GameComponent extends BaseComponent {
 			numberOfFrames: 10,
 			ticksPerFrame: 2,
 		};
-
-		// this.heroes.animate(heroLeft);
+		this.heroes.animate(heroLeft);
 
 		const heroRight = {
 			image_name: "knight_idle_right",
@@ -65,7 +64,7 @@ export default class GameComponent extends BaseComponent {
 			numberOfFrames: 12, // amount of frames in spritestrip
 			ticksPerFrame: 2, // speed of animation, more is slower
 		};
-		// this.heroes.animate(heroRight);
+		this.heroes.animate(heroRight);
 	}
 
 
