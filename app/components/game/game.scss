@@ -6,19 +6,6 @@
 	left: 0;
 	top: 0;
 
-
-	&__hero-sprite {
-		border: 1px solid black;
-		width: 144px;
-		height: 192px;
-	}
-
-	&__question-window {
-		border: 1px solid black;
-		width: 600px;
-		height: 540px;
-	}
-
 	&__canvas {
 		position: absolute;
 		left: 0;
@@ -33,8 +20,12 @@
 		z-index: 1;
 	}
 
-	&__heroes {
+	&__hero-left {
 		z-index: 2;
+	}
+
+	&__hero-right {
+		z-index: 3;
 	}
 
 }

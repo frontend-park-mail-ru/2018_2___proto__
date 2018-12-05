@@ -1,0 +1,26 @@
+{
+    "wiz": {
+        "left": {
+            "idle": {
+                "width": 2248,
+                "height": 368,
+                "numberOfFrames": 10,
+                "ticksPerFrame": 2
+            }
+        }
+    },
+    "knight": {
+        "right": {
+            "idle": {
+                "width": 4406,
+                "height": 322,
+                "numberOfFrames": 12,
+                "ticksPerFrame": 2
+            }
+        }
+    },
+    "hp_bar": {
+        "width": 450,
+        "height": 90
+    }
+}

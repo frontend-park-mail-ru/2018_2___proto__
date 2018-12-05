@@ -4,13 +4,13 @@
 		<img src="/public/service/preloader.svg" width="80" alt="Loading...">
 	{{else}}
 		{{#if sessionExists}}
-			<li class="menu__link" ref="singleplayer"></li>
 			<li class="menu__link" ref="multiplayer"></li>
 			<li class="menu__link" ref="profile"></li>
 			<li class="menu__link" ref="leaderboard"></li>
 			<li class="menu__link" ref="about"></li>
 			<li class="menu__link" ref="logout"></li>
 		{{else}}
+			<li class="menu__link" ref="singleplayer"></li>
 			<li class="menu__link" ref="signin"></li>
 			<li class="menu__link" ref="signup"></li>
 			<li class="menu__link" ref="leaderboard"></li>

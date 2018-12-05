@@ -1,11 +1,11 @@
 
 export default class CanvasWrapper {
-	constructor(canvas, width, height) {
+	constructor(canvas) {
 		this.canvas = canvas;
-		this.canvas_width = width;
-		this.canvas_height = height;
-		this.canvas.width = width;
-		this.canvas.height = height;
+		// this.canvas_width = width;
+		// this.canvas_height = height;
+		// this.canvas.width = width;
+		// this.canvas.height = height;
 	}
 
 	animate(options) {
@@ -40,6 +40,7 @@ export default class CanvasWrapper {
 	}
 
 	draw(options) {
+		// debugger;
 		/**
 		 * image_name
 		 * pos_x
@@ -53,6 +54,7 @@ export default class CanvasWrapper {
 		const spriteImage = new Image();
 		spriteImage.src = `/public/sprites/${options.image_name}.png`;
 		spriteImage.onload = () => {
+			// debugger;
 			that.context.drawImage(
 				spriteImage,
 				0,
@@ -65,6 +67,17 @@ export default class CanvasWrapper {
 				that.height,
 			);
 		};
+	}
+
+	clear(options) {
+		const that = { ...options };
+		that.context = this.canvas.getContext("2d", { aplha: true });
+		that.context.clearRect(
+			that.pos_x,
+			that.pos_y,
+			that.width,
+			that.height,
+		);
 	}
 
 	_sprite(options) {

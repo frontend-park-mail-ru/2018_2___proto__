@@ -49,9 +49,10 @@ function animate(options) {
 	let animationSprite;
 
 	function gameLoop() {
-		window.requestAnimationFrame(gameLoop);
+		const id = window.requestAnimationFrame(gameLoop);
 		animationSprite.update();
 		animationSprite.render();
+		return id;
 	}
 
 	// Create sprite sheet
@@ -105,6 +106,10 @@ function clear(options) {
 		that.width,
 		that.height,
 	);
+}
+
+function stopAnimation(id) {
+	window.cancelAnimationFrame(id);
 }
 
 // some code for testing
