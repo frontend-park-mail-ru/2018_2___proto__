@@ -39,13 +39,14 @@ export default class GameComponent extends BaseComponent {
 			.addCanvas("game-screen__hero-left")
 			.addCanvas("game-screen__hero-right")
 			.createHero("wiz", "left")
-			.createHero("wiz", "right");
+			.createHero("knight", "right");
 
 		this.manager.getHero("left").animateIdle();
+		this.manager.getHero("right").animateIdle();
 
 		this.manager.getCanvas("background").drawBackground();
 
-		this.manager.getCanvas("interface").setLeftHP(0);
+		// this.manager.getCanvas("interface").setLeftHP(0);
 	}
 
 	prepareGame() {
