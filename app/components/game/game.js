@@ -34,13 +34,12 @@ export default class GameComponent extends BaseComponent {
 			height: 600,
 		});
 
-		this.manager.addCanvas("game-screen__background");
-		this.manager.addCanvas("game-screen__interface");
-		this.manager.addCanvas("game-screen__hero-left");
-		this.manager.addCanvas("game-screen__hero-right");
-
-		this.manager.createHero("wiz", "left");
-		this.manager.createHero("wiz", "right");
+		this.manager.addCanvas("game-screen__background")
+			.addCanvas("game-screen__interface")
+			.addCanvas("game-screen__hero-left")
+			.addCanvas("game-screen__hero-right")
+			.createHero("wiz", "left")
+			.createHero("wiz", "right");
 
 		this.manager.getHero("left").animateIdle();
 

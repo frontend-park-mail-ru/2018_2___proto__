@@ -16,6 +16,8 @@ export default class CanvasManager {
 			canvas: this.getCanvas(`hero-${side}`),
 		};
 		this[`${side}Hero`] = new Hero(newHeroData);
+
+		return this;
 	}
 
 	getHero(side) {
@@ -29,6 +31,8 @@ export default class CanvasManager {
 		canvas.height = this.height;
 		const newInterface = new CanvasInterface(canvas);
 		this._canvasMap.set(canvasClass.split("__")[1], newInterface);
+
+		return this;
 	}
 
 	getCanvasInterface(canvasName) {
