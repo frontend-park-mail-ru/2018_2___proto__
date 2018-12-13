@@ -8,20 +8,24 @@ export default class CanvasWrapper {
 		// this.canvas.height = height;
 	}
 
-	animate(options) {
+	animate(options, once = false) {
+		console.log(options.pos_x, options.pos_y);
+		this.once = once;
 		let animationSprite;
+		[, this.side] = options.image_name.split("_");
+		const animationName = `${this.side}Animation`;
 
 		function gameLoop() {
-			const id = window.requestAnimationFrame(gameLoop);
+			this[animationName] = window.requestAnimationFrame(gameLoop.bind(this));
 			animationSprite.update();
 			animationSprite.render();
-			return id;
+			// console.log(animationName, this[animationName]);
 		}
 
 		// Create sprite sheet
 		const spriteImage = new Image(options.width, options.height);
 		// Load sprite sheet
-		spriteImage.addEventListener("load", gameLoop);
+		spriteImage.addEventListener("load", gameLoop.bind(this));
 		spriteImage.src = `/public/sprites/${options.image_name}.png`;
 		console.log(spriteImage.width.valueOf());
 		console.log(spriteImage.height.valueOf());
@@ -72,12 +76,28 @@ export default class CanvasWrapper {
 	clear(options) {
 		const that = { ...options };
 		that.context = this.canvas.getContext("2d", { aplha: true });
+		// console.log(that);
 		that.context.clearRect(
 			that.pos_x,
 			that.pos_y,
 			that.width,
 			that.height,
 		);
+	}
+
+	clearCanvas() {
+		this.clear({
+			pos_x: 0,
+			pos_y: 0,
+			width: this.canvas.width,
+			height: this.canvas.height,
+		});
+	}
+
+	_stopAnimation() {
+		const animationName = `${this.side}Animation`;
+		console.log(animationName, " stopped");
+		window.cancelAnimationFrame(this[animationName]);
 	}
 
 	_sprite(options) {
@@ -96,6 +116,9 @@ export default class CanvasWrapper {
 					// Go to the next frame
 					frameIndex += 1;
 				} else {
+					if (this.once) {
+						this._stopAnimation();
+					}
 					frameIndex = 0;
 				}
 			}
@@ -103,12 +126,15 @@ export default class CanvasWrapper {
 
 		that.render = () => {
 			// Clear the canvas
-			that.context.clearRect(
+			this.clearCanvas();
+			/*
+ 			that.context.clearRect(
 				that.pos_x,
 				that.pos_y,
 				that.pos_x + that.width / numberOfFrames,
 				that.pos_y + that.height,
 			);
+			*/
 
 			// Draw the animation
 			that.context.drawImage(

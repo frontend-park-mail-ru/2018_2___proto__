@@ -2,11 +2,36 @@
 	{{#if isReady}}
 
         <div class="game_screen__canvas">
-           <canvas id="kek" class="game-screen__canvas game-screen__background"></canvas>
+           <canvas class="game-screen__canvas game-screen__background"></canvas>
            <canvas class="game-screen__canvas game-screen__interface"></canvas>
            <canvas class="game-screen__canvas game-screen__hero-left"></canvas>
            <canvas class="game-screen__canvas game-screen__hero-right"></canvas>
-           </div>
+		</div>
+
+		{{#if questionScreen}}
+			<div class="question-body">
+				<div class="question-text-container">
+					<p class="question-text">{{question}}</p>
+				</div>
+
+				<div class="answer-button">
+					<p class="answer-text">{{answer1}}</p>
+				</div>
+
+				<div class="answer-button">
+					<p class="answer-text">{{answer2}}</p>
+				</div>
+
+				<div class="answer-button">
+					<p class="answer-text">{{answer3}}</p>
+				</div>
+
+				<div class="answer-button">
+					<p class="answer-text">{{answer4}}</p>
+				</div>
+			</div>
+		{{/if}}
+
 	{{else}}
 		<div ref="isReadyButton"></div>
 	{{/if}}

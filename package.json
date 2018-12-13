@@ -16,8 +16,10 @@
 	"license": "ISC",
 	"dependencies": {
 		"express": "^4.16.3",
+		"file-loader": "^2.0.0",
 		"handlebars": "^4.0.12",
 		"handlebars-loader": "^1.7.0",
+		"image-webpack-loader": "^4.6.0",
 		"morgan": "^1.9.1",
 		"serve-favicon": "^2.5.0"
 	},

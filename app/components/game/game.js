@@ -8,6 +8,11 @@ import Manager from "../../game/animation/manager";
 // import HeroBehaviour from "../../game/gameplay/heroBehaviour.ts";
 // import LocalServer from "../../game/serverSide/localGameServer.ts";
 
+function sleep(ms) {
+	ms += new Date().getTime();
+	while (new Date() < ms) {}
+}
+
 /**
  * Компонент игры
  */
@@ -30,9 +35,11 @@ export default class GameComponent extends BaseComponent {
 
 	_renderCanvas() {
 		this.manager = new Manager({
-			width: 1000,
-			height: 600,
+			width: document.documentElement.clientWidth,
+			height: document.documentElement.clientHeight,
 		});
+
+		window.manager = this.manager;
 
 		this.manager.addCanvas("game-screen__background")
 			.addCanvas("game-screen__interface")
@@ -41,15 +48,29 @@ export default class GameComponent extends BaseComponent {
 			.createHero("wiz", "left")
 			.createHero("knight", "right");
 
-		this.manager.getHero("left").animateIdle();
-		this.manager.getHero("right").animateIdle();
+		this.manager.getHero("left").animate("idle");
+		// this.manager.getHero("right").animate("attack");
+		// sleep(1000);
+		this.manager.getHero("right").animate("idle");
 
 		this.manager.getCanvas("background").drawBackground();
-
-		// this.manager.getCanvas("interface").setLeftHP(0);
+		this.manager.getCanvas("interface").drawInterface();
+		// this.manager.getHero("left").decreaseHP();
 	}
 
 	prepareGame() {
+		/*
+		const question = {
+			isReady: true,
+			questionScreen: true,
+			question: "КАКОЕ ИЗ ИЭТИХ ПРОИЗВЕДЕНИЙ НАПИСАЛ ОЛДОС ХАКСЛИ?",
+			answer1: "Затерянный мир",
+			answer2: "О дивный новый мир",
+			answer3: "В прекрасном и яростном мире",
+			answer4: "Сотканный мир",
+		};
+		this.render(question);
+		 */
 		this.render({ isReady: true });
 		this._renderCanvas();
 		// this._scene = new GameScene();
