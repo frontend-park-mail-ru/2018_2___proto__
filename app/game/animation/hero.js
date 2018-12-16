@@ -53,7 +53,7 @@ export default class Hero {
 		if (action === "attack" || action === "die") {
 			once = true;
 		}
-		this.canvas._stopAnimation();
+		// this.canvas._stopAnimation();
 		this.canvas.animate(data, once);
 		// return data;
 	}
