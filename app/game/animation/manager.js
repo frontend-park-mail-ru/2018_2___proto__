@@ -35,11 +35,6 @@ export default class CanvasManager {
 		return this;
 	}
 
-	getCanvasInterface(canvasName) {
-		// canvasName is just 'background'
-		return this._canvasMap.get(canvasName);
-	}
-
 	getCanvas(canvasName) {
 		return this._canvasMap.get(canvasName);
 	}

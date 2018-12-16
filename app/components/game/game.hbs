@@ -7,30 +7,11 @@
            <canvas class="game-screen__canvas game-screen__hero-left"></canvas>
            <canvas class="game-screen__canvas game-screen__hero-right"></canvas>
 		</div>
+		<div ref="kek"></div>
+		<div ref="question_window"></div>
 
-		{{#if questionScreen}}
-			<div class="question-body">
-				<div class="question-text-container">
-					<p class="question-text">{{question}}</p>
-				</div>
-
-				<div class="answer-button">
-					<p class="answer-text">{{answer1}}</p>
-				</div>
-
-				<div class="answer-button">
-					<p class="answer-text">{{answer2}}</p>
-				</div>
-
-				<div class="answer-button">
-					<p class="answer-text">{{answer3}}</p>
-				</div>
-
-				<div class="answer-button">
-					<p class="answer-text">{{answer4}}</p>
-				</div>
-			</div>
-		{{/if}}
+		{{!-- {{#if questionScreen}} --}}
+		{{!-- {{/if}} --}}
 
 	{{else}}
 		<div ref="isReadyButton"></div>

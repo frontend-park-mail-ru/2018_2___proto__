@@ -58,6 +58,10 @@ export default class Hero {
 		// return data;
 	}
 
+	hp() {
+		return this.hp;
+	}
+
 	decreaseHP() {
 		this.hp -= 1;
 		// this.manager.getCanvas("interface").setLeftHP(this.hp);
