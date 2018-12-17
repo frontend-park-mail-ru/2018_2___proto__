@@ -4,7 +4,7 @@ export default class Hero {
 		this.charClass = charClass;
 		this.side = side;
 		this.manager = manager;
-		console.log("manager", manager);
+		// console.log("manager", manager);
 		switch (this.side) {
 			case "left":
 				this.coord = {
