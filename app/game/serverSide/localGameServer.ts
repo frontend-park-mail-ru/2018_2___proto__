@@ -1,10 +1,19 @@
-import IServer from "./iserver";
 import GameScene from "../engine/core/gameScene";
+import IServer from "./iserver";
 
 export default class LocalGameServer implements IServer {
-    public StartGame(scene: GameScene): void {}
+	public StartGame(scene: GameScene): void {
+		const gameTimer = setInterval(() => {
+			alert("Ticking...");
+		}, 1000);
 
-    public Connect(server: string): void {}
+		setTimeout(() => {
+			clearInterval(gameTimer);
+			alert("Stopping game timer...");
+		}, 10000);
+	}
 
-    public SendCommandToServer(): void {}
+	public Connect(server: string): void {}
+
+	public SendCommandToServer(): void {}
 }

@@ -1,27 +1,31 @@
 <div>
-	<div class="table">
-		<div class="table__body">
-			<div class="table__row">
-				<div class="table__cell table__head">Gamer</div>
-				<div class="table__cell table__head">Score</div>
-			</div>
+	{{#if preloader}}
+		<img src="https://rasseki.pro/public/service/preloader.svg" width="80" alt="Loading...">
+	{{else}}
+		<div class="table">
+			<div class="table__body">
+				<div class="table__row">
+					<div class="table__cell table__head">Gamer</div>
+					<div class="table__cell table__head">Score</div>
+				</div>
 
-			{{#each this.records}}
-			<div class="table__row">
-				<div class="table__cell">{{nickname}}</div>
-				<div class="table__cell">{{score}}</div>
+				{{#each this.records}}
+					<div class="table__row">
+						<div class="table__cell">{{nickname}}</div>
+						<div class="table__cell">{{score}}</div>
+					</div>
+				{{/each}}
 			</div>
+		</div>
+
+		<div class="paginator" ref="paginator">
+			{{#each pages}}
+				{{#if isCurrent}}
+					<a class="paginator__current-page" tag="page-{{value}}">{{value}}</a>
+				{{else}}
+					<a tag="page-{{value}}">{{value}}</a>
+				{{/if}}
 			{{/each}}
 		</div>
-	</div>
-
-	<div class="paginator" ref="paginator">
-		{{#each pages}}
-		{{#if isCurrent}}
-		<a class="paginator__current-page" tag="page-{{value}}">{{value}}</a>
-		{{else}}
-		<a tag="page-{{value}}">{{value}}</a>
-		{{/if}}
-		{{/each}}
-	</div>
+	{{/if}}
 </div>

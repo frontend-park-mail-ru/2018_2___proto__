@@ -1,14 +1,26 @@
 <div>
-	<form>
-		<input type="text" class="form__field" placeholder="Login" ref="login">
-		<input type="email" class="form__field" placeholder="E-Mail" ref="email">
-		<input type="password" class="form__field" placeholder="Password" ref="pass">
-		<input type="password" class="form__field" placeholder="Repeat your password" ref="passRep">
+	<form class="form">
+		<input type="text" class="form__field" placeholder="Login" data="login">
+		<span class="form__field__popup-login"></span>
+		<input type="email" class="form__field" placeholder="E-Mail" data="email">
+		<span class="form__field__popup-email"></span>
+		<input type="password" class="form__field" placeholder="Password" data="pass">
+		<span class="form__field__popup-pass"></span>
+		<input type="password" class="form__field" placeholder="Repeat your password" data="passRep">
+		<span class="form__field__popup-passRep"></span>
 		<div ref="submit"></div>
-		<div class="form__links">
-			<p class="form__links__link" ref="toSignIn"></p>
-			<p class="form__links__link" ref="resetPass"></p>
+		<p class="form__link" ref="toSignIn"></p>
+
+		<div id="modal" class="form__modal">
+			<div class="form__modal-content">
+				<div class="form__modal-content__header">
+					<span id="close" class="form__modal-content__header__close">&times;</span>
+					<h2>Information from the server: some problems</h2>
+				</div>
+				<div class="form__modal-content__body">
+					<p data="modal-info"></p>
+				</div>
+			</div>
 		</div>
-		<div class="form__info" ref="info"></div>
 	</form>
 </div>

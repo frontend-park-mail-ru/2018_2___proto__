@@ -1,8 +1,8 @@
-import Vector2 from "../transformation/vector2";
-import Behaviour from "./behaviour";
-import Transform2d from "../transformation/transform";
 import IdManager from "../../utility/idManager";
 import NameManager from "../../utility/nameManager";
+import Transform2d from "../transformation/transform";
+import Vector2 from "../transformation/vector2";
+import Behaviour from "./behaviour";
 
 export default class GameObject {
 	private _name: string;
@@ -30,7 +30,6 @@ export default class GameObject {
 		return this._name;
 	}
 
-
 	constructor() {
 		this._isEnabled = true;
 		this._id = IdManager.GenerateId();
@@ -52,17 +51,63 @@ export default class GameObject {
 	 * @param behaviour
 	 */
 	public AddBehaviour(behaviour: Behaviour): void {
-		let behaviourType: string = behaviour.Type;
+		const behaviourType: string = behaviour.Type;
 
 		if (this._behaviourMap.has(behaviourType)) {
 			if (typeof this._behaviourMap.get(behaviourType) === "undefined") {
-				this._behaviourMap.set(behaviourType, new Array<Behaviour>(behaviour));
+				this._behaviourMap.set(
+					behaviourType,
+					new Array<Behaviour>(behaviour),
+				);
 			} else {
-				(this._behaviourMap.get(behaviourType))!.push(behaviour);
+				this._behaviourMap.get(behaviourType)!.push(behaviour);
 			}
 		}
 
 		behaviour.GameObject = this;
+	}
+
+	/**
+	 * Получение всей информации об игровом объекте
+	 * @returns {Array<any>}
+	 */
+	public GetObjectInfo(): Array<any> {
+		return new Array<any>(
+			this._id,
+			this._name,
+			this._behaviourMap,
+			this._behaviourArr,
+			this._objectCoordinates,
+			this._textureCoordinates,
+		);
+	}
+
+	/**
+	 * Активация игрового объекта (отображается на сцене, скрипты исполняются)
+	 */
+	public Enable() {
+		this._isEnabled = true;
+
+		this._behaviourArr.forEach((behaviour) => {
+			behaviour.Enable();
+		});
+	}
+
+	/**
+	 * Деактивация игрового объекта (не отображается на сцене, скрипты исполняются)
+	 */
+	public Disable() {
+		this._isEnabled = false;
+
+		this._behaviourArr.forEach((behaviour) => {
+			behaviour.Disable();
+		});
+	}
+
+	public Update() {
+		this._behaviourArr.forEach((behaviour) => {
+			behaviour.OnUpdate();
+		});
 	}
 
 	/**
@@ -71,8 +116,8 @@ export default class GameObject {
 	 * @returns {Behaviour || null}
 	 */
 	private GetBehaviourById(id: number): Behaviour | null {
-		this._behaviourArr.forEach(script => {
-			if (script.Id == id) {
+		this._behaviourArr.forEach((script) => {
+			if (script.Id === id) {
 				return script;
 			}
 		});
@@ -86,8 +131,8 @@ export default class GameObject {
 	 * @returns {Behaviour || null}
 	 */
 	private GetBehaviourByName(name: string): Behaviour | null {
-		this._behaviourArr.forEach(script => {
-			if (script.Name == name) {
+		this._behaviourArr.forEach((script) => {
+			if (script.Name === name) {
 				return script;
 			}
 		});
@@ -109,48 +154,5 @@ export default class GameObject {
 	 */
 	private GetBehavioursByType(type: string): Array<Behaviour> | undefined {
 		return this._behaviourMap.get(type);
-	}
-
-	/**
-	 * Получение всей информации об игровом объекте
-	 * @returns {Array<any>}
-	 */
-	public GetObjectInfo(): Array<any> {
-		return new Array<any>(
-			this._id,
-			this._name,
-			this._behaviourMap,
-			this._behaviourArr,
-			this._objectCoordinates,
-			this._textureCoordinates
-		);
-	}
-
-	/**
-	 * Активация игрового объекта (отображается на сцене, скрипты исполняются)
-	 */
-	public Enable() {
-		this._isEnabled = true;
-
-		this._behaviourArr.forEach(behaviour => {
-			behaviour.Enable();
-		});
-	}
-
-	/**
-	 * Деактивация игрового объекта (не отображается на сцене, скрипты исполняются)
-	 */
-	public Disable() {
-		this._isEnabled = false;
-
-		this._behaviourArr.forEach(behaviour => {
-			behaviour.Disable();
-		});
-	}
-
-	public Update() {
-		this._behaviourArr.forEach(behaviour => {
-			behaviour.OnUpdate();
-		});
 	}
 }

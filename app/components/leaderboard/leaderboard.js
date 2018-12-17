@@ -12,18 +12,21 @@ export default class LeaderboardComponent extends BaseComponent {
 		this.template = template;
 		this._currentPage = "1";
 		this._offset = 0;
-		http.getLeaderboard(this._offset, 10).then((data) => {
-			this.render(data);
-		});
+		this._context = {
+			preloader: true,
+		};
 	}
 
-	render(context) {
-		const newContext = this._pagination(context);
-		super.render(newContext);
-		this._context.pages.forEach((page) => {
-			this._element
-				.querySelector(`[tag=page-${page.value}]`)
-				.addEventListener("click", this._onPageClick.bind(this));
+	render() {
+		super.render();
+		http.getLeaderboard(this._offset, 10).then((data) => {
+			const newContext = this._pagination({ ...{ preloader: false }, ...data });
+			super.render(newContext);
+			this._context.pages.forEach((page) => {
+				this._element
+					.querySelector(`[tag=page-${page.value}]`)
+					.addEventListener("click", this._onPageClick.bind(this));
+			});
 		});
 	}
 
@@ -45,7 +48,7 @@ export default class LeaderboardComponent extends BaseComponent {
 		this._currentPage = event.target.innerText;
 		this._offset = (this._currentPage - 1) * 10;
 		http.getLeaderboard(this._offset, 10).then((data) => {
-			this.render(data);
+			this.render({ ...{ preloader: false }, data });
 		});
 	}
 }

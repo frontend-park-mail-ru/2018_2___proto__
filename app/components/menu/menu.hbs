@@ -1,7 +1,32 @@
-<ul class="menu" ref="menu">
-	<li ref="singleplayer"></li>
-	<li ref="multiplayer"></li>
-	<li ref="profile"></li>
-	<li ref="leaderboard"></li>
-	<li ref="about"></li>
-</ul>
+<div>
+	<ul class="menu" ref="menu">
+	{{#if preloader}}
+		<img src="https://rasseki.pro/public/service/preloader.svg" width="80" alt="Loading...">
+	{{else}}
+		{{#if sessionExists}}
+			<li class="menu__link" ref="multiplayer"></li>
+			<li class="menu__link" ref="profile"></li>
+			<li class="menu__link" ref="leaderboard"></li>
+			<li class="menu__link" ref="about"></li>
+			<li class="menu__link" ref="logout"></li>
+		{{else}}
+			<li class="menu__link" ref="signin"></li>
+			<li class="menu__link" ref="signup"></li>
+			<li class="menu__link" ref="leaderboard"></li>
+			<li class="menu__link" ref="about"></li>
+		{{/if}}
+	{{/if}}
+	</ul>
+
+	<div id="modal" class="menu__modal">
+		<div class="menu__modal-content">
+			<div class="menu__modal-content__header">
+				<span id="close" class="menu__modal-content__header__close">&times;</span>
+				<h2>Information from the server: some problems</h2>
+			</div>
+			<div class="menu__modal-content__body">
+				<p data="modal-info"></p>
+			</div>
+		</div>
+	</div>
+</div>

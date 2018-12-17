@@ -1,10 +1,10 @@
 .logo-block {
-	grid-column: 2 / 3;
-	grid-row: 2 / 3;
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	white-space: nowrap;
+	-webkit-user-select: none;
+	-moz-user-select: none;
 	user-select: none;
 
 	h1 {

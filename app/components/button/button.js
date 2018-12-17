@@ -14,6 +14,7 @@ export default class ButtonComponent extends BaseComponent {
 			onClick: null,
 			href: null,
 		};
+
 		this.events = {
 			click: this._onClick.bind(this),
 		};

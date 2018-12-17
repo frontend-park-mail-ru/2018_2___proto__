@@ -1,5 +1,4 @@
 import ApplicationComponent from "./components/application/application";
-import "./modules/http";
 
 function createApplication() {
 	const application = new ApplicationComponent();

@@ -14,5 +14,5 @@ export default function sendRequest(path, method, body = null) {
 		credentials: "include",
 		body: Object.is(body, null) ? null : JSON.stringify(body),
 		headers: { "Content-Type": "application/json; charset=utf-8" },
-	}).then(response => response);
+	});
 }

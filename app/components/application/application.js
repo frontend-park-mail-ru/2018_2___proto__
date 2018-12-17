@@ -6,9 +6,9 @@ import LogoComponent from "../logo/logo";
 import AboutComponent from "../about/about";
 import LeaderboardComponent from "../leaderboard/leaderboard";
 import ProfileComponent from "../profile/profile";
-import AuthComponent from "../auth/auth";
 import SignInComponent from "../forms/signin/signin";
 import SignUpComponent from "../forms/signup/signup";
+import GameComponent from "../game/game";
 import Router from "../../modules/router";
 
 /**
@@ -19,11 +19,12 @@ export default class ApplicationComponent extends BaseComponent {
 		super();
 		this.template = template;
 		this.navigate = this.navigate.bind(this);
-		window.onpopstate = (route) => {
-			this.navigate(route);
+		this.router = new Router();
+		window.onpopstate = () => {
+			this.navigate(this.router.getLocation());
 		};
 
-		this.navigate(Router.getLocation());
+		this.navigate(this.router.getLocation());
 	}
 
 	render(context) {
@@ -31,8 +32,8 @@ export default class ApplicationComponent extends BaseComponent {
 		this._renderChildren();
 	}
 
-	navigate(item) {
-		this._context = Router.go(item);
+	navigate(route) {
+		this._context = this.router.go(route);
 		this.render();
 	}
 
@@ -40,13 +41,13 @@ export default class ApplicationComponent extends BaseComponent {
 	 * Рендерит все блоки на странице
 	 */
 	_renderChildren() {
-		this.renderChild("auth", AuthComponent, { navigate: this.navigate });
-		this.renderChild("logo", LogoComponent, { navigate: this.navigate });
-		this.renderChild("menu", MenuComponent, { navigate: this.navigate });
 		this.renderChild("signin", SignInComponent, { navigate: this.navigate });
 		this.renderChild("signup", SignUpComponent, { navigate: this.navigate });
-		this.renderChild("leaderboard", LeaderboardComponent, { records: [] });
-		this.renderChild("profile", ProfileComponent, {});
+		this.renderChild("menu", MenuComponent, { navigate: this.navigate, preloader: true });
+		this.renderChild("logo", LogoComponent, { navigate: this.navigate });
+		this.renderChild("leaderboard", LeaderboardComponent, { preloader: true });
+		this.renderChild("profile", ProfileComponent, { preloader: true });
 		this.renderChild("about", AboutComponent, {});
+		this.renderChild("game", GameComponent, { isReady: false });
 	}
 }

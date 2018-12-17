@@ -1,31 +1,30 @@
-import GameObject from "./gameObject";
 import InputManager from "../../utility/inputManager";
+import GameObject from "./gameObject";
 
 export default class GameScene {
 	private static _currentScene: GameScene;
-	public GameObjects: Array<GameObject>;
-	public InputManager: InputManager;
+	public gameObjects: Array<GameObject>;
+	public inputManager: InputManager;
 
 	public static get CurrentScene(): GameScene {
 		return this._currentScene;
 	}
 
-
 	constructor() {
-		this.GameObjects = new Array<GameObject>();
-		this.InputManager = new InputManager();
+		this.gameObjects = new Array<GameObject>();
+		this.inputManager = new InputManager();
 
 		GameScene._currentScene = this;
 	}
 
 	public Render() {
-		this.InputManager.ReadInputs();
+		this.inputManager.ReadInputs();
 
-		this.GameObjects.forEach(gameObject => {
+		this.gameObjects.forEach((gameObject) => {
 			gameObject.Update();
 		});
 
-		this.GameObjects.forEach(gameObject => {
+		this.gameObjects.forEach((gameObject) => {
 			gameObject.Render();
 		});
 	}
@@ -36,8 +35,8 @@ export default class GameScene {
 	 * @returns {GameObject || null}
 	 */
 	public GetGameObjectById(id: number): GameObject | null {
-		this.GameObjects.forEach((object) => {
-			if (object.Id == id) {
+		this.gameObjects.forEach((object) => {
+			if (object.Id === id) {
 				return object;
 			}
 		});
@@ -51,8 +50,8 @@ export default class GameScene {
 	 * @returns {GameObject || null}
 	 */
 	public GetGameObjectByName(name: string) : GameObject | null {
-		this.GameObjects.forEach((object) => {
-			if (object.Name == name) {
+		this.gameObjects.forEach((object) => {
+			if (object.Name === name) {
 				return object;
 			}
 		});

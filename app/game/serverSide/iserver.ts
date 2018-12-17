@@ -6,9 +6,9 @@ import GameScene from "../engine/core/gameScene";
 // при мультиплеера будет применяться мультиплеерная имлементация этого интерфейса, которая будет общаться с бэком
 // при сингле вся логика будет работать на клиенте
 export default interface IServer {
-    StartGame(scene: GameScene): void;
+	StartGame(scene: GameScene): void;
 
-    Connect(server: string): void;
+	Connect(server: string): void;
 
-    SendCommandToServer(): void;
+	SendCommandToServer(): void;
 }

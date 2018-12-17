@@ -1,7 +1,6 @@
 const path = require("path");
-const HtmlWebpackPlugin = require("html-webpack-plugin");
 
-const output = path.join(__dirname, "/dist");
+const output = path.join(__dirname, "/app");
 
 module.exports = {
 	entry: {
@@ -29,12 +28,19 @@ module.exports = {
 				test: /\.ts$/,
 				loader: "ts-loader",
 			},
+			{
+				test: /\.(gif|png|jpe?g|svg)$/i,
+				use: [
+					"file-loader",
+					{
+						loader: "image-webpack-loader",
+						options: {
+							bypassOnDebug: true, // webpack@1.x
+							disable: true, // webpack@2.x and newer
+						},
+					},
+				],
+			},
 		],
 	},
-
-	plugins: [
-		new HtmlWebpackPlugin({
-			template: path.join(__dirname, "app/index.html"),
-		}),
-	],
 };

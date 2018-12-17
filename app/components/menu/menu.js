@@ -2,6 +2,7 @@ import "./menu.scss";
 import template from "./menu.hbs";
 import BaseComponent from "../baseComponent";
 import ButtonComponent from "../button/button";
+import http from "../../modules/http";
 
 /**
  * Компонент меню
@@ -10,6 +11,10 @@ export default class MenuComponent extends BaseComponent {
 	constructor() {
 		super();
 		this.template = template;
+
+		http.sessionInfo().then((info) => {
+			this.render(info);
+		});
 	}
 
 	render(context) {
@@ -45,20 +50,43 @@ export default class MenuComponent extends BaseComponent {
 			text: "About",
 			onClick: this._onAboutClick.bind(this),
 		});
+
+		this.renderChild("signin", ButtonComponent, {
+			text: "Sign In",
+			onClick: this._onSignInClick.bind(this),
+		});
+
+		this.renderChild("signup", ButtonComponent, {
+			text: "Sign Up",
+			onClick: this._onSignUpClick.bind(this),
+		});
+
+		this.renderChild("logout", ButtonComponent, {
+			text: "Log Out",
+			onClick: this._onLogOutClick.bind(this),
+		});
+
+		this._element.querySelector("[id=close]").onclick = this._onModalCloseClick.bind(this);
+
+		window.onclick = (event) => {
+			if (event.target === this._element.querySelector("[id=modal]")) {
+				this._onModalCloseClick();
+			}
+		};
 	}
 
 	/**
 	 * Callback на нажатие "Play singleplayer"
 	 */
 	_onSingleplayerClick() {
-		this._context.navigate("singleplayer");
+		this._context.navigate("game");
 	}
 
 	/**
 	 * Callback на нажатие "Play multiplayer"
 	 */
 	_onMultiplayerClick() {
-		this._context.navigate("multiplayer");
+		this._context.navigate("game");
 	}
 
 	/**
@@ -80,5 +108,53 @@ export default class MenuComponent extends BaseComponent {
 	 */
 	_onAboutClick() {
 		this._context.navigate("about");
+	}
+
+	/**
+	 * Callback на нажатие "Sign In"
+	 */
+	_onSignInClick() {
+		this._context.navigate("signin");
+	}
+
+	/**
+	 * Callback на нажатие "Sign Up"
+	 */
+	_onSignUpClick() {
+		this._context.navigate("signup");
+	}
+
+	/**
+	 * Callback на нажатие "Log Out"
+	 */
+	_onLogOutClick() {
+		http.logout()
+			.then((response) => {
+				if (response.status !== 410) {
+					throw response;
+				}
+
+				this._context.navigate("menu");
+			})
+			.catch((error) => {
+				error.json().then((info) => {
+					this._element.querySelector("[data=modal-info]").innerHTML = info.msg;
+					this._onModalOpen();
+				});
+			});
+	}
+
+	/**
+	 * Callback на нажатие "X" в модальной форме
+	 */
+	_onModalCloseClick() {
+		this._element.querySelector("[id=modal]").style.display = "none";
+	}
+
+	/**
+	 * Callback на открытие модальной формы
+	 */
+	_onModalOpen() {
+		this._element.querySelector("[id=modal]").style.display = "block";
 	}
 }

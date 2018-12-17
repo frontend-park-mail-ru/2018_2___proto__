@@ -1,0 +1,38 @@
+{
+    "wiz": {
+        "left": {
+            "idle": {
+                "width": 5120,
+                "height": 512,
+                "numberOfFrames": 10,
+                "ticksPerFrame": 2,
+                "x": 0,
+                "y": 0
+            }
+        }
+    },
+    "knight": {
+        "right": {
+            "attack": {
+                "width": 20300,
+                "height": 500,
+                "numberOfFrames": 29,
+                "ticksPerFrame": 2,
+                "x": 800,
+                "y": 450
+            },
+            "idle": {
+                "width": 4406,
+                "height": 322,
+                "numberOfFrames": 12,
+                "ticksPerFrame": 2,
+                "x": 0,
+                "y": 0
+            }
+        }
+    },
+    "hp_bar": {
+        "width": 450,
+        "height": 90
+    }
+}

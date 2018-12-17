@@ -1,0 +1,34 @@
+.game-screen {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	left: 0;
+	top: 0;
+
+	&__canvas {
+		position: absolute;
+		left: 0;
+		top: 0;
+	}
+
+	&__backgound {
+		z-index: 0;
+	}
+
+	&__interface {
+		z-index: 1;
+	}
+
+	&__hero-left {
+		z-index: 2;
+	}
+
+	&__hero-right {
+		z-index: 3;
+	}
+
+	&__question {
+		z-index: 4;
+	}
+}

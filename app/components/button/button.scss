@@ -2,7 +2,7 @@
 	text-align: center;
 	display: block;
 	font-size: 24px;
-	padding: 10px;
+	padding: 12px 20px;
 	font-weight: bold;
 	cursor: pointer;
 	text-decoration: none;
@@ -10,8 +10,19 @@
 	color: white;
 	box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
 	border-radius: 5px;
+	-webkit-transition: 0.3s ease;
+	-moz-transition: 0.3s ease;
+	-o-transition: 0.3s ease;
+	transition: all 0.3s ease;
 
 	&:active {
 		background-color: rgb(90, 77, 173);
+	}
+
+	&:hover {
+		-webkit-transform: scale(1.05);
+		-moz-transform: scale(1.05);
+		-o-transform: scale(1.05);
+		transform: scale(1.05);
 	}
 }
