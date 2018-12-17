@@ -1,5 +1,3 @@
-// import CanvasInterface from "../../game/animation/interface";
-
 export default class Hero {
 	constructor({	side, charClass, canvas }, manager) {
 		this.canvas = canvas;
@@ -47,10 +45,6 @@ export default class Hero {
 			once = true;
 		}
 		this.canvas.animate(data, once);
-	}
-
-	hp() {
-		return this.hp;
 	}
 
 	decreaseHP() {
