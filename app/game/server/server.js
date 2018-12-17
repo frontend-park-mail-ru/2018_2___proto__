@@ -28,7 +28,7 @@ export default class LocalGameServer {
 			const playerCountUpTimer = setInterval(this._countTime.bind(this), 100);
 			const countDownTimer = setTimeout(() => {
 				this.timeIsOut = true;
-				this.showQuestion(question);
+				this._showQuestion(question);
 				clearInterval(playerCountUpTimer);
 			}, timeToAnswer * 1000);
 
@@ -39,7 +39,7 @@ export default class LocalGameServer {
 		}
 	}
 
-	showQuestion(question) {
+	_showQuestion(question) {
 		const context = {
 			questionWindow: true,
 			questionText: question.Text(),
@@ -48,6 +48,13 @@ export default class LocalGameServer {
 			answer3: question.GetAnswer(2),
 			answer4: question.GetAnswer(3),
 		};
+		this.game.renderChild("question_window", QuestionComponent, context);
+	}
+
+	_hideQuestion() {
+		const context = {
+			questionWindow: false,
+		}
 		this.game.renderChild("question_window", QuestionComponent, context);
 	}
 
