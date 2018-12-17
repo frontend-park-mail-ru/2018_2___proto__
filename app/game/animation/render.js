@@ -26,7 +26,7 @@ export default class CanvasWrapper {
 		const spriteImage = new Image(options.width, options.height);
 		// Load sprite sheet
 		spriteImage.addEventListener("load", gameLoop.bind(this));
-		spriteImage.src = `/public/sprites/${options.image_name}.png`;
+		spriteImage.src = `https://rasseki.pro/public/sprites/${options.image_name}.png`;
 		console.log(spriteImage.width.valueOf());
 		console.log(spriteImage.height.valueOf());
 
@@ -56,7 +56,7 @@ export default class CanvasWrapper {
 		const that = { ...options };
 		that.context = this.canvas.getContext("2d", { aplha: true });
 		const spriteImage = new Image();
-		spriteImage.src = `/public/sprites/${options.image_name}.png`;
+		spriteImage.src = `https://rasseki.pro/public/sprites/${options.image_name}.png`;
 		spriteImage.onload = () => {
 			// debugger;
 			that.context.drawImage(

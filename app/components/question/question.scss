@@ -3,7 +3,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background: url(/public/sprites/paper-dialog.png) no-repeat center center;
+    background: url(https://rasseki.pro/public/sprites/paper-dialog.png) no-repeat center center;
     background-size: contain;
 	// position:absolute;
     margin-left: 15vw;
@@ -41,12 +41,12 @@
 }
 
 .answer-button {
-    background: url(/public/sprites/button-on.png) no-repeat center center;
+    background: url(https://rasseki.pro/public/sprites/button-on.png) no-repeat center center;
     margin-bottom: 2%;
     width: 60%;
     height: 12%;
 }
 
 .answer-button:hover {
-    background: url(/public/sprites/grey.png) no-repeat center center;
+    background: url(https://rasseki.pro/public/sprites/grey.png) no-repeat center center;
 }

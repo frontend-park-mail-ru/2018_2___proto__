@@ -46,7 +46,7 @@ export default class CanvasManager {
 
 	_parseMeta() {
 		const request = new XMLHttpRequest();
-		request.open("GET", "/public/sprites/meta.json", false);
+		request.open("GET", "https://rasseki.pro/public/sprites/meta.json", false);
 		request.send(null);
 		this.meta = JSON.parse(request.responseText);
 	}

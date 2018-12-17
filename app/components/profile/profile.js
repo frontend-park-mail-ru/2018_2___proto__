@@ -23,7 +23,7 @@ export default class ProfileComponent extends BaseComponent {
 		super.render();
 		http.getUser().then((info) => {
 			const context = { ...{ preloader: false }, ...info };
-			context.avatar = `./public/avatars/${info.avatar}`;
+			context.avatar = `.https://rasseki.pro/public/avatars/${info.avatar}`;
 			super.render(context);
 			this._login = this._element.querySelector("[ref=login]");
 			this._pass = this._element.querySelector("[ref=pass]");
