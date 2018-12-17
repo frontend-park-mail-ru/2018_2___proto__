@@ -12,17 +12,12 @@ export default class Hero {
 				this.coord = {
 					x: document.documentElement.clientWidth * 0.1,
 					y: document.documentElement.clientHeight * 0.55,
-					// x: 20,
-					// y: 100,
 				};
-				// console.log("x", this.coord.x);
 				break;
 			case "right":
 				this.coord = {
 					x: document.documentElement.clientWidth * 0.7,
 					y: document.documentElement.clientHeight * 0.65,
-					// x: 500,
-					// y: 100,
 				};
 				break;
 			default:
@@ -31,7 +26,6 @@ export default class Hero {
 					x: 0,
 					y: 0,
 				};
-				// debugger;
 		}
 		this.parseMeta(charClass, side);
 		this.hp = 4;
@@ -39,7 +33,6 @@ export default class Hero {
 
 	animate(action) {
 		const spriteName = `${this.charClass}_${this.side}_${action}`;
-		// debugger
 		const data = {
 			image_name: spriteName,
 			pos_x: this.meta[action].x ? this.meta[action].x : this.coord.x,
@@ -53,9 +46,7 @@ export default class Hero {
 		if (action === "attack" || action === "die") {
 			once = true;
 		}
-		// this.canvas._stopAnimation();
 		this.canvas.animate(data, once);
-		// return data;
 	}
 
 	hp() {

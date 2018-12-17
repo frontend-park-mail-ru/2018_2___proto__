@@ -53,12 +53,11 @@ export default class LocalGameServer {
 	_hideQuestion() {
 		const context = {
 			questionWindow: false,
-		}
+		};
 		this.game.renderChild("question_window", QuestionComponent, context);
 	}
 
 	_countTime() {
 		this.playerCountUpTime += 100;
-		// console.log(this.playerCountUpTime);
 	}
 }
