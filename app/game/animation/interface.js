@@ -64,10 +64,10 @@ export default class Interface extends CanvasWrapper {
 		});
 	}
 
-	drawInterface() {
+	drawInterface(leftHP = 4, rightHP = 4) {
 		// left hp bar
 		this.draw({
-			image_name: "hp/hp_4_right",
+			image_name: `hp/hp_${leftHP}_left`,
 			pos_x: this.x_margin, // coords of the sprite"s top left point
 			pos_y: this.y_margin,
 			width: 450, // size of the image
@@ -76,7 +76,7 @@ export default class Interface extends CanvasWrapper {
 
 		// right hp bar
 		this.draw({
-			image_name: "hp/hp_4_right",
+			image_name: `hp/hp_${rightHP}_right`,
 			pos_x: this.canvas.width - 450 - this.x_margin, // coords of the sprite"s top left point
 			pos_y: this.y_margin,
 			width: 450, // size of the image

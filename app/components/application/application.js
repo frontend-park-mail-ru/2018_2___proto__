@@ -3,6 +3,7 @@ import template from "./application.hbs";
 import BaseComponent from "../baseComponent";
 import MenuComponent from "../menu/menu";
 import LogoComponent from "../logo/logo";
+import QuestionComponent from "../question/question";
 import AboutComponent from "../about/about";
 import LeaderboardComponent from "../leaderboard/leaderboard";
 import ProfileComponent from "../profile/profile";
@@ -49,5 +50,6 @@ export default class ApplicationComponent extends BaseComponent {
 		this.renderChild("profile", ProfileComponent, { preloader: true });
 		this.renderChild("about", AboutComponent, {});
 		this.renderChild("game", GameComponent, { isReady: false });
+		// this.renderChild("question_window", QuestionComponent, { questionWindow: false });
 	}
 }
