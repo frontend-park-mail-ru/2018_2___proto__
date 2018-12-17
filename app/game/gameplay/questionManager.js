@@ -1,55 +1,8 @@
+import questions from "./questions";
 // please kill me for this
 function LoadQuestion() {
-	const questionsJSON = `{
-        "questions": [
-          {
-            "text": "question1",
-            "correctAnswerIndex": 0,
-            "timeToAnswer": 5,
-            "answers": [
-              "true",
-              "false",
-              "false",
-              "true"
-            ]
-          },
-          {
-            "text": "question2",
-            "correctAnswerIndex": 0,
-            "timeToAnswer": 5,
-            "answers": [
-              "true",
-              "false",
-              "false",
-              "true"
-            ]
-          },
-          {
-            "text": "question3",
-            "correctAnswerIndex": 0,
-            "timeToAnswer": 5,
-            "answers": [
-              "true",
-              "false",
-              "false",
-              "true"
-            ]
-          },
-          {
-            "text": "question4",
-            "correctAnswerIndex": 0,
-            "timeToAnswer": 5,
-            "answers": [
-              "true",
-              "false",
-              "false",
-              "true"
-            ]
-          }
-        ]
-      }`;
 	const questionInfoArray = new Array();
-	const questionsArray = JSON.parse(questionsJSON).questions;
+	const questionsArray = JSON.parse(questions).questions;
 	questionsArray.forEach((question) => {
 		questionInfoArray.push(new QuestionInfo(question));
 	});

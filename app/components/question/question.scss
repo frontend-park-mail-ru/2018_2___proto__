@@ -5,11 +5,12 @@
     align-items: center;
     background: url(/public/sprites/paper-dialog.png) no-repeat center center;
     background-size: contain;
-	position:absolute;
-    margin-left: 15vw;
+	// position:absolute;
+    // margin-left: 15vw;
     margin-top: 20vh;
     width: 70vw;
     height: 70vh;
+    z-index: 4;
 }
 
 .question-text-container {

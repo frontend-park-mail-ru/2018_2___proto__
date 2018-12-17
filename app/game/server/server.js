@@ -43,10 +43,10 @@ export default class LocalGameServer {
 		const context = {
 			questionWindow: true,
 			questionText: question.Text(),
-			answer1: question.GetAnswer(1),
-			answer2: question.GetAnswer(2),
-			answer3: question.GetAnswer(3),
-			answer4: question.GetAnswer(4),
+			answer1: question.GetAnswer(0),
+			answer2: question.GetAnswer(1),
+			answer3: question.GetAnswer(2),
+			answer4: question.GetAnswer(3),
 		};
 		this.game.renderChild("question_window", QuestionComponent, context);
 	}

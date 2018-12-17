@@ -1,7 +1,7 @@
 .game-screen {
 	display: flex;
 	flex-direction: row;
-	justify-content: space-around;
+	justify-content: center;
 	align-items: center;
 	left: 0;
 	top: 0;
@@ -28,6 +28,7 @@
 		z-index: 3;
 	}
 
-	&__game-screen {
+	&__question {
+		z-index: 4;
 	}
 }
