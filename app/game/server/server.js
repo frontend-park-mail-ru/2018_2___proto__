@@ -15,7 +15,6 @@ export default class LocalGameServer {
 			opponentHP: 4,
 		};
 
-		// debugger
 		// game starts here
 		this.timeIsOut = false;
 		this.roundTime = 10;
