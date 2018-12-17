@@ -19,13 +19,12 @@ npm start
 
 ```
 npm install
-npm run prod
 npm start
 ```
 
 ## Деплой
 
-[Frontend](https://frontend-proto.now.sh/)
+[Frontend](https://rasseki.pro/)
 
 ## Участники
 

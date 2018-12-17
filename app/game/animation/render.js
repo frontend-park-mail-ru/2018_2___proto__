@@ -27,8 +27,8 @@ export default class CanvasWrapper {
 		// Load sprite sheet
 		spriteImage.addEventListener("load", gameLoop.bind(this));
 		spriteImage.src = `https://rasseki.pro/public/sprites/${options.image_name}.png`;
-		console.log(spriteImage.width.valueOf());
-		console.log(spriteImage.height.valueOf());
+		// console.log(spriteImage.width.valueOf());
+		// console.log(spriteImage.height.valueOf());
 
 		// Create sprite
 		animationSprite = this._sprite({
@@ -96,7 +96,7 @@ export default class CanvasWrapper {
 
 	_stopAnimation() {
 		const animationName = `${this.side}Animation`;
-		console.log(animationName, " stopped");
+		// console.log(animationName, " stopped");
 		window.cancelAnimationFrame(this[animationName]);
 	}
 

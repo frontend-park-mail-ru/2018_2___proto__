@@ -29,7 +29,7 @@ export default class Interface extends CanvasWrapper {
 					width: this.canvas.width,
 					height: this.canvas.height,
 				};
-				console.log(data);
+				// console.log(data);
 				this.clear(data);
 				break;
 			default:
