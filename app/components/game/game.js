@@ -32,14 +32,6 @@ export default class GameComponent extends BaseComponent {
 			text: "Ready",
 			onClick: this._prepareGame.bind(this),
 		});
-		this.renderChild("question_window", QuestionComponent, {
-			questionWindow: true,
-			question: "question.Text()",
-			answer1: "question.GetAnswer(1)",
-			answer2: "question.GetAnswer(2)",
-			answer3: "question.GetAnswer(3)",
-			answer4: "question.GetAnswer(4)",
-		});
 	}
 
 	_renderCanvas() {
@@ -58,7 +50,7 @@ export default class GameComponent extends BaseComponent {
 			.createHero("wiz", "left")
 			.createHero("knight", "right");
 
-		// this.manager.getCanvas("background").drawBackground();
+		this.manager.getCanvas("background").drawBackground();
 		this.manager.getCanvas("interface").drawInterface();
 		this.manager.getHero("left").animate("idle");
 		this.manager.getHero("right").animate("idle");
@@ -67,18 +59,6 @@ export default class GameComponent extends BaseComponent {
 
 		// this.manager.getHero("left").decreaseHP();
 	}
-
-	showQuestion() {
-		this.renderChild("question_window", QuestionComponent, {
-			questionWindow: true,
-			question: "question.Text()",
-			answer1: "question.GetAnswer(1)",
-			answer2: "question.GetAnswer(2)",
-			answer3: "question.GetAnswer(3)",
-			answer4: "question.GetAnswer(4)",
-		});
-	}
-
 
 	_prepareGame() {
 		this.render({ isReady: true });
