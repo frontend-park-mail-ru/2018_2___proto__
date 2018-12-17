@@ -76,7 +76,7 @@ export default class CanvasWrapper {
 	clear(options) {
 		const that = { ...options };
 		that.context = this.canvas.getContext("2d", { aplha: true });
-		// console.log(that);
+		console.log(that);
 		that.context.clearRect(
 			that.pos_x,
 			that.pos_y,
