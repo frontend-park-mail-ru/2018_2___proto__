@@ -24,24 +24,36 @@ export default class QuestionComponent extends BaseComponent {
 
 	_renderChildren() {
 		this.renderChild("answer1", AnswerButtonComponent, {
-			text: this._context.answer1,
-			onClick: this._answerEvent(1),
+			answer: this._context.answer1,
+			onClick: this._onAnswer1Click.bind(this),
 		});
 		this.renderChild("answer2", AnswerButtonComponent, {
-			text: this._context.answer1,
-			onClick: this._answerEvent(2),
+			answer: this._context.answer2,
+			onClick: this._onAnswer2Click.bind(this),
 		});
 		this.renderChild("answer3", AnswerButtonComponent, {
-			text: this._context.answer1,
-			onClick: this._answerEvent(3),
+			answer: this._context.answer3,
+			onClick: this._onAnswer3Click.bind(this),
 		});
 		this.renderChild("answer4", AnswerButtonComponent, {
-			text: this._context.answer1,
-			onClick: this._answerEvent(4),
+			answer: this._context.answer4,
+			onClick: this._onAnswer4Click.bind(this),
 		});
 	}
 
-	_answerEvent(answerID) {
-		alert(answerID);
+	_onAnswer1Click() {
+		alert(this._context.answer1);
+	}
+
+	_onAnswer2Click() {
+		alert(this._context.answer2);
+	}
+
+	_onAnswer3Click() {
+		alert(this._context.answer3);
+	}
+
+	_onAnswer4Click() {
+		alert(this._context.answer4);
 	}
 }

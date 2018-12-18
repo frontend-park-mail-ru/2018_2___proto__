@@ -29,7 +29,7 @@ export default class LocalGameServer {
 				this.timeIsOut = true;
 				this._showQuestion(question);
 				clearInterval(playerCountUpTimer);
-			}, timeToAnswer * 1000);
+			}, timeToAnswer );
 
 			// while (this.timeIsOut !== true) { }
 

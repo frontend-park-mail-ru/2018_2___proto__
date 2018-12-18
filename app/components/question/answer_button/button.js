@@ -10,9 +10,8 @@ export default class AnswerButtonComponent extends BaseComponent {
 		super();
 		this.template = template;
 		this._context = {
-			text: "",
+			answer: "",
 			onClick: null,
-			href: null,
 		};
 
 		this.events = {
