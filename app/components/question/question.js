@@ -2,6 +2,7 @@ import "./question.scss";
 import template from "./question.hbs";
 import BaseComponent from "../baseComponent";
 import AnswerButtonComponent from "./answer_button/button";
+import Bus from "../../modules/bus";
 
 export default class QuestionComponent extends BaseComponent {
 	constructor() {
@@ -42,18 +43,26 @@ export default class QuestionComponent extends BaseComponent {
 	}
 
 	_onAnswer1Click() {
-		alert(this._context.answer1);
+		// alert(this._context.answer1);
+		this._emitEvent(1);
 	}
 
 	_onAnswer2Click() {
-		alert(this._context.answer2);
+		// alert(this._context.answer2);
+		this._emitEvent(2);
 	}
 
 	_onAnswer3Click() {
-		alert(this._context.answer3);
+		// alert(this._context.answer3);
+		this._emitEvent(3);
 	}
 
 	_onAnswer4Click() {
-		alert(this._context.answer4);
+		// alert(this._context.answer4);
+		this._emitEvent(4);
+	}
+
+	_emitEvent(answerIndex) {
+		Bus.emit("answer", answerIndex);
 	}
 }

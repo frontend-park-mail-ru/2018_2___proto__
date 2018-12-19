@@ -1,6 +1,6 @@
 import QuestionManager from "../gameplay/questionManager";
 import QuestionComponent from "../../components/question/question";
-
+import Bus from "../../modules/bus";
 
 export default class LocalGameServer {
 	constructor(game, manager) {
@@ -15,6 +15,12 @@ export default class LocalGameServer {
 			opponentHP: 4,
 		};
 
+		Bus.on("answer", (index) => {
+			this.answerIndex = index;
+			// console.log(index);
+			this._checkAnswer(this.answerIndex);
+		});
+
 		// game starts here
 		this.timeIsOut = false;
 		this.roundTime = 10;
@@ -23,13 +29,14 @@ export default class LocalGameServer {
 
 		while (heroesAlive !== false) {
 			question = this.questionManager.NewQuestion();
+			this.currentQuestion = question;
 			const timeToAnswer = question.TimeToAnswer();
 			const playerCountUpTimer = setInterval(this._countTime.bind(this), 100);
 			const countDownTimer = setTimeout(() => {
 				this.timeIsOut = true;
-				this._showQuestion(question);
 				clearInterval(playerCountUpTimer);
-			}, timeToAnswer );
+			}, timeToAnswer);
+			this._showQuestion(question);
 
 			// while (this.timeIsOut !== true) { }
 
@@ -39,6 +46,7 @@ export default class LocalGameServer {
 	}
 
 	_showQuestion(question) {
+		this.answer = -1;
 		const context = {
 			questionWindow: true,
 			questionText: question.Text(),
@@ -48,6 +56,11 @@ export default class LocalGameServer {
 			answer4: question.GetAnswer(3),
 		};
 		this.game.renderChild("question_window", QuestionComponent, context);
+	}
+
+	_checkAnswer(answerIndex) {
+		const correct = this.currentQuestion.CheckAnswerCorrectness(answerIndex);
+		console.log(correct);
 	}
 
 	_hideQuestion() {
