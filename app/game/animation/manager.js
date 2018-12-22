@@ -1,5 +1,6 @@
 import Hero from "./hero";
 import CanvasInterface from "./interface";
+import Bus from "../../modules/bus";
 
 export default class CanvasManager {
 	constructor({ width, height }) {
@@ -7,6 +8,10 @@ export default class CanvasManager {
 		this.height = height;
 		this._canvasMap = new Map();
 		// this._parseMeta();
+		Bus.on("animate", ({ side, action }) => {
+			this[`${side}Hero`].animate(action);
+			console.log(side, action);
+		});
 	}
 
 	createHero(charClass, side) {

@@ -8,3 +8,7 @@ function createApplication() {
 }
 
 window.onload = createApplication();
+
+// document.addEventListener('click', (ev) => {
+// 	console.log(ev);
+// });

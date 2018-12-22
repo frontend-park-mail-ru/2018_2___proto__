@@ -6,8 +6,42 @@
                 "height": 512,
                 "numberOfFrames": 10,
                 "ticksPerFrame": 2,
-                "x": 0,
-                "y": 0
+                "margin_bottom": 200,
+                "border": {
+                    "bottom": 90
+                },
+                "offset": {
+                    "x": 0,
+                    "y": 70
+                }
+            },
+            "attack": {
+                "width": 5120,
+                "height": 512,
+                "numberOfFrames": 10,
+                "ticksPerFrame": 4,
+                "margin_bottom": 200,
+                "border": {
+                    "bottom": 90
+                },
+                "offset": {
+                    "x": 0,
+                    "y": 65
+                }
+            },
+            "die": {
+                "width": 5608,
+                "height": 550,
+                "numberOfFrames": 10,
+                "ticksPerFrame": 2.5,
+                "margin_bottom": 200,
+                "border": {
+                    "bottom": 90
+                },
+                "offset": {
+                    "x": 0,
+                    "y": 75
+                }
             }
         }
     },
@@ -18,16 +52,42 @@
                 "height": 500,
                 "numberOfFrames": 29,
                 "ticksPerFrame": 2,
-                "x": 800,
-                "y": 450
+                "margin_bottom": 200,
+                "border": {
+                    "bottom": 16
+                },
+                "offset": {
+                    "x": -325,
+                    "y": 57
+                }
             },
             "idle": {
                 "width": 4406,
                 "height": 322,
                 "numberOfFrames": 12,
                 "ticksPerFrame": 2,
-                "x": 0,
-                "y": 0
+                "margin_bottom": 200,
+                "border": {
+                    "bottom": 40
+                },
+                "offset": {
+                    "x": 0,
+                    "y": 30
+                }
+            },
+            "die": {
+                "width": 21000,
+                "height": 500,
+                "numberOfFrames": 30,
+                "ticksPerFrame": 2,
+                "margin_bottom": 200,
+                "border": {
+                    "bottom": 54
+                },
+                "offset": {
+                    "x": -41,
+                    "y": 75
+                }
             }
         }
     },

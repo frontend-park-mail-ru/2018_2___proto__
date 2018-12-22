@@ -1,4 +1,6 @@
 
+import Bus from "../../modules/bus";
+
 export default class CanvasWrapper {
 	constructor(canvas) {
 		this.canvas = canvas;
@@ -8,9 +10,9 @@ export default class CanvasWrapper {
 		// this.canvas.height = height;
 	}
 
-	animate(options, once = false) {
+	animate(options, action) {
 		console.log(options.pos_x, options.pos_y);
-		this.once = once;
+		this.action = action;
 		let animationSprite;
 		[, this.side] = options.image_name.split("_");
 		const animationName = `${this.side}Animation`;
@@ -26,7 +28,7 @@ export default class CanvasWrapper {
 		const spriteImage = new Image(options.width, options.height);
 		// Load sprite sheet
 		spriteImage.addEventListener("load", gameLoop.bind(this));
-		spriteImage.src = `https://rasseki.pro/public/sprites/${options.image_name}.png`;
+		spriteImage.src = `/public/sprites/${options.image_name}.png`;
 		// console.log(spriteImage.width.valueOf());
 		// console.log(spriteImage.height.valueOf());
 
@@ -43,7 +45,7 @@ export default class CanvasWrapper {
 		});
 	}
 
-	draw(options) {
+	draw(options, { src_x = 0, src_y = 0 } = {}) {
 		// debugger;
 		/**
 		 * image_name
@@ -61,8 +63,8 @@ export default class CanvasWrapper {
 			// debugger;
 			that.context.drawImage(
 				spriteImage,
-				0,
-				0,
+				src_x,
+				src_y,
 				that.width,
 				that.height,
 				that.pos_x,
@@ -115,12 +117,19 @@ export default class CanvasWrapper {
 				if (frameIndex < numberOfFrames - 1) {
 					// Go to the next frame
 					frameIndex += 1;
-				} else {
-					if (this.once) {
-						this._stopAnimation();
+				} else if (this.action === "attack" || this.action === "die") {
+					this._stopAnimation();
+					console.log("stopping...");
+					if (this.action === "attack") {
+						setTimeout(() => {
+							Bus.emit("animate", {
+								side: this.side,
+								action: "idle",
+							});
+						}, 1340);
 					}
-					frameIndex = 0;
-				}
+				} else { frameIndex = 0; }
+				// frameIndex = 0; }
 			}
 		};
 
