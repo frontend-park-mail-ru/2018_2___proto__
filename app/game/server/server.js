@@ -30,7 +30,7 @@ export default class LocalGameServer {
 		this.playerAnswerTime = 0;
 
 		setTimeout(() => {
-			// this._showQuestion();
+			this._showQuestion();
 		}, 2000);
 	}
 
