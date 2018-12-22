@@ -58,7 +58,7 @@ export default class CanvasWrapper {
 		const that = { ...options };
 		that.context = this.canvas.getContext("2d", { aplha: true });
 		const spriteImage = new Image();
-		spriteImage.src = `https://rasseki.pro/public/sprites/${options.image_name}.png`;
+		spriteImage.src = `/public/sprites/${options.image_name}.png`;
 		spriteImage.onload = () => {
 			// debugger;
 			that.context.drawImage(

@@ -61,7 +61,7 @@ export default class Interface extends CanvasWrapper {
 			image_name: "full-bg",
 			pos_x: 0, // coords of the sprite"s top left point
 			pos_y: 0,
-			width: 3072, // size of the image
+			width: document.documentElement.clientWidth, // size of the image
 			height: document.documentElement.clientHeight,
 		}, {
 			src_x: 0,
