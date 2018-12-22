@@ -30,7 +30,7 @@ export default class LocalGameServer {
 		this.playerAnswerTime = 0;
 
 		setTimeout(() => {
-			this._showQuestion();
+			// this._showQuestion();
 		}, 2000);
 	}
 
@@ -96,9 +96,7 @@ export default class LocalGameServer {
 				}
 			}
 		}
-
 		this._hideQuestion();
-		// console.log(this.playerAnswerTime);
 
 		let action;
 		let newGame;
@@ -125,7 +123,6 @@ export default class LocalGameServer {
 
 	attack(whoAttacks) {
 		if (whoAttacks === "npc") {
-			// this.game.manager.rightHero.animate("attack");
 			console.log("NPC attacks!");
 			this.game.manager.rightHero.animate("attack");
 			if (this.heroInfo.playerHP === 1) {
@@ -193,7 +190,7 @@ export default class LocalGameServer {
 		let id = window.setTimeout(() => {}, 0);
 
 		while (id) {
-			window.clearTimeout(id); // will do nothing if no timeout with id is present
+			window.clearTimeout(id);
 			id -= 1;
 		}
 	}

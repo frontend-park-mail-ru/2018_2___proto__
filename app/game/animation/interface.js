@@ -55,14 +55,14 @@ export default class Interface extends CanvasWrapper {
 	}
 
 	drawBackground() {
-		let height = 1080 - document.documentElement.clientHeight;
+		let height = 1536 - document.documentElement.clientHeight;
 		if (height < 0) { height = 0; }
 		this.draw({
 			image_name: "full-bg",
 			pos_x: 0, // coords of the sprite"s top left point
 			pos_y: 0,
-			width: 1920, // size of the image
-			height: 1080,
+			width: 3072, // size of the image
+			height: document.documentElement.clientHeight,
 		}, {
 			src_x: 0,
 			src_y: height,

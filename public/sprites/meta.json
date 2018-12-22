@@ -6,7 +6,7 @@
                 "height": 512,
                 "numberOfFrames": 10,
                 "ticksPerFrame": 2,
-                "margin_bottom": 200,
+                "margin_bottom": 250,
                 "border": {
                     "bottom": 90
                 },
@@ -20,7 +20,7 @@
                 "height": 512,
                 "numberOfFrames": 10,
                 "ticksPerFrame": 4,
-                "margin_bottom": 200,
+                "margin_bottom": 250,
                 "border": {
                     "bottom": 90
                 },
@@ -34,7 +34,7 @@
                 "height": 550,
                 "numberOfFrames": 10,
                 "ticksPerFrame": 2.5,
-                "margin_bottom": 200,
+                "margin_bottom": 250,
                 "border": {
                     "bottom": 90
                 },
@@ -52,7 +52,7 @@
                 "height": 500,
                 "numberOfFrames": 29,
                 "ticksPerFrame": 2,
-                "margin_bottom": 200,
+                "margin_bottom": 250,
                 "border": {
                     "bottom": 16
                 },
@@ -66,7 +66,7 @@
                 "height": 322,
                 "numberOfFrames": 12,
                 "ticksPerFrame": 2,
-                "margin_bottom": 200,
+                "margin_bottom": 250,
                 "border": {
                     "bottom": 40
                 },
@@ -80,12 +80,56 @@
                 "height": 500,
                 "numberOfFrames": 30,
                 "ticksPerFrame": 2,
-                "margin_bottom": 200,
+                "margin_bottom": 250,
                 "border": {
                     "bottom": 54
                 },
                 "offset": {
                     "x": -41,
+                    "y": 75
+                }
+            }
+        },
+        "left": {
+            "attack": {
+                "width": 20300,
+                "height": 500,
+                "numberOfFrames": 29,
+                "ticksPerFrame": 2,
+                "margin_bottom": 250,
+                "border": {
+                    "bottom": 16
+                },
+                "offset": {
+                    "x": 5,
+                    "y": 60
+                }
+            },
+            "idle": {
+                "width": 4406,
+                "height": 322,
+                "numberOfFrames": 12,
+                "ticksPerFrame": 2,
+                "margin_bottom": 250,
+                "border": {
+                    "bottom": 40
+                },
+                "offset": {
+                    "x": 0,
+                    "y": 30
+                }
+            },
+            "die": {
+                "width": 23100,
+                "height": 500,
+                "numberOfFrames": 33,
+                "ticksPerFrame": 2,
+                "margin_bottom": 250,
+                "border": {
+                    "bottom": 54
+                },
+                "offset": {
+                    "x": -210,
                     "y": 75
                 }
             }
