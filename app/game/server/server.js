@@ -1,5 +1,6 @@
 import QuestionManager from "../gameplay/questionManager";
 import QuestionComponent from "../../components/question/question";
+import GameoverComponent from "../../components/question/gameover/gameover";
 import Bus from "../../modules/bus";
 
 // I don't know who wrote this.
@@ -13,6 +14,16 @@ export default class LocalGameServer {
 			this.answerIndex = index;
 			// console.log(index);
 			this._checkAnswer(this.answerIndex);
+		});
+
+		Bus.on("newGame", () => {
+			this._hideGameOverWindow();
+			this.StartGame();
+		});
+
+		Bus.on("cancel", () => {
+			this._clearTimeouts();
+			location.reload();
 		});
 	}
 
@@ -100,21 +111,23 @@ export default class LocalGameServer {
 		this._hideQuestion();
 
 		let action;
-		let newGame;
+		// let newGame;
 		let time;
 		if (this.heroInfo.playerAlive && this.heroInfo.npcAlive) {
 			action = () => { this._showQuestion(); };
 			time = 2000;
 		} else if (!this.heroInfo.playerAlive) {
 			action = () => {
-				newGame = confirm("Game over!\nPlay again? :D");
-				if (newGame) { this.StartGame(); } else { this._clearTimeouts(); }
+				// newGame = confirm("Game over!\nPlay again? :D");
+				this._showGameOverWindow("Игра окончена!\nПопробовать ещё?");
+				// if (newGame) { this.StartGame(); } else { this._clearTimeouts(); }
 			};
 			time = 3000;
 		} else if (!this.heroInfo.npcAlive) {
 			action = () => {
-				newGame = confirm("Nice! You've won!!!\nNew game?");
-				if (newGame) { this.StartGame(); } else { this._clearTimeouts(); }
+				// newGame = confirm("Nice! You've won!!!\nNew game?");
+				this._showGameOverWindow("Вы выиграли!\nБудем продолжать?");
+				// if (newGame) { this.StartGame(); } else { this._clearTimeouts(); }
 			};
 			time = 3000;
 		}
@@ -168,7 +181,7 @@ export default class LocalGameServer {
 	_npcAnswer(maxAnswerTime) {
 		const answer = {
 			answerIndex: this._getRandomInt(4),
-			answerTime: this._getRandomInt(maxAnswerTime * 1000) / 4,
+			answerTime: this._getRandomInt(maxAnswerTime * 1000) / 8,
 		};
 		return answer;
 	}
@@ -178,6 +191,21 @@ export default class LocalGameServer {
 			questionWindow: false,
 		};
 		this.game.renderChild("question_window", QuestionComponent, context);
+	}
+
+	_showGameOverWindow(text) {
+		const context = {
+			gameoverWindow: true,
+			statusText: text,
+		};
+		this.game.renderChild("gameover_window", GameoverComponent, context);
+	}
+
+	_hideGameOverWindow() {
+		const context = {
+			gameoverWindow: false,
+		};
+		this.game.renderChild("gameover_window", GameoverComponent, context);
 	}
 
 	_refreshGame() {

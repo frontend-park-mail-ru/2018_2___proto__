@@ -8,8 +8,16 @@
 				<canvas class="game-screen__canvas game-screen__hero-right"></canvas>
 		</div>
 		<div ref="question_window" class="game-screen__question"></div>
+		<div ref="gameover_window" class="game-screen__question"></div>
 
 	{{else}}
-		<div ref="isReadyButton"></div>
+		<div class="class_choice_column">
+			<div class="class_proposal_text"><h2>Выберите класс персонажа</h2></div>
+			<div ref="wiz-class_button"></div>
+			</br>
+			<div ref="knight-class_button"></div>
+			</br>
+			<div ref="exitButton"></div>
+		</div>
 	{{/if}}
 </div>
