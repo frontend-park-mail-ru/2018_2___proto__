@@ -41,7 +41,7 @@ export default class GameComponent extends BaseComponent {
 			.addCanvas("game-screen__interface")
 			.addCanvas("game-screen__hero-left")
 			.addCanvas("game-screen__hero-right")
-			.createHero("knight", "left")
+			.createHero("wiz", "left")
 			.createHero("knight", "right");
 
 		this.manager.getCanvas("background").drawBackground();
