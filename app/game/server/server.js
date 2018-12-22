@@ -168,7 +168,7 @@ export default class LocalGameServer {
 	_npcAnswer(maxAnswerTime) {
 		const answer = {
 			answerIndex: this._getRandomInt(4),
-			answerTime: this._getRandomInt(maxAnswerTime * 1000) / 2,
+			answerTime: this._getRandomInt(maxAnswerTime * 1000) / 4,
 		};
 		return answer;
 	}
