@@ -27,42 +27,42 @@ export default class MenuComponent extends BaseComponent {
 	 */
 	_renderChildren() {
 		this.renderChild("singleplayer", ButtonComponent, {
-			text: "Play singleplayer",
+			text: "Играть",
 			onClick: this._onSingleplayerClick.bind(this),
 		});
 
 		this.renderChild("multiplayer", ButtonComponent, {
-			text: "Play multiplayer",
+			text: "Играть",
 			onClick: this._onMultiplayerClick.bind(this),
 		});
 
 		this.renderChild("profile", ButtonComponent, {
-			text: "View profile",
+			text: "Профиль",
 			onClick: this._onProfileClick.bind(this),
 		});
 
 		this.renderChild("leaderboard", ButtonComponent, {
-			text: "Leaderboard",
+			text: "Лидеры",
 			onClick: this._onLeaderboardClick.bind(this),
 		});
 
 		this.renderChild("about", ButtonComponent, {
-			text: "About",
+			text: "О проекте",
 			onClick: this._onAboutClick.bind(this),
 		});
 
 		this.renderChild("signin", ButtonComponent, {
-			text: "Sign In",
+			text: "Вход",
 			onClick: this._onSignInClick.bind(this),
 		});
 
 		this.renderChild("signup", ButtonComponent, {
-			text: "Sign Up",
+			text: "Регистрация",
 			onClick: this._onSignUpClick.bind(this),
 		});
 
 		this.renderChild("logout", ButtonComponent, {
-			text: "Log Out",
+			text: "Выйти",
 			onClick: this._onLogOutClick.bind(this),
 		});
 

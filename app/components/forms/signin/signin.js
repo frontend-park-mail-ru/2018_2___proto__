@@ -27,12 +27,12 @@ export default class SignInComponent extends BaseComponent {
 
 	_renderChildren() {
 		this.renderChild("submit", ButtonComponent, {
-			text: "Sign In",
+			text: "Вход",
 			onClick: this._onSubmitClick.bind(this),
 		});
 
 		this.renderChild("toSignUp", LinkComponent, {
-			text: "Not registered? Sign Up!",
+			text: "Еще не зарегистрированы? Нажмите сюда",
 			onClick: this._onNotRegisteredClick.bind(this),
 		});
 
