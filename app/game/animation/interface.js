@@ -17,14 +17,14 @@ export default class Interface extends CanvasWrapper {
 				data = {
 					pos_x: 0,
 					pos_y: 0,
-					width: this.canvas.width / 2,
+					width: this.canvas.width / 2 - 45,
 					height: this.canvas.height / 2,
 				};
 				this.clear(data);
 				break;
 			case "right":
 				data = {
-					pos_x: this.canvas.width / 2,
+					pos_x: this.canvas.width / 2 + 45,
 					pos_y: 0,
 					width: this.canvas.width,
 					height: this.canvas.height,
@@ -87,5 +87,25 @@ export default class Interface extends CanvasWrapper {
 			width: 450, // size of the image
 			height: 90,
 		});
+	}
+
+	drawNumber(number) {
+		const clearOptions = {
+			pos_x: this.canvas.width / 2 - 45,
+			pos_y: this.y_margin - 34,
+			width: 95,
+			height: 190,
+		};
+		this.clear(clearOptions);
+
+		if (!(number < 0 && number > 9)) {
+			this.draw({
+				image_name: `numbers/${number}`,
+				pos_x: this.canvas.width / 2 - 45,
+				pos_y: this.y_margin - 34,
+				width: 95, // size of the image
+				height: 190,
+			});
+		}
 	}
 }

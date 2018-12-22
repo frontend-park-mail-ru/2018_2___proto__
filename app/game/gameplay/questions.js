@@ -3,7 +3,7 @@ export default `{
 		{
 			"text": "'Ave Maria!...' -- продолжите фразу",
 			"correctAnswerIndex": 2,
-			"timeToAnswer": 5,
+			"timeToAnswer": 9,
 			"answers": [
 				"Requiescat in Pace!",
 				"Deus Vult!",
@@ -14,7 +14,7 @@ export default `{
 		{
 			"text": "Кто был первым Папой Римским?",
 			"correctAnswerIndex": 3,
-			"timeToAnswer": 5,
+			"timeToAnswer": 9,
 			"answers": [
 				"Инокентий",
 				"Феодосий",
@@ -25,7 +25,7 @@ export default `{
 		{
 			"text": "Какой клетки нет на шахматной доске?",
 			"correctAnswerIndex": 3,
-			"timeToAnswer": 5,
+			"timeToAnswer": 9,
 			"answers": [
 				"H8",
 				"B7",
@@ -36,7 +36,7 @@ export default `{
 		{
 			"text": "Какой московский магазин некогда носил название 'Верхние торговые ряды'?",
 			"correctAnswerIndex": 4,
-			"timeToAnswer": 5,
+			"timeToAnswer": 9,
 			"answers": [
 				"ЦУМ",
 				"Гостинный двор",
@@ -47,7 +47,7 @@ export default `{
 		{
 			"text": "Какая буква исчезла из русского алфавита в ходе реформы Петра I?",
 			"correctAnswerIndex": 2,
-			"timeToAnswer": 5,
+			"timeToAnswer": 9,
 			"answers": [
 				"Фита",
 				"Омега",
@@ -58,7 +58,7 @@ export default `{
 		{
 			"text": "На какой из этих городов Новый Год выпадает раньше?",
 			"correctAnswerIndex": 1,
-			"timeToAnswer": 5,
+			"timeToAnswer": 9,
 			"answers": [
 				"Красноярск",
 				"Пермь",
@@ -69,7 +69,7 @@ export default `{
 		{
 			"text": "На что надо перековывать мечи, если верить крылатому выражению?",
 			"correctAnswerIndex": 4,
-			"timeToAnswer": 5,
+			"timeToAnswer": 9,
 			"answers": [
 				"На забрала",
 				"На лекала",
@@ -80,7 +80,7 @@ export default `{
 		{
 			"text": "Любители этого композитора предпочитают помимо его песен также и его жену",
 			"correctAnswerIndex": 2,
-			"timeToAnswer": 5,
+			"timeToAnswer": 9,
 			"answers": [
 				"Владимир Высоцкий",
 				"Егор Летов",
@@ -91,7 +91,7 @@ export default `{
 		{
 			"text": "Как называют посвящение в священнослужители?",
 			"correctAnswerIndex": 1,
-			"timeToAnswer": 5,
+			"timeToAnswer": 9,
 			"answers": [
 				"Рукоположение",
 				"Рукопожатие",
@@ -102,7 +102,7 @@ export default `{
 		{
 			"text": "Какое из названий цепи скандалов с суффиксом -гейт упоминается в истории впервые?",
 			"correctAnswerIndex": 3,
-			"timeToAnswer": 5,
+			"timeToAnswer": 9,
 			"answers": [
 				"Рашагейт",
 				"Геймергейт",
@@ -113,7 +113,7 @@ export default `{
 		{
 			"text": "О чем писал Грибоедов, отмечая, что он 'нам сладок и приятен'?",
 			"correctAnswerIndex": 1,
-			"timeToAnswer": 5,
+			"timeToAnswer": 9,
 			"answers": [
 				"Дым Отечества",
 				"Дух купечества",
@@ -124,7 +124,7 @@ export default `{
 		{
 			"text": "В какое море впадает река Урал?",
 			"correctAnswerIndex": 4,
-			"timeToAnswer": 5,
+			"timeToAnswer": 9,
 			"answers": [
 				"Азовское",
 				"Черное",
@@ -135,7 +135,7 @@ export default `{
 		{
 			"text": "Какой голос у роли горного короля в пьесе Генрика Ибсена 'Пер Гюнт'?",
 			"correctAnswerIndex": 4,
-			"timeToAnswer": 5,
+			"timeToAnswer": 9,
 			"answers": [
 				"Бас",
 				"Баритон",
@@ -146,7 +146,7 @@ export default `{
 		{
 			"text": "Какой специалист занимается изучением неопознанных летающих объектов?",
 			"correctAnswerIndex": 2,
-			"timeToAnswer": 5,
+			"timeToAnswer": 9,
 			"answers": [
 				"Уролог",
 				"Уфолог",
@@ -157,7 +157,7 @@ export default `{
 		{
 			"text": "Какими углы в геометрии не бывают?",
 			"correctAnswerIndex": 3,
-			"timeToAnswer": 5,
+			"timeToAnswer": 9,
 			"answers": [
 				"Косыми",
 				"Прямыми",
@@ -168,7 +168,7 @@ export default `{
 		{
 			"text": "Чем отличаются Холмс и Ватсон в фильме 'Мой нежно любимый детектив'?",
 			"correctAnswerIndex": 3,
-			"timeToAnswer": 5,
+			"timeToAnswer": 9,
 			"answers": [
 				"Они моложе",
 				"Они в XXI веке",
@@ -179,7 +179,7 @@ export default `{
 		{
 			"text": "Какое название было дано произведению самим автором?",
 			"correctAnswerIndex": 2,
-			"timeToAnswer": 5,
+			"timeToAnswer": 9,
 			"answers": [
 				"Лунная соната",
 				"Девочка с персиками",
@@ -190,7 +190,7 @@ export default `{
 		{
 			"text": "Каким словом можно охарактеризовать взгляды человека?",
 			"correctAnswerIndex": 4,
-			"timeToAnswer": 5,
+			"timeToAnswer": 9,
 			"answers": [
 				"Радиант",
 				"Радикс",
@@ -201,7 +201,7 @@ export default `{
 		{
 			"text": "Как заканчивается высказыванием Ф.М. Достоевского: 'Умение писателя -- это умение ...'?",
 			"correctAnswerIndex": 4,
-			"timeToAnswer": 5,
+			"timeToAnswer": 9,
 			"answers": [
 				"Выспрашивать",
 				"Выслушивать",
@@ -212,7 +212,7 @@ export default `{
 		{
 			"text": "В какой стране был построен ледокол 'Ермак'?",
 			"correctAnswerIndex": 4,
-			"timeToAnswer": 5,
+			"timeToAnswer": 9,
 			"answers": [
 				"США",
 				"Россия",

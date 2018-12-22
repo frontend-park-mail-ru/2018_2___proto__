@@ -30,14 +30,14 @@ export default class LocalGameServer {
 		this.playerAnswerTime = 0;
 
 		setTimeout(() => {
-			this._showQuestion();
+			// this._showQuestion();
 		}, 2000);
 	}
 
 	_showQuestion() {
 		if (!this.heroInfo.playerAlive || !this.heroInfo.npcAlive) return;
 		this.currentQuestion = this.questionManager.NewQuestion();
-		const timeToAnswer = this.currentQuestion.TimeToAnswer();
+		this.timeToAnswer = this.currentQuestion.TimeToAnswer();
 		this.playerAnswerTime = 0;
 		this.playerCountUpTimer = setInterval(this._countTime.bind(this), 100);
 
@@ -45,7 +45,7 @@ export default class LocalGameServer {
 		setTimeout(() => {
 			// this.timeIsOut = true;
 			clearInterval(this.playerCountUpTimer);
-		}, timeToAnswer * 1000);
+		}, this.timeToAnswer * 1000);
 
 		const context = {
 			questionWindow: true,
@@ -56,6 +56,7 @@ export default class LocalGameServer {
 			answer4: this.currentQuestion.GetAnswer(3),
 		};
 		this.game.renderChild("question_window", QuestionComponent, context);
+		this.game.manager.getCanvas("interface").drawNumber(this.timeToAnswer);
 
 		this.answerTimeout = setTimeout(() => {
 			// this._hideQuestion();
@@ -180,6 +181,7 @@ export default class LocalGameServer {
 	}
 
 	_refreshGame() {
+		this.game.manager.getCanvas("interface").drawNumber(-1);
 		this.game.manager.rightHero.animate("idle");
 		this.game.manager.leftHero.animate("idle");
 		this.game.manager.leftHero.setHP(4);
@@ -197,6 +199,10 @@ export default class LocalGameServer {
 
 	_countTime() {
 		this.playerAnswerTime += 100;
+		if (this.playerAnswerTime % 1000 === 0) {
+			this.timeToAnswer -= 1;
+			this.game.manager.getCanvas("interface").drawNumber(this.timeToAnswer);
+		}
 	}
 
 	_getRandomInt(max) {
